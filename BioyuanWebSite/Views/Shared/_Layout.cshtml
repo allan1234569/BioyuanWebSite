@@ -1,0 +1,804 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="heyi@bioyuan.cn" />
+    <meta name="copyright" content="上海标源生物科技有限公司" />
+
+
+        @Styles.Render("~/Content/css")
+
+    
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+    <link href="@Url.Content("~/Style/css/style.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Style/css/login.css")" rel="stylesheet" />
+
+
+    @Scripts.Render("~/bundles/modernizr")
+    @*@Scripts.Render("~/bundles/jquery")*@
+
+    <script src="@Url.Content("~/Scripts/js/jquery-3.2.1.js")"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="@Url.Content("~/Scripts/js/bootstrap/bootstrapValidator.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/wow.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/swiper.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/public.js")"></script>
+    @*<script src="@Url.Content("~/Scripts/js/login.js")"></script>*@
+
+
+
+
+    <script>
+        var wow = new WOW({
+            boxClass: 'wow',
+            animateClass: 'animated',
+            offset: 0,
+            mobile: false,
+            live: true
+        });
+        wow.init();
+    </script>
+    <!--[if lt IE 9]>
+        <script src="js/html5shiv.min.js">
+        </script>
+        <script src="js/respond.min.js">
+        </script>
+    <![endif]-->
+
+    <script>
+        //jQuery(function () {
+        //    $('.counter').countUp();
+        //})
+    </script>
+    <script>
+        function scro() {
+            if ($(document).scrollTop() > 50) {
+                $(".headerBg").addClass("active");
+            } else {
+                $(".headerBg").removeClass("active");
+            }
+        }
+        scro();
+        $(window).scroll(function () {
+            scro();
+        })
+    </script>
+
+</head>
+<body>
+
+    <!--页头-->
+    <header class="headerBg navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="logo">
+                <a href="/Home/Index">
+                    <img src="@Url.Content("~/Res/picture/logo.png")" alt="上海标源" />
+                </a>
+            </div>
+            <div class="menuBtn">
+                <span>
+                </span>
+                <span>
+                </span>
+                <span>
+                </span>
+            </div>
+            @*<div class="dropdown hdRig">
+                <button type="button" class="btn dropdown-toggle" id="dropdownMenu1"
+                        data-toggle="dropdown">
+                    主题
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation" class="dropdown-header">注销</li>
+                </ul>
+            </div>*@
+            <div class="hdRig">
+                <ul class="hdRigList list-unstyled">
+                    <li id="loginBtn" class="loginLi">
+                        <a id="login_btn" class="login" data-toggle="modal" target="_blank" href="/User/Login">
+                            <span>登&nbsp;录</span>
+                        </a>
+                    </li>
+                    <li class="loginOutLi hidden">
+                        <a class="login" href="/Home/Index">
+                            <span>注&nbsp;销</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="clear">
+            </div>
+            <div class="navBox hidden-xs hidden-sm">
+                <ul class="navList list-unstyled">
+                    <li class="navLi">
+                        <h3>
+                            <a href="/Home/Index">
+                                <span>
+                                    首页
+                                </span>
+                            </a>
+                        </h3>
+                    </li>
+                    <li class="navLi">
+                        <h3>
+                            <a href="/Home/About/Introduction">
+                                <span>
+                                    关于我们
+                                </span>
+                            </a>
+                        </h3>
+                        <div class="navSub">
+                            <ul class="navSubList list-unstyled">
+                                <li class="navSubLi">
+                                    <h4>
+                                        <a href="/Home/About/Introduction">
+                                            公司简介
+                                        </a>
+                                    </h4>
+                                </li>
+                                <li class="navSubLi">
+                                    <h4>
+                                        <a href="/Home/About/News">
+                                            新闻资讯
+                                        </a>
+                                    </h4>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="navLi">
+                        <h3>
+                            <a href="/Home/Products">
+                                <span>
+                                    质控产品
+                                </span>
+                            </a>
+                        </h3>
+                        <div class="navSub">
+                            <ul class="navSubList list-unstyled">
+                                <li class="navSubLi">
+                                    <h4>
+                                        <a>
+                                            质控品
+                                        </a>
+                                    </h4>
+                                    <ul class="navThrList list-unstyled">
+                                        <li class="navThrLi">
+                                            <h5>
+                                                <a href="/Home/Products/pro=lqc&cat=p">
+                                                    室内质控品
+                                                </a>
+                                            </h5>
+                                        </li>
+                                        <li class="navThrLi">
+                                            <h5>
+                                                <a href="/Home/Products/pro=iqc&cat=p">
+                                                    室间质评品
+                                                </a>
+                                            </h5>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="navSubLi">
+                                    <h4>
+                                        <a href="/Home/Products/pro=rm&cat=p">
+                                            标准物质
+                                        </a>
+                                    </h4>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="navLi">
+                        <h3>
+                            <a href="/Home/QualityManagePlatforms">
+                                <span>
+                                    BIQAS质量管理平台
+                                </span>
+                            </a>
+                        </h3>
+                        <div class="navSub">
+                            <ul class="navSubList list-unstyled">
+                                <li class="navSubLi">
+                                    <h4>
+                                        <a href="/Home/QualityManagePlatforms">
+                                            BIQAS-EQA
+                                        </a>
+                                    </h4>
+                                </li>
+                                <li class="navSubLi">
+                                    <h4>
+                                        <a href="/Home/QualityManagePlatforms">
+                                            BIQAS-IQC
+                                        </a>
+                                    </h4>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="navLi  ">
+                        <h3>
+                            <a href="/Home/QualityManageTools">
+                                <span>
+                                    质量管理工具
+                                </span>
+                            </a>
+                        </h3>
+                        <div class="navSub">
+                            <ul class="navSubList list-unstyled">
+                                <li class="navSubLi">
+                                    <h4>
+                                        <a href="/Home/QualityManageTools">
+                                            室内质控设计
+                                        </a>
+                                    </h4>
+                                </li>
+                                <li class="navSubLi">
+                                    <h4>
+                                        <a href="/Home/QualityManageTools">
+                                            方法性能评价
+                                        </a>
+                                    </h4>
+                                </li>
+                                <li class="navSubLi">
+                                    <h4>
+                                        <a href="/Home/QualityManageTools">
+                                            ISO15189文件管理系统
+                                        </a>
+                                    </h4>
+                                </li>
+                                <li class="navSubLi">
+                                    <h4>
+                                        <a href="/Home/QualityManageTools">
+                                            质量指标计算工具
+                                        </a>
+                                    </h4>
+                                </li>
+                                <li class="navSubLi">
+                                    <h4>
+                                        <a href="/Home/QualityManageTools">
+                                            人员培训与能力评估系统
+                                        </a>
+                                    </h4>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="navLi  ">
+                        <h3>
+                            <a href="/Home/QualityXueFang">
+                                <span>
+                                    质量学坊
+                                </span>
+                            </a>
+                        </h3>
+                        <div class="navSub">
+                            <ul class="navSubList list-unstyled">
+                                <li class="navSubLi">
+                                    <h4>
+                                        <a href="/Home/QualityXueFang">
+                                            质量规范
+                                        </a>
+                                    </h4>
+                                </li>
+                                <li class="navSubLi">
+                                    <h4>
+                                        <a href="/Home/QualityXueFang">
+                                            EQA
+                                        </a>
+                                    </h4>
+                                </li>
+                                <li class="navSubLi">
+                                    <h4>
+                                        <a href="/Home/QualityXueFang">
+                                            IQC
+                                        </a>
+                                    </h4>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="navLi  ">
+                        <h3>
+                            <a href="/Home/Contact">
+                                <span>
+                                    联系我们
+                                </span>
+                            </a>
+                        </h3>
+                    </li>
+                </ul>
+            </div>
+            <div class="navBoxm">
+            </div>
+        </div>
+    </header>
+
+
+    <!--页面主体-->
+    <div style="height:auto;">
+
+        @RenderBody()
+
+        @RenderSection("scripts", required: false)
+
+    </div>
+
+
+    <!--页脚-->
+    <footer class="footerBg" style="display:block;">
+        <div class="container">
+            <div class="footTop">
+                <div class="footTopR text-right">
+                    <a href="#"
+                       target="_blank" class="kefu">
+                        <img src="~/Res/picture/kefu.png" />
+                        在线客服
+                    </a>
+                    <div class="clear">
+                    </div>
+                    <p class="fTel">
+                        021 6555 8710
+                    </p>
+                    <p>
+                        （周一至周五上午9：00-下午5：00为您服务）
+                    </p>
+                </div>
+                <div class="footTopL">
+                    <ul class="footLink list-unstyled list-inline">
+                        <li>
+                            <h3>
+                                <a class="ellipsis" href="/Home/About/Introduction">
+                                    关于我们
+                                </a>
+                            </h3>
+                            <div class="footSub">
+                                <p>
+                                    <a class="ellipsis" href="/Home/About/Introduction">
+                                        公司简介
+                                    </a>
+                                </p>
+                                <p>
+                                    <a class="ellipsis" href="/Home/About/News">
+                                        新闻资讯
+                                    </a>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <h3>
+                                <a class="ellipsis" href="/Home/Products/?pro=lqc&cat=p">
+                                    质控产品
+                                </a>
+                            </h3>
+                            <div class="footSub">
+                                <p>
+                                    <a class="ellipsis" href="/Home/Products/pro=lqc&cat=p">
+                                        室内质控品
+                                    </a>
+                                </p>
+                                <p>
+                                    <a class="ellipsis" href="/Home/Products/pro=iqc&cat=p">
+                                        室间质评品
+                                    </a>
+                                </p>
+                                <p>
+                                    <a class="ellipsis" href="/Home/Products/pro=rm&cat=p">
+                                        标准物质
+                                    </a>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <h3>
+                                <a class="ellipsis" href="/Home/QualityManagePlatforms">
+                                    质量管理平台
+                                </a>
+                            </h3>
+                            <div class="footSub">
+                                <p>
+                                    <a class="ellipsis" href="/Home/QualityManagePlatforms">
+                                        BIQAS-EQA
+                                    </a>
+                                </p>
+                                <p>
+                                    <a class="ellipsis" href="/Home/QualityManagePlatforms">
+                                        BIQAS-IQC
+                                    </a>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <h3>
+                                <a class="ellipsis" href="/Home/QualityManageTools">
+                                    质量管理工具
+                                </a>
+                            </h3>
+                            <div class="footSub">
+                                <p>
+                                    <a class="ellipsis" href="/Home/QualityManageTools">
+                                        室内质控设计
+                                    </a>
+                                </p>
+                                <p>
+                                    <a class="ellipsis" href="/Home/QualityManageTools">
+                                        方法性能评价
+                                    </a>
+                                </p>
+                                <p>
+                                    <a class="ellipsis" href="/Home/QualityManageTools">
+                                        ISO15189文件管理系统
+                                    </a>
+                                </p>
+                                <p>
+                                    <a class="ellipsis" href="/Home/QualityManageTools">
+                                        质量指标计算工具
+                                    </a>
+                                </p>
+                                <p>
+                                    <a class="ellipsis" href="/Home/QualityManageTools">
+                                        人员培训与能力评估系统
+                                    </a>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <h3>
+                                <a class="ellipsis" href="/Home/QualityXueFang">
+                                    质量学坊
+                                </a>
+                            </h3>
+                            <div class="footSub">
+                                <p>
+                                    <a class="ellipsis" href="/Home/QualityXueFang">
+                                        质量规范
+                                    </a>
+                                </p>
+                                <p>
+                                    <a class="ellipsis" href="/Home/QualityXueFang">
+                                        EQA
+                                    </a>
+                                </p>
+                                <p>
+                                    <a class="ellipsis" href="/Home/QualityXueFang">
+                                        IQC
+                                    </a>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <h3>
+                                <a class="ellipsis" href="/Home/Contact">
+                                    联系我们
+                                </a>
+                            </h3>
+                            <div class="footSub">
+                                <p>
+                                    <a class="ellipsis" href="/Home/Contact">
+                                        联系方式
+                                    </a>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+            <div class="footBot">
+                <img src="@Url.Content("~/Res/picture/logo.png")" class="footLogo" />
+                <p class="text-center">
+                    友情链接：<a href="http://www.biqas.bioyuan.cn/" target="_blank">质量评价平台</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.autobio.com.cn/" target="_blank">安图生物</a>
+                </p>
+                <p class="text-center">
+                    Copyright&nbsp;&nbsp;&copy;&nbsp;&nbsp;2017&nbsp;&nbsp;www.bioyuan.com.cn&nbsp;&nbsp;All&nbsp;&nbsp;rights&nbsp;&nbsp;reserved.&nbsp;&nbsp;沪ICP备17035803号-1&nbsp;&nbsp;
+                </p>
+                <div class="clear">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!--右侧导航-->
+    <ul class="online list-unstyled">
+        <li class="online_login">
+            <a class="onlineIco ">
+                <i class="fa fa-address-book">
+                </i>
+                <div class="onlineCon">
+                    登录
+                </div>
+            </a>
+        </li>
+        <li>
+            <a class="onlineIco">
+                <i class="fa fa-phone">
+                </i>
+                <div class="onlineCon">
+                    021 6555 8710
+                </div>
+            </a>
+        </li>
+        <li class="online_top">
+            <a class="onlineIco" href="javascript:;">
+                <i class="fa fa-arrow-up">
+                </i>
+                <div class="onlineCon">
+                    返回顶部
+                </div>
+            </a>
+        </li>
+    </ul>
+
+
+
+    <!-- 登录、注册模态框 -->
+    @*<div class="modal fade " role="dialog" id="my-modal-login">
+        <div class="modal-dialog">
+            <div class="jq22-container" style="padding-top:100px">
+                <div id="login-close-btn" class="login-close">
+                    <i class="fa fa-close close-btn"></i>
+                </div>
+                <div class="login-wrap">
+                    <div class="login-html">
+                        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">登&nbsp;&nbsp;录</label>
+                        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">注&nbsp;&nbsp;册</label>
+                        <input id="tab-3" type="radio" name="tab" class="forget-pwd"><label for="tab-3" class="tab">忘记密码</label>
+                        <div class="login-form">
+                            <form id="sign-in-form" class="sign-in-htm">
+                                <div class="group">
+                                    <label for="loginName" class="label">登&nbsp;录&nbsp;名</label>
+                                    <input id="loginName" type="text" class="input" name="LoginName">
+                                </div>
+                                <div class="group">
+                                    <label for="loginPwd" class="label">密&nbsp;&nbsp;码</label>
+                                    <input id="loginPwd" type="password" class="input" data-type="password" name="LoginPwd">
+                                </div>
+                                <div class="group">
+                                    <div id="sliderLock">
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="group">
+                                    <input id="sign-in-btn" type="button" class="button" value="登  录">
+                                </div>
+                                <div class="hr"></div>
+                                <div class="foot-lnk">
+                                    <label for="tab-2">还未注册?</label>
+                                </div>
+                                <br />
+                                <div class="foot-lnk">
+                                    <label for="tab-3">忘记密码?</label>
+                                </div>
+                            </form>
+                            <form id="sign-up-form" class="sign-up-htm">
+                                <div class="group">
+                                    <label for="user" class="label">昵&nbsp;&nbsp;称</label>
+                                    <input id="user" type="text" class="input" name="NickName">
+                                </div>
+                                <div class="group">
+                                    <label for="user" class="label">登&nbsp;录&nbsp;名</label>
+                                    <input id="user" type="text" class="input" name="UserName">
+                                </div>
+                                <div class="group">
+                                    <label for="pass" class="label">密&nbsp;&nbsp;码</label>
+                                    <input id="pass" type="password" class="input" data-type="password" name="PassWord">
+                                </div>
+                                <div class="group">
+                                    <label for="pass" class="label">确认密码</label>
+                                    <input id="pass" type="password" class="input" data-type="password" name="ConfirmPass">
+                                </div>
+                                <div class="group">
+                                    <label for="pass" class="label">邮箱</label>
+                                    <input id="pass" type="text" class="input" name="Email">
+                                </div>
+                                <br />
+                                <div class="group">
+                                    <input id="sign-up-btn" type="button" class="button" value="注册">
+                                </div>
+                                <div class="hr"></div>
+                                <div class="foot-lnk">
+                                    <label for="tab-1">已经注册?</label>
+                                </div>
+                            </form>
+                            <form id="forget-pwd-form" class="forget-pwd-htm">
+                                <div class="group">
+                                    <label for="email" class="label">邮&nbsp;&nbsp;箱</label>
+                                    <input id="email" type="text" class="input">
+                                </div>
+                                <br />
+                                <div class="group">
+                                    <input id="sign-getpass-btn" type="button" class="button" value="发送邮件">
+                                </div>
+                                <div class="hr"></div>
+                                <div class="foot-lnk">
+                                    <label for="tab-1">去 登 录</label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
+    <!-- 登录、注册模态框 -->
+    <div class="modal fade" id="my-modal-login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog login-dialog">
+            <!--用户登录-->
+            <div class="modal-content col-sm-10 col-lg-10">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">用户登录</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="col-sm-offset-2">
+                        <form id="sign_in_form" class="form-horizontal">
+                            <div class="hr">
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input id="LoginName" type="text" class="form-control" name="LoginName" placeholder="登录名" />
+                                </div>
+                            </div>
+                            <div>
+                                <input class="hidden"/>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input id="LoginPwd" type="password" class="form-control" name="LoginPwd" placeholder="密码" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    @*<input class="hidden" name="ValidateCode" />
+                                    <input class="form-control col-sm-6" name="EnValidateCode" placeholder="验证码" />
+                                    <img id="Login_SecurityCode" src="/Home/SecurityCode" title="点我刷新"/>*@
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <button id="goToLogin" type="submit" class="btn btn-primary col-sm-12">登录</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-11">
+                                    <label class="col-sm-4 control-label" >
+                                        <a class="forget-pwd">忘记密码？</a>
+                                    </label>
+                                    <label class="col-sm-4 col-sm-offset-3 control-label" >
+                                        <a class="register-new">注册新用户</a>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+            <!--用户注册-->
+            <div class="modal-content col-sm-10 col-lg-10 hidden">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">用户注册</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="col-sm-offset-2">
+                        <form id="sign_up_form" class="form-horizontal">
+                            <div class="hr">
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input id="NickName" type="text" class="form-control" name="NickName" placeholder="昵称" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input id="Register_LoginName" type="text" class="form-control" name="LoginName" placeholder="登录名" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input id="Register_LoginPwd" type="password" class="form-control" name="LoginPwd" placeholder="密码" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input id="EnPassword" type="password" class="form-control" name="EnPassword" placeholder="确认密码" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input id="Register_UserEmail" type="email" class="form-control" name="UserEmail" placeholder="电子邮箱" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    @*<input class="hidden" name="ValidateCode" />
+                                    <input style="display:inline;" id="" class="form-control" name="EnValidateCode" placeholder="验证码" />
+                                    <img id="Register_SecurityCode" src="/Home/SecurityCode" title="点我刷新" />*@
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <button id="goToRegister" type="submit" class="btn btn-primary col-sm-12">注册</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-11">
+                                    <label class="col-sm-4 control-label"></label>
+                                    <label class="col-sm-4 col-sm-offset-3 control-label">
+                                        <a class="existing-account">已有账号</a>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+            <!--忘记密码-->
+            <div class="modal-content col-sm-10 col-lg-10 hidden">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">忘记密码</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="col-sm-offset-2">
+                        <form id="getpwd_form" class="form-horizontal">
+                            <div class="hr">
+                            </div>
+                            <div class="hr">
+                            </div>
+                            @*<div class="form-group">
+                                <div class="col-sm-10">
+                                    <input id="LoginName" type="text" class="form-control" name="LoginName" placeholder="登录名" />
+                                </div>
+                            </div>*@
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input id="UserEmail" type="email" class="form-control" name="UserEmail" placeholder="电子邮箱" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    @*<input class="hidden" name="ValidateCode" />
+                                    <input style="display:inline;" id="" class="form-control" name="EnValidateCode" placeholder="验证码" />
+                                    <img id="Forget_SecurityCode" src="/Home/SecurityCode" title="点我刷新"/>*@
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <button id="goToGetpass" type="submit" class="btn btn-primary col-sm-12">获取密码</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-11">
+                                    <label class="col-sm-4 control-label"></label>
+                                    <label class="col-sm-4 col-sm-offset-3 control-label">
+                                        <a class="turn-to-login">去登录</a>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+</body>
+</html>

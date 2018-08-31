@@ -1,0 +1,62 @@
+﻿<div class="content">
+    <div class="row">
+        <div class="col-xs-2">
+            <dl class="menu-list">
+                <dt class="">@ViewBag.list_title</dt>
+                @{
+                    List<string> series = (List<string>)@ViewBag.productseries;
+                    }
+
+                    @{
+                    int i = 0;
+                    while (i < @series.Count)
+                    {
+                        string actionLink = "/Home/Products/pro=" + @ViewBag.pro + "&cat=ps&cat_name=" + @series[i];
+                        <dd><a href=@actionLink class="">@series[i]</a></dd>
+                        ++i;
+                    }
+                }
+
+
+            </dl>
+        </div>
+
+        <div class="col-xs-10">
+            <div class="content-panel-title">
+                <h4>@ViewBag.panel_title</h4>
+            </div>
+            <div class="content-panel-body">
+                <p class="col-md-6 product_introduce">
+                    覆盖多种分析物的各种质控品，包括免疫分析、TDM、化学、心脏评估、免疫学、糖尿病、凝血、血液学、血气、药物滥用和传染性疾病测试
+                </p>
+                <div class="clear"></div>
+                <img class="product_img" src="~/Res/picture/qsd_qualitycontrolproducts_cat_feature.jpg" />
+
+                <div class="clear"></div>
+                <div class="protit">
+                    <span>产品系列</span>
+                </div>
+                <ul class="list-unstyled">
+                    @{
+                        int j = 0;
+                        while (j < @series.Count)
+                        {
+                            string actionLink = "/Home/Products/pro=" + @ViewBag.pro + "&cat=ps&cat_name=" + @series[j];
+                            <li class="product_item">
+                                <table cellpadding="4">
+                                    <tr>
+                                        <td>
+                                            <h4><a href="@actionLink">@series[j]</a></h4>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </li>
+                            ++j;
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,1463 @@
+﻿@*<!DOCTYPE html>*@
+
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    @*<meta name="viewport" content="width=device-width" />*@
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>@ViewBag.Title</title>
+    <meta name="keywords" content="标源,上海标源" />
+    <meta name="description" content="上海标源官方网站" />
+    <meta name="author" content="heyi@bioyuan.cn" />
+    <meta name="copyright" content="上海标源生物科技有限公司" />
+
+
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    @*<link href="@Url.Content("~/Style/css/bootstrap/bootstrap.min.css")" rel="stylesheet" />*@
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+    <link href="@Url.Content("~/Areas/Admin/Style/css/index.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Areas/Admin/Style/css/tag.css")" rel="stylesheet" />
+    @*
+    <link href="@Url.Content("~/Areas/Admin/Style/css/normalize.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Areas/Admin/Style/css/validator.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Areas/Admin/Style/css/completer.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Areas/Admin/Style/css/magic-check.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Areas/Admin/Style/css/font.css")" rel="stylesheet" />
+    *@
+
+
+    <script src="@Url.Content("~/Areas/Admin/Style/js/jquery-3.2.1.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/Style/js/bootstrap/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/Style/js/bootstrap/bootstrapValidator.min.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/Style/js/bootstrap/bootstrap-dynamic-tabs.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/Style/js/bootstrap/bootstrap-paginator.min.js")"></script>
+
+    <script src="@Url.Content("~/Areas/Admin/Style/js/index.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/Style/js/tag.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/Style/js/group-list.js")"></script>
+
+    <script src="@Url.Content("~/Areas/Admin/Style/js/laboratory-quality-control.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/Style/js/interroom-quality-control.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/Style/js/jquery.hotkeys.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/Style/js/google-code-prettify/prettify.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/Style/js/material.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/Style/js/user.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/Style/js/news-category.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/Style/js/product-category.js")"></script>
+    @*<script src="@Url.Content("~/Areas/Admin/Style/js/introduction.js")"></script>*@
+    @*<script src="@Url.Content("~/Areas/Admin/Style/js/news.js")"></script>*@
+
+    @*<script src="//cdn.bootcss.com/angular.js/1.5.8/angular.min.js"></script>*@
+    @*<script src="~@Url.Content("/Areas/Admin/Style/js/ckeditor/ckeditor.js")"></script>*@
+    <script src="//cdn.ckeditor.com/4.9.1/standard/ckeditor.js"></script>
+    @*<script src="@Url.Content("~/Areas/Admin/Style/js/ckeditor/ckeditor.js")"></script>*@
+
+</head>
+<body>
+    <!-- 顶部开始 -->
+    <header class="navbar-default top_header">
+        <div>
+            <div class="logo">
+                <span><a href="/Admin/Home/Index">标源后台管理系统</a></span>
+            </div>
+            <div class="left_open">
+                <i title="展开左侧栏" style="height:30px; line-height:30px;">
+                    <a style="height:30px; line-height:30px;">
+                        <span class="glyphicon glyphicon-th-list" style="height:28px;line-height:28px;"></span>
+                    </a>
+                </i>
+            </div>
+        </div>
+
+        <a href="/Home/Index" class="home_link">
+            <span>网站首页</span>
+        </a>
+        <div class="dropdown">
+            <button type="button" class="btn dropdown-toggle" id="dropdownMenu1"
+                    data-toggle="dropdown">
+                管理员
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" href="/Admin/Login/LoginOut">注销</a>
+                </li>
+            </ul>
+        </div>
+
+    </header>
+    <!-- 顶部结束 -->
+    <!-- 中部开始 -->
+    <div>
+        <!-- 左侧菜单开始 -->
+        <div class="left-nav">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="left-menu-item" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                @*<span class="glyphicon glyphicon-user"></span>*@ 分类管理 <span class="glyphicon glyphicon-menu-down menu_indicator"></span>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse">
+                        <a href="/Admin/Home/ProductCategoryManage/ProductCategory" class="panel-body">
+                            产品分类
+                        </a>
+                        <a href="/Admin/Home/NewsManage/NewsCategory" class="panel-body">
+                            新闻分类
+                        </a>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="left-menu-item" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                @*<span class="glyphicon glyphicon-user"></span>*@产品管理 <span class="glyphicon glyphicon-menu-down menu_indicator"></span>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <a href="/Admin/Home/ProductsManage/LaboratoryQuailtyControl" class="panel-body">
+                            室内质控品
+                        </a>
+                        <a href="/Admin/Home/ProductsManage/InterroomQualityControl" class="panel-body">
+                            室间质评品
+                        </a>
+                        <a href="/Admin/Home/ProductsManage/Material" class="panel-body">
+                            标准物质
+                        </a>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="left-menu-item" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                @*<span class="glyphicon glyphicon-user"></span>*@简介管理 <span class="glyphicon glyphicon-menu-down menu_indicator"></span>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <a href="/Admin/Home/IntroductionManage/Introduction" class="panel-body">
+                            公司简介
+                        </a>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="left-menu-item" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                @*<span class="glyphicon glyphicon-user"></span>*@新闻管理 <span class="glyphicon glyphicon-menu-down menu_indicator"></span>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse">
+                        <a href="/Admin/Home/NewsManage/News" class="panel-body">
+                            新闻
+                        </a>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="left-menu-item" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                                @*<span class="glyphicon glyphicon-user"></span>*@用户管理 <span class="glyphicon glyphicon-menu-down menu_indicator"></span>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseFive" class="panel-collapse collapse">
+                        <a href="/Admin/Home/UserManage/Users" class="panel-body">
+                            用户
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 左侧菜单结束 -->
+        <!-- 右侧主体开始 -->
+        <div class="page-content" style="height:auto;">
+            <div class="page-content-title"></div>
+            @RenderBody()
+        </div>
+        <!-- 右侧主体结束 -->
+
+    </div>
+    <!-- 中部结束 -->
+    <!-- 底部开始 -->
+    <div class="footer" style="display:block">
+        <div class="copyright">Copyright ©2017 All Rights Reserved</div>
+    </div>
+    <!-- 底部结束 -->
+    <!--模态框定义开始-->
+    <!--添加室内质控哭模态框-->
+    <div class="modal fade" id="addLabQualityControlModel" tabindex="-1" role="dialog" aria-labelledby="addLabQualityControlModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog custom_modal_dialog">
+            <div class="modal-content">
+                <form id="add-lqc-form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/Admin/Home/ProductsManage/AddLaboratoryQuailtyControl">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="addMaterialModalLabel">添加室内质控品</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">质控品名称</label>
+                            <div class="col-sm-10">
+                                <input id="add-ProductName" type="text" class="form-control" name="ProductName" placeholder="请输入质控品名称">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">描述</label>
+                            <div class="col-sm-10">
+                                <textarea id="add_Description" class="form-control" name="Description" placeholder="请输入质控品的描述"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">上传图片</label>
+                            <div class="col-sm-10">
+                                <img id="add_lab_preview" src="" width="120" height="80" />
+                                <input id="add_lab_img" name="Img" type="file" accept=".JPG,.JPEG,.PNG,.GIF" style="width:auto;cursor:pointer;">最佳图片尺寸120x80
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">专业分类</label>
+                            <div class="col-sm-10">
+                                <select id="add_lab_CategoryName" class="form-control" name="CategoryName"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">分析物</label>
+                            <div class="col-sm-10">
+                                <input id="add_labAnalyte" name="Analyte" />
+                            </div>
+                        </div>
+                        <div class="form-group" style="height: 20px; line-height: 20px;">
+                            <label for="" class="col-sm-2 control-label" style="height: 20px; line-height: 20px;padding-top:0px;">规格</label>
+                            <a id="add_lab_item_no" class="col-sm-1 row_new" title="新增货号" style="text-decoration:none;">
+                                添加货号
+                            </a>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-10">
+                                <div class="tab-content">
+                                    <div id="default" class="tab-pane fade active in">
+                                        <table id="tabs_default" class="table table-bordered" style="margin-left:0px;">
+                                            <tr>
+                                                <td class="hidden">ID</td>
+                                                <td>货号</td>
+                                                <td>浓度</td>
+                                                <td>规格</td>
+                                                <td>证书编号</td>
+                                                <td>操作</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">稳定性</label>
+                            <div class="col-sm-10">
+                                <input id="add_labStabilityValue" name="Stability" placeholder="请输入质控品稳定性，输入回车添加" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">产品特征</label>
+                            <div class="col-sm-10">
+                                <input id="add_labFeatureValue" name="Feature" placeholder="请输入质控品稳定性，输入回车添加" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">备注</label>
+                            <div class="col-sm-10">
+                                <textarea id="" class="form-control" name="Annotation" placeholder="请输入备注"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary">提交</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+
+    <!--修改室内质控品模态框-->
+    <div class="modal fade" id="modifyLabQualityControlModal" tabindex="-1" role="dialog" aria-labelledby="modifyLabQualityControlModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog custom_modal_dialog">
+            <div class="modal-content">
+                <form id="modify-lqc-form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/Admin/Home/UserManage/ModifyLaboratoryQUalityControl">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="addMaterialModalLabel">修改室内质控品</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="hidden">
+                            <input id="modify_LaboratoryQualityId" name="LaboratoryQualityControlId" />
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">质控品名称</label>
+                            <div class="col-sm-10">
+                                <input id="modify_ProductName" type="text" class="form-control" name="ProductName" placeholder="请输入质控品名称">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">描述</label>
+                            <div class="col-sm-10">
+                                <textarea id="modify_Description" class="form-control" name="Description" placeholder="请输入质控品的描述"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">上传图片</label>
+                            <div class="col-sm-10">
+                                <img id="modify_lab_preview" src="" width=" 120" height="80" />
+                                <input id="modify_lab_Img" name="Img" type="file" accept=".JPG,.JPEG,.PNG,.GIF" style="width:auto;cursor:pointer;">最佳图片尺寸120x80
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">专业分类</label>
+                            <div class="col-sm-10">
+                                <select id="modify_lab_CategoryName" class="form-control" name="CategoryName"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">分析物</label>
+                            <div class="col-sm-10">
+                                <input id="modify_Analyte" name="Analyte" />
+                            </div>
+                        </div>
+                        <div class="form-group" style="height: 20px; line-height: 20px;">
+                            <label for="" class="col-sm-2 control-label" style="height: 20px; line-height: 20px;padding-top:0px;">规格</label>
+                            <a id="modify_lab_item_no" class="col-sm-1 row_new" title="新增货号" style="text-decoration:none;">
+                                添加货号
+                            </a>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-10">
+                                <div class="tab-content">
+                                    <div id="default" class="tab-pane fade active in">
+                                        <table id="modify_tabs_default" class="table table-bordered" style="margin-left:0px;">
+                                            <tr>
+                                                <td>货号</td>
+                                                <td>浓度</td>
+                                                <td>规格</td>
+                                                <td>证书编号</td>
+                                                <td>操作</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">稳定性</label>
+                            <div class="col-sm-10">
+                                <input id="modify_Stability" name="Stability" placeholder="请输入质控品稳定性，输入回车添加" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">产品特征</label>
+                            <div class="col-sm-10">
+                                <input id="modify_Feature" name="Feature" placeholder="请输入质控品特征，输入回车添加" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">备注</label>
+                            <div class="col-sm-10">
+                                <textarea id="modify_Annotation" class="form-control" name="Annotation" placeholder="请输入备注"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary">修改</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!-- 删除室内质控品模态框 -->
+    <div class="modal fade" id="deleteLabQualityControlModal" tabindex="-1" role="dialog" aria-labelledby="deleteLabQualityControlModalLabel" aria-hidden="true" @*data-backdrop="static"*@>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-horizontal" method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="deleteLabQualityControlModalLabel">删除室内质控品</h4>
+                    </div>
+                    <div class="modal-body">
+                        是否要删除此室内质控品
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button id="delete_labControl_btn" type="submit" class="btn btn-primary">删除</button>
+                        <label id="delete_labControl_id" class="hidden "></label>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+
+
+
+
+
+
+    <!--添加室间质评品模态框-->
+    <div class="modal fade" id="addInterroomQualityControlModel" tabindex="-1" role="dialog" aria-labelledby="addInterroomQualityControlModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog custom_modal_dialog">
+            <div class="modal-content">
+                <form id="add-interroom-form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/Admin/Home/ProductsManage/AddInterroomQualityControl">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="addMaterialModalLabel">添加室间质评品</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">室间质评品名称</label>
+                            <div class="col-sm-10">
+                                <input id="addInterroom_ProductName" type="text" class="form-control" name="ProductName" placeholder="请输入质评品名称">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">描述</label>
+                            <div class="col-sm-10">
+                                <textarea id="addInterroom_Description" class="form-control" name="Description" placeholder="请输入质评品的描述"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">上传图片</label>
+                            <div class="col-sm-9">
+                                <img id="addInterroom_Preview" src="" width="120" height="80" />
+                                <input id="addInterroom_Img" name="Img" type="file" accept=".JPG,.JPEG,.PNG,.GIF" style="width:auto;cursor:pointer;">最佳图片尺寸120x80
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">专业分类</label>
+                            <div class="col-sm-10">
+                                <select id="addInterroom_CategoryName" class="form-control" name="CategoryName"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">分析物</label>
+                            <div class="col-sm-10">
+                                <input id="add_interroomAnalyte" name="Analyte" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">产品组成</label>
+                            <div class="col-sm-10">
+                                <input id="addInterroom_Constitute" class="form-control" name="Constitute" placeholder="请输入产品组成" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">单只规格</label>
+                            <div class="col-sm-10">
+                                <input id="addInterroom_SingleSpecification" class="form-control" name="SingleSpecification" placeholder="请输入单支规格" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">产品特征</label>
+                            <div class="col-sm-10">
+                                <input id="add_interroomFeatureValue" name="Feature" placeholder="请输入质控品稳定性，输入回车添加" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">产品规格</label>
+                            <div class="col-sm-10">
+                                <input id="add_interroomSpecificationValue" name="Specification" placeholder="请输入产品规格" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">保存条件</label>
+                            <div class="col-sm-10">
+                                <input id="add_interroomStorageConditionValue" name="StorageCondition" placeholder="请输入保存条件" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">产品效期</label>
+                            <div class="col-sm-10">
+                                <input id="" class="form-control" name="UsefulLife" placeholder="请输入产品效期" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">备注</label>
+                            <div class="col-sm-10">
+                                <textarea id="" class="form-control" name="Annotation" placeholder="请输入备注"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary">提交</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!--修改室间质评品模态框-->
+    <div class="modal fade" id="modifyInterroomQualityControlModal" tabindex="-1" role="dialog" aria-labelledby="modifyInterroomQualityControlModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog custom_modal_dialog">
+            <div class="modal-content">
+                <form id="modify-interroom-form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/Admin/Home/ProductsManage/ModifyInterroomQualityControl">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="addMaterialModalLabel">修改室间质评品</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="hidden">
+                            <input id="modifyInterroom_InterroomQualityControlId" name="InterroomQualityControlId" />
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">室间质评品名称</label>
+                            <div class="col-sm-10">
+                                <input id="modifyInterroom_ProductName" type="text" class="form-control" name="ProductName" placeholder="请输入质评品名称">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">描述</label>
+                            <div class="col-sm-10">
+                                <textarea id="modifyInterroom_Description" class="form-control" name="Description" placeholder="请输入质评品的描述"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">上传图片</label>
+                            <div class="col-sm-9">
+                                <img id="modifyInterroom_Preview" src="" width="120" height="80" />
+                                <input id="modifyInterroom_Img" name="Img" type="file" accept=".JPG,.JPEG,.PNG,.GIF" style="width:auto;cursor:pointer;">最佳图片尺寸120x80
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">专业分类</label>
+                            <div class="col-sm-10">
+                                <select id="modifyInterroom_CategoryName" class="form-control" name="CategoryName"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">分析物</label>
+                            <div class="col-sm-10">
+                                <input id="modifyInterroom_InterroomAnalyte" name="Analyte" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">产品组成</label>
+                            <div class="col-sm-10">
+                                <input id="modifyInterroom_Constitute" class="form-control" name="Constitute" placeholder="请输入产品组成" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">单只规格</label>
+                            <div class="col-sm-10">
+                                <input id="modifyInterroom_SingleSpecification" class="form-control" name="SingleSpecification" placeholder="请输入单支规格" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">产品特征</label>
+                            <div class="col-sm-10">
+                                <input id="modifyInterroom_Feature" name="Feature" placeholder="请输入质控品稳定性，输入回车添加" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">产品规格</label>
+                            <div class="col-sm-10">
+                                <input id="modifyInterroom_Specification" name="Specification" placeholder="请输入产品规格" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">保存条件</label>
+                            <div class="col-sm-10">
+                                <input id="modifyInterroom_StorageCondition" name="StorageCondition" placeholder="请输入保存条件" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">产品效期</label>
+                            <div class="col-sm-10">
+                                <input id="modifyInterroom_UsefulLife" class="form-control" name="UsefulLife" placeholder="请输入产品效期" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">备注</label>
+                            <div class="col-sm-10">
+                                <textarea id="modifyInterroom_Annotation" class="form-control" name="Annotation" placeholder="请输入备注"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary">修改</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!-- 删除室间质评品模态框 -->
+    <div class="modal fade" id="deleteInterroomQualityControlModal" tabindex="-1" role="dialog" aria-labelledby="deleteInterroomQualityControlModalLabel" aria-hidden="true" @*data-backdrop="static"*@>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-horizontal" method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="deleteInterroomQualityControlModalLabel">删除室间质评品</h4>
+                    </div>
+                    <div class="modal-body">
+                        是否要删除此室间质评品
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button id="delete_interroomControl_btn" type="submit" class="btn btn-primary ">删除</button>
+                        <label id="delete_interroomControl_id" class="hidden "></label>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+
+
+
+
+
+    <!--添加标准物质模态框-->
+    <div class="modal fade" id="addMaterialModel" tabindex="-1" role="dialog" aria-labelledby="addMaterialModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog custom_modal_dialog">
+            <div class="modal-content">
+                <form id="add-material-form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/Admin/Home/ProductsManage/AddMaterial">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="addMaterialModalLabel">添加标准物质</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">标准物名称</label>
+                            <div class="col-sm-10">
+                                <input id="addMaterial_ProductName" type="text" class="form-control" name="ProductName" placeholder="请输入标准物名称">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">描述</label>
+                            <div class="col-sm-10">
+                                <textarea id="addMaterial_Description" class="form-control" name="Description" placeholder="请输入标准物的描述"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">上传图片</label>
+                            <div class="col-sm-9">
+                                <img id="addMaterial_Preview" src="" width="120" height="80" />
+                                <input id="addMaterial_Img" name="Img" type="file" accept=".JPG,.JPEG,.PNG,.GIF" style="width:auto;cursor:pointer;">最佳图片尺寸120x80
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">专业分类</label>
+                            <div class="col-sm-10">
+                                <select id="addMaterial_CategoryName" class="form-control" name="CategoryName"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">推荐浓度</label>
+                            <div class="col-sm-10">
+                                <input id="addMaterial_Concentrantion" name="RemommendedConcentration" placeholder="格式：平台:浓度1,浓度2...浓度n" />
+                            </div>
+                        </div>
+                        <div class="form-group" style="height: 20px; line-height: 20px;">
+                            <label for="" class="col-sm-2 control-label" style="height: 20px; line-height: 20px;padding-top:0px;">规格</label>
+                            <a id="addMaterial_addItemNo" class="col-sm-1 row_new" title="新增货号" style="text-decoration:none;">
+                                添加货号
+                            </a>
+                            <a id="addMaterial_addProject" class="col-sm-1 row_new " title="新增项目" style="text-decoration:none;">
+                                添加项目
+                            </a>
+                            <input class="col-sm-2" placeholder="输入项目名并点击添加项目" style="margin:0;padding:0;margin-left:10px;" />
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <div id="addMaterial_MyTable" class="col-sm-10">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">稳定性</label>
+                            <div class="col-sm-10">
+                                <input id="addMaterial_Stability" name="Stability" placeholder="请输入标准物稳定性，输入回车添加" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">产品特征</label>
+                            <div class="col-sm-10">
+                                <input id="addMaterial_Feature" name="Feature" placeholder="请输入产品特征，输入回车添加" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">备注</label>
+                            <div class="col-sm-10">
+                                <textarea id="addMaterial_Annotation" class="form-control" name="Annotation" placeholder="请输入备注"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary">提交</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!--修改标准物质模态框-->
+    <div class="modal fade" id="modifyMateriallModal" tabindex="-1" role="dialog" aria-labelledby="modifyMateriallModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog custom_modal_dialog">
+            <div class="modal-content">
+                <form id="modify-material-form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/Admin/Home/ProductsManage/ModifyMaterial">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="addMaterialModalLabel">修改标准物质</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="hidden">
+                            <input id="modifyMaterial_MaterialId" name="MaterialId" />
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">标准物名称</label>
+                            <div class="col-sm-10">
+                                <input id="modifyMaterial_ProductName" type="text" class="form-control" name="ProductName" placeholder="请输入标准物名称">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">描述</label>
+                            <div class="col-sm-10">
+                                <textarea id="modifyMaterial_Description" class="form-control" name="Description" placeholder="请输入标准物的描述"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">上传图片</label>
+                            <div class="col-sm-9">
+                                <img id="modifyMaterial_Preview" src="" width="120" height="80" />
+                                <input id="modifyMaterial_Img" name="Img" type="file" accept=".JPG,.JPEG,.PNG,.GIF" style="width:auto;cursor:pointer;">最佳图片尺寸120x80
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">专业分类</label>
+                            <div class="col-sm-10">
+                                <select id="modifyMaterial_CategoryName" class="form-control" name="CategoryName"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">推荐浓度</label>
+                            <div class="col-sm-10">
+                                <input id="modifyMaterial_Concentrantion" name="Concentrantion" placeholder="格式：平台:浓度1,浓度2...浓度n" />
+                            </div>
+                        </div>
+                        <div class="form-group" style="height: 20px; line-height: 20px;">
+                            <label for="" class="col-sm-2 control-label" style="height: 20px; line-height: 20px;padding-top:0px;">规格</label>
+                            <a id="modifyMaterial_addItemNo" class="col-sm-1 row_new" title="新增货号" style="text-decoration:none;">
+                                添加货号
+                            </a>
+                            <a id="modifyMaterial_addProject" class="col-sm-1 row_new" title="新增项目" style="text-decoration:none;">
+                                添加项目
+                            </a>
+                            <input class="col-sm-2" placeholder="输入项目名并点击添加项目" style="margin:0;padding:0;margin-left:10px;" />
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <div id="modifyMaterial_MyTable" class="col-sm-10">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">稳定性</label>
+                            <div class="col-sm-10">
+                                <input id="modifyMaterial_Stability" name="Stability" placeholder="请输入标准物稳定性，输入回车添加" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">产品特征</label>
+                            <div class="col-sm-10">
+                                <input id="modifyMaterial_Feature" name="Feature" placeholder="请输入产品特征，输入回车添加" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">备注</label>
+                            <div class="col-sm-10">
+                                <textarea id="modifyMaterial_Annotation" class="form-control" name="Annotation" placeholder="请输入备注"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary">修改</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!-- 删除标准物质模态框 -->
+    <div class="modal fade" id="deleteMaterialModal" tabindex="-1" role="dialog" aria-labelledby="deleteMaterialModalLabel" aria-hidden="true" @*data-backdrop="static"*@>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-horizontal" method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="deleteMaterialModalLabel">删除标准物质</h4>
+                    </div>
+                    <div class="modal-body">
+                        是否要删除此标准物质
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button id="delete_material_btn" type="submit" class="btn btn-primary">删除</button>
+                        <label id="delete_material_id" class="hidden "></label>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+
+
+
+
+
+    <!--添加公司简介-->
+    <div class="modal fade" id="addIntroductionModal" tabindex="-1" role="dialog" aria-labelledby="addIntroductionModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog custom_modal_dialog">
+            <div class="modal-content">
+                <form class="form-horizontal" method="post" action="/Admin/Home/IntroductionManage/AddIntroduction">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="deleteLabQualityControlModalLabel">添加公司简介</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                公司简介
+                            </div>
+                            <div class="panel-body">
+                                <textarea id="TextArea1" cols="20" rows="2" class="ckeditor" name="companyIntroduction"></textarea>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                企业宗旨
+                            </div>
+                            <div class="panel-body">
+                                <textarea id="TextArea2" cols="20" rows="2" class="ckeditor" name="corporatePurpose"></textarea>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                企业愿景
+                            </div>
+                            <div class="panel-body">
+                                <textarea id="TextArea3" cols="20" rows="2" class="ckeditor" name="corporateVision"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button id="delete_labControl_btn" type="submit" class="btn btn-primary">添加</button>
+                        <label id="delete_labControl_id" class="hidden "></label>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+
+    <!--修改公司简介-->
+    <div class="modal fade" id="modifyIntroductionModal" tabindex="-1" role="dialog" aria-labelledby="modifyIntroductionModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog custom_modal_dialog">
+            <div class="modal-content">
+                <form class="form-horizontal" method="post" action="/Admin/Home/IntroductionManage/ModifyIntroduction">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">修改公司简介</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <input id="ModifyId" class="hidden" name="Id" />
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                公司简介
+                            </div>
+                            <div class="panel-body">
+                                <textarea id="ModifyTextArea1" cols="20" rows="2" class="col-sm-12 ckeditor" name="companyIntroduction"></textarea>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                企业宗旨
+                            </div>
+                            <div class="panel-body">
+                                <textarea id="ModifyTextArea2" cols="20" rows="2" class="ckeditor" name="corporatePurpose"></textarea>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                企业愿景
+                            </div>
+                            <div class="panel-body">
+                                <textarea id="ModifyTextArea3" cols="20" rows="2" class="ckeditor" name="corporateVision"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button id="delete_labControl_btn" type="submit" class="btn btn-primary">修改</button>
+                        <label id="delete_labControl_id" class="hidden "></label>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+
+
+
+
+    <!--添加新闻模态框-->
+    <div class="modal fade" id="addNewsModel" tabindex="-1" role="dialog" aria-labelledby="addNewsModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog custom_modal_dialog">
+            <div class="modal-content">
+                <form id="add-material-form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/Admin/Home/NewsManage/AddNews">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="">添加新闻</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="" class="col-sm-1 control-label">新闻分类</label>
+                            <div class="col-sm-11">
+                                <select id="addNews_f_name" class="form-control" name="f_name"><option >哈哈</option></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-1 control-label">新闻标题</label>
+                            <div class="col-sm-11">
+                                <input id="addNews_title" class="form-control" name="title" placeholder="请输入新闻标题" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-1 control-label">新闻作者</label>
+                            <div class="col-sm-11">
+                                <input id="addNews_author" class="form-control" name="author" placeholder="请输入新闻作者" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-1 control-label">新闻关键字</label>
+                            <div class="col-sm-11">
+                                <input id="addNews_keyword" class="form-control" name="keyword" placeholder="请输入关键字" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-1 control-label">新闻内容</label>
+                            <div class="col-sm-11">
+                                <textarea id="AddNewsTextArea" cols="20" rows="2" class="ckeditor" name="content"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-1 control-label">备注</label>
+                            <div class="col-sm-11">
+                                <input id="addNews_remark" class="form-control" name="remark" placeholder="请输入备注" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary">提交</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+
+    <!--修改新闻模态框-->
+    <div class="modal fade" id="modifyNewsModel" tabindex="-1" role="dialog" aria-labelledby="modifyNewsModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog custom_modal_dialog">
+            <div class="modal-content">
+                <form id="add-material-form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/Admin/Home/NewsManage/ModifyNews">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="addNewsModalLabel">添加新闻</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <input id="" class="hidden" name="id" placeholder="" />
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-1 control-label">新闻分类</label>
+                            <div class="col-sm-11">
+                                <select class="form-control" name="f_name"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-1 control-label">新闻标题</label>
+                            <div class="col-sm-11">
+                                <input id="modifyNews_title" class="form-control" name="title" placeholder="请输入新闻标题" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-1 control-label">新闻作者</label>
+                            <div class="col-sm-11">
+                                <input id="modifyNews_author" class="form-control" name="author" placeholder="请输入新闻作者" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-1 control-label">新闻关键字</label>
+                            <div class="col-sm-11">
+                                <input id="modifyNews_keyword" class="form-control" name="keyword" placeholder="请输入关键字" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-1 control-label">新闻内容</label>
+                            <div class="col-sm-11">
+                                <textarea id="ModifyNewsTextArea" cols="20" rows="2" class="ckeditor" name="content"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-1 control-label">备注</label>
+                            <div class="col-sm-11">
+                                <input id="modifyNews_remark" class="form-control" name="remark" placeholder="请输入备注" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary">提交</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!-- 删除新闻模态框 -->
+    <div class="modal fade" id="deleteNewsModal" tabindex="-1" role="dialog" aria-labelledby="deleteNewsModalLabel" aria-hidden="true" @*data-backdrop="static"*@>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-horizontal" method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="deleteNewsModalLabel">删除新闻</h4>
+                    </div>
+                    <div class="modal-body">
+                        是否要删除此条新闻
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button id="delete_news_btn" type="submit" class="btn btn-primary">删除</button>
+                        <label id="delete_news_id" class="hidden"></label>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+
+
+    <!--添加用户模态框-->
+    <div class="modal fade" id="addUserModel" tabindex="" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="add_user_form" class="form-horizontal" method="post" action="/Admin/Home/AddUser">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="addUserModalLabel">添加用户</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">昵称</label>
+                            <div class="col-sm-10">
+                                <input id="userName" type="text" class="form-control" name="UserName" placeholder="请输入昵称">
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">登录名</label>
+                            <div class="col-sm-10">
+                                <input style="display:none"><!-- for disable autocomplete on chrome -->
+                                <input id="loginName" type="text" class="form-control" name="LoginName" placeholder="请输入登录名" autocomplete="off" @*oninput="if(this.value==''){this.type='text'}else(this.type='password')"*@>
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">密码</label>
+                            <div class="col-sm-10">
+                                <input id="password" type="password" class="form-control" name="LoginPwd" placeholder="请输入密码" autocomplete="off">
+                                <i class="glyphicon glyphicon-eye-close form-control-feedback" id="toogle-password"></i>
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">密码确认</label>
+                            <div class="col-sm-10">
+                                <input id="notpass" type="password" class="form-control" name="LoginPwdConfirm" placeholder="确认密码" autocomplete="off">
+                                <i class="glyphicon glyphicon-eye-close form-control-feedback" id="toggle-notpass"></i>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary" id="add_user">添加用户</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+
+    <!--修改密码模态框-->
+    <div class="modal fade" id="modifyUserModal" tabindex="-1" role="dialog" aria-labelledby="modifyUserModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="modify_password_form" class="form-horizontal" method="post" action="/Admin/Home/UserManage/ModifyPwd">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="modifyUserModalLabel">修改密码</h4>
+                    </div>
+                    <div class="modal-body modifyUserModalLabel">
+                        <div class="form-group">
+                            <input id="modifyUser_UserId" type="text" class="form-control hidden" name="UserId" />
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">昵称</label>
+                            <div class="col-sm-10">
+                                <input id="modifyUser_UserName" type="text" class="form-control" name="UserName" placeholder="请输入昵称" disabled="true">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">登录名</label>
+                            <div class="col-sm-10">
+                                <input style="display:none"><!-- for disable autocomplete on chrome -->
+                                <input id="modifyUser_LoginName" type="text" class="form-control" name="LoginName" placeholder="请输入登录名" disabled="true">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">原密码</label>
+                            <div class="col-sm-10">
+                                <input id="origin-password" type="password" class="form-control" name="OriginLoginPwd" placeholder="请原密码密码" autocomplete="off">
+                                <i class="glyphicon glyphicon-eye-close form-control-feedback" id="toggle-notpass"></i>
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">密码</label>
+                            <div class="col-sm-10">
+                                <input id="new-password" type="password" class="form-control" name="LoginPwd" placeholder="请输入密码" autocomplete="off">
+                                <i class="glyphicon glyphicon-eye-close form-control-feedback" id="toggle-notpass"></i>
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">密码确认</label>
+                            <div class="col-sm-10">
+                                <input id="new-notpass" type="password" class="form-control" name="LoginPwdConfirm" placeholder="确认密码" autocomplete="off">
+                                <i class="glyphicon glyphicon-eye-close form-control-feedback" id="toggle-notpass"></i>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary">修改</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!-- 删除用户模态框 -->
+    <div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserModalLabel" aria-hidden="true" @*data-backdrop="static"*@>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-horizontal" method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="deleteUserModalLabel">删除用户</h4>
+                    </div>
+                    <div class="modal-body">
+                        是否要删除此用户
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button id="delete_user_btn" type="submit" class="btn btn-primary">删除</button>
+                        <label id="delete_user_id" class="hidden"></label>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+
+
+
+
+
+    <!--添加产品分类模态框-->
+    <div class="modal fade" id="addProductCategoryModel" tabindex="" role="dialog" aria-labelledby="addProductCategoryModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="add_category_form" class="form-horizontal" method="post" action="/Admin/Home/ProductCategoryManage/AddProductCategory">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="addProductCategoryModalLabel">添加产品分类</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">分类名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="CategoryName" placeholder="请输入分类名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">分类描述</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" name="CategoryName" placeholder="请输入分类描述"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary" id="add_user">添加分类</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+
+    <!--修改产品分类模态框-->
+    <div class="modal fade" id="modifyProductCategoryModal" tabindex="-1" role="dialog" aria-labelledby="modifyProductCategoryModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-horizontal" method="post" action="/Admin/Home/ProductCategoryManage/ModifyProductCategory">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="modifyCategoryModalLabel">修改产品分类</h4>
+                    </div>
+                    <div class="modal-body modifyUserModalLabel">
+                        <div class="form-group">
+                            <input id="modifyProductCategory_CategoryId" type="text" class="form-control hidden" name="CategoryId" />
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">分类名</label>
+                                <div class="col-sm-10">
+                                    <input id="modifyProductCategory_CategoryName" type="text" class="form-control" name="CategoryName" placeholder="请输入分类名">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">分类描述</label>
+                                <div class="col-sm-10">
+                                    <textarea id="modifyProductCategory_Description" class="form-control" name="Description" placeholder="请输入分类描述"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary">修改</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!-- 删除产品分类模态框 -->
+    <div class="modal fade" id="deleteProductCategoryModal" tabindex="-1" role="dialog" aria-labelledby="deleteProductCategoryModalLabel" aria-hidden="true" @*data-backdrop="static"*@>
+        >>>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-horizontal">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="deleteProductCategoryModalLabel">删除产品分类</h4>
+                    </div>
+                    <div class="modal-body">
+                        是否要删除此分类
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button id="delete_product_category_btn" type="submit" class="btn btn-primary">删除</button>
+                        <label id="delete_product_category_id" class="hidden"></label>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+
+
+
+
+
+    <!--添加新闻分类模态框-->
+    <div class="modal fade" id="addNewsCategoryModel" tabindex="" role="dialog" aria-labelledby="addNewsCategoryModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="add_category_form" class="form-horizontal" method="post" action="/Admin/Home/NewsCategoryManage/AddNewsCategory">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="addNewsCategoryModalLabel">添加新闻分类</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">分类名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="CategoryName" placeholder="请输入分类名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">分类描述</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" name="Description" placeholder="请输入分类描述"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary" id="add_news_category">添加分类</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+
+    <!--修改新闻分类模态框-->
+    <div class="modal fade" id="modifyNewsCategoryModal" tabindex="-1" role="dialog" aria-labelledby="modifyNewsCategoryModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-horizontal" method="post" action="/Admin/Home/NewsCategoryManage/ModifyNewsCategory">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="modifyCategoryModalLabel">修改新闻分类</h4>
+                    </div>
+                    <div class="modal-body modifyUserModalLabel">
+                        <div class="form-group">
+                            <input id="modifyNewsCategory_CategoryId" type="text" class="form-control hidden" name="CategoryId" />
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">分类名</label>
+                                <div class="col-sm-10">
+                                    <input id="modifyNewsCategory_CategoryName" type="text" class="form-control" name="CategoryName" placeholder="请输入分类名">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">分类描述</label>
+                                <div class="col-sm-10">
+                                    <textarea id="modifyNewsCategory_Description" class="form-control" name="Description" placeholder="请输入分类描述"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary">修改</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!-- 删除新闻分类模态框 -->
+    <div class="modal fade" id="deleteNewsCategoryModal" tabindex="-1" role="dialog" aria-labelledby="deleteNewsCategoryModalLabel" aria-hidden="true" @*data-backdrop="static"*@>
+<div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-horizontal">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="deleteProductCategoryModalLabel">删除新闻分类</h4>
+                    </div>
+                    <div class="modal-body">
+                        是否要删除此分类
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button id="delete_news_category_btn" type="submit" class="btn btn-primary">删除</button>
+                        <label id="delete_news_category_id" class="hidden"></label>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!--模态框定义结束-->
+
+
+</body>
+
+</html>
+<script language="javascript" type="text/javascript">
+    //禁用Enter键表单自动提交
+    document.onkeydown = function (event) {
+        var target, code, tag;
+        if (!event) {
+            event = window.event; //针对ie浏览器
+            target = event.srcElement;
+            code = event.keyCode;
+            if (code == 13) {
+                tag = target.tagName;
+                if (tag == "TEXTAREA") {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        else {
+            target = event.target; //针对遵循w3c标准的浏览器，如Firefox
+            code = event.keyCode;
+            if (code == 13) {
+                tag = target.tagName;
+                if (tag == "INPUT") {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        }
+    };
+</script>
+<script>
+
+    $(function () {
+
+        var selector = $("[name=CategoryName]");
+        $.ajax({
+            type:"post",
+            url: "/Admin/Home/CategoryManage/GetCategoryList",
+            async: "false",
+            datatype: "text",
+            success: function (data) {
+
+                var jsonObj = JSON.parse(data);
+
+                selector.append("<option value='-1'>" + "--请选择专业--" + "</option>");
+                
+                for (var i = 0; i < jsonObj.length; ++i) {
+                    selector.append("<option value=" + jsonObj[i].CategoryName + ">" + jsonObj[i].CategoryName + "</option>");
+                }
+            }
+        })
+
+    })
+
+    $(function () {
+
+
+
+    })
+
+</script>

@@ -1,0 +1,70 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (ViewBag.TitleCategory == "Introduction")
+    {
+        ViewBag.Title = "公司简介";
+    }
+    else if (ViewBag.TitleCategory == "News")
+    {
+        ViewBag.Title = "新闻资讯";
+    }
+}
+
+<div class="bannerN">
+    <div class="imgFull">
+        <img src="~/Res/picture/5df8f48ab160adae7bd00c38412aa747.jpg" class="img-responsive">
+    </div>
+    <h2 class="banH2 wow fadeInUp">
+        @ViewBag.Title
+    </h2>
+</div>
+
+<div class="panel-heading" id="panel-heading-breadcrumb">
+    <div class="container">
+        当前位置：
+        <ol class="breadcrumb" id="breadcrumb">
+            <li><a href="/Home/Index">首页</a></li>
+            <li class="active">@ViewBag.Title</li>
+        </ol>
+    </div>
+</div>
+<div class="container">
+    <div class="content">
+        <div class="content">
+            <div class="row">
+                <div class="col-xs-2">
+                    <dl class="menu-list" data-spy="">
+                        <dt class="">@ViewBag.Title</dt>
+                        
+                        @if (ViewBag.TitleCategory == "Introduction")
+                        {
+                            <dd><a href="/Home/AboutUs/sub=Introduction" class="active">公司简介</a></dd>
+                        }
+                        else
+                        {
+                            <dd><a href="/Home/AboutUs/sub=Introduction" class="">公司简介</a></dd>
+                        }
+                        
+                        @if (ViewBag.TitleCategory == "News")
+                        {
+                            <dd><a href="/Home/AboutUs/sub=News" class="active">新闻资讯</a></dd>
+                        }
+                        else
+                        {
+                            <dd><a href="/Home/AboutUs/sub=News" class="">新闻资讯</a></dd>
+                        }
+                        
+                    </dl>
+                </div>
+                
+                @{
+                    string partialViewAction = null;
+                    partialViewAction = @ViewBag.partialViewAction;
+                }
+                
+                @Html.Action(@partialViewAction)
+                
+            </div>
+        </div>
+    </div>
+</div>

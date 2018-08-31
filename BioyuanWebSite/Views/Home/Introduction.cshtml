@@ -1,0 +1,275 @@
+﻿@model Models.Introduction
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="@Url.Content("~/Style/css/news.css")" rel="stylesheet" />
+<div class="bannerN">
+    <div class="imgFull">
+        <img src="~/Res/picture/5df8f48ab160adae7bd00c38412aa747.jpg" class="img-responsive">
+    </div>
+    <h2 class="banH2 wow fadeInUp">
+        @ViewBag.Title
+    </h2>
+</div>
+
+
+<div class="mainBg">
+    <div class="mainBgImg">
+    </div>
+    <div class="container">
+        <div class="onepage">
+            <div class="oneTop wow fadeInUp">
+                @*<img src="@Url.Content("~/Res/picture/logo1.png")" alt="上海标源"/>*@
+            </div>
+            <br />
+            <div class="">
+                <div class="content-body">
+                    <div class="title text-center">
+                        <div class="index_title active">
+                            <div>
+                                公司简介
+                            </div>
+                        </div>
+                        <div class="titleBrief wow fadeInUp index_body" style="font-size:20px;text-align:left;">
+                            @Html.Raw(Model.companyIntroduction)
+                        </div>
+
+                        <div class="index_title">
+                            <div>
+                                企业愿景
+                            </div>
+                        </div>
+                        <div class="titleBrief wow fadeInUp" style="font-size:20px;">
+                            @Html.Raw(Model.corporateVision)
+                        </div>
+                        <div class="index_title">
+                            <div id="">
+                                企业宗旨
+                            </div>
+                        </div>
+                        <div class="titleBrief wow fadeInUp" style="font-size:20px;">
+                            @Html.Raw(Model.corporatePurpose)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<div class="hisBg">
+        <h2 class="hisTit wow fadeInUp">
+            大事记
+        </h2>
+        <div class="hisBox">
+            <div class="container">
+                <div class="history wow fadeInUp">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="hisItem">
+                                    <div class="hisTextBg">
+                                        <div class="hisText">
+                                            <p>
+                                                <div>
+                                                    2月 XX科技成立
+                                                    <br />
+                                                    4月 舆情秘书1.0上线
+                                                    <br />
+                                                    6月 签约第一位正式用户
+                                                </div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="hisIco">
+                                    </div>
+                                    <div class="hisYear">
+                                        <strong>
+                                            2012年
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="hisItem">
+                                    <div class="hisTextBg">
+                                        <div class="hisText">
+                                            <p>
+                                                <br />
+                                                6月 星光数据平台
+                                                <br />
+                                                8月 协作式爬虫研发成功
+                                                <br />
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="hisIco">
+                                    </div>
+                                    <div class="hisYear">
+                                        <strong>
+                                            2013年
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="hisItem">
+                                    <div class="hisTextBg">
+                                        <div class="hisText">
+                                            <p>
+                                                <div>
+                                                    6月 星光数据平台完成升级
+                                                    <br />
+                                                    6月 舆情秘书2.0全面升级
+                                                    <br />
+                                                </div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="hisIco">
+                                    </div>
+                                    <div class="hisYear">
+                                        <strong>
+                                            2014年
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="hisItem">
+                                    <div class="hisTextBg">
+                                        <div class="hisText">
+                                            <p>
+                                                <br />
+                                                4月 智慧研判新品发布
+                                                <br />
+                                                6月 客户突破10000家
+                                                <br />
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="hisIco">
+                                    </div>
+                                    <div class="hisYear">
+                                        <strong>
+                                            2015年
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="hisItem">
+                                    <div class="hisTextBg">
+                                        <div class="hisText">
+                                            <p>
+                                                <br />
+                                                1月 星光数据新品发布
+                                                <br />
+                                                9月大数据业务全面启动
+                                                <br />
+                                                11月 舆情全流程平台发布
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="hisIco">
+                                    </div>
+                                    <div class="hisYear">
+                                        <strong>
+                                            2016年
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="hisItem">
+                                    <div class="hisTextBg">
+                                        <div class="hisText">
+                                            <p>
+                                                <br />
+                                                5月 舆情秘书电视监测版上线
+                                                <br />
+                                                5月 智慧研判3.0两眼发布
+                                                <br />
+                                                6月 传媒行业新品编++发布
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="hisIco">
+                                    </div>
+                                    <div class="hisYear">
+                                        <strong>
+                                            2017年
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="hisItem">
+                                    <div class="hisTextBg">
+                                        <div class="hisText">
+                                            <p>
+                                                <br />
+                                                期待我们的飞跃...
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="hisIco">
+                                    </div>
+                                    <div class="hisYear">
+                                        <strong>
+                                            2018年
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="hisPrev">
+                    </span>
+                    <span class="hisNext">
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>*@
+</div>
+
+
+
+
+
+
+
+@*<div class="col-xs-10">
+    <div class="content-title">
+        @ViewBag.Title
+    </div>
+    <div class="content-body">
+        <div class="title text-center">
+            <div class="index_title active">
+                <div>
+                    公司简介
+                </div>
+            </div>
+            <div class="titleBrief wow fadeInUp index_body" style="font-size:20px;text-align:left;">
+                @Html.Raw(Model.companyIntroduction)
+            </div>
+
+            <div class="index_title">
+                <div>
+                    企业愿景
+                </div>
+            </div>
+            <div class="titleBrief wow fadeInUp" style="font-size:20px;">
+                @Html.Raw(Model.corporateVision)
+            </div>
+            <div class="index_title">
+                <div id="">
+                    企业宗旨
+                </div>
+            </div>
+            <div class="titleBrief wow fadeInUp" style="font-size:20px;">
+                @Html.Raw(Model.corporatePurpose)
+            </div>
+        </div>
+    </div>
+</div>*@

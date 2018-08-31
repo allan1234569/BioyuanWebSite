@@ -1,0 +1,105 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<!DOCTYPE html>
+<html>
+<head>
+    <title>BootstrapValidator demo</title>
+    <link href="~/Style/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="~/Style/css/bootstrap/bootstrapValidator.css" rel="stylesheet" />
+    <script src="~/Scripts/js/jquery-3.2.1.js"></script>
+    <script src="~/Scripts/js/bootstrap/bootstrap.min.js"></script>
+    <script src="~/Scripts/js/bootstrap/bootstrapValidator.js"></script>
+</head>
+<body>*@
+
+
+    <div class="bannerN">
+        <div class="imgFull">
+            <img src="~/Res/picture/5df8f48ab160adae7bd00c38412aa747.jpg" class="img-responsive">
+        </div>
+        <h2 class="banH2 wow fadeInUp">
+            首页
+        </h2>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <section>
+                <div class="col-sm-8 col-sm-offset-2">
+                    <div class="page-header">
+                        <h2>Tooltip container</h2>
+                    </div>
+                    <form id="defaultForm" method="post" class="form-horizontal" action="/Home/Index">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">First name</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="firstName" placeholder="First name" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Last name</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="lastName" placeholder="Last name" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-9 col-sm-offset-3">
+                                <button type="submit" class="btn btn-primary">Validate</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#defaultForm').bootstrapValidator({
+                container: 'tooltip',
+                //        trigger: 'blur',
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    firstName: {
+                        validators: {
+                            stringLength: {
+                                enabled: false,
+                                min: 4,
+                                message: 'The first name must be more than 5 characters'
+                            },
+                            notEmpty: {
+                                message: 'The first name is required'
+                            },
+                            regexp: {
+                                enabled: true,
+                                regexp: /^[a-z]+$/i,
+                                message: 'The first name must consist of a-z, A-Z characters only'
+                            }
+                        }
+                    },
+                    lastName: {
+                        validators: {
+                            stringLength: {
+                                min: 4,
+                                message: 'The last name must be more than 5 characters'
+                            },
+                            notEmpty: {
+                                message: 'The last name is required'
+                            },
+                            regexp: {
+                                regexp: /^[a-z]+$/i,
+                                message: 'The last name must consist of a-z, A-Z characters only'
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+@*</body>
+</html>*@

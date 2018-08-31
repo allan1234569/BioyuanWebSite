@@ -1,0 +1,170 @@
+﻿@model Models.News
+
+<div class="container warpbox col-xs-10">
+    <!--# 选项卡 -->
+    <div class="table_card">
+        <ul class="tab">
+            <li class="activ">最新</li>
+            <li>热门</li>
+            <li>新闻</li>
+        </ul>
+        <div class="tabCon">
+            <div class="on">
+                <ul class="newslist01">
+                    <li><a href="#"><span>【前端】</span>iframe实现关闭当前窗口效果<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【前端】</span>div透明边框的设置及ie兼容<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【福利】</span>你是我的好朋友，我要送你个天猫红包<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【活动】</span>蚂蚁金服开放平台合作伙伴大会(北京8.10)<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【推荐】</span>融云即时通讯云－豆果美食、Faceu等亿级APP都在用<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【推荐】</span>50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="newslist01">
+                    <li><a href="#"><span>【前端】</span>OpenBSD 6.0将移除Linux子系统以改进安全<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【前端】</span>Facebook计划在旧金山设立首个办公室<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【福利】</span>雅虎也“死”了 互联网到了谈论基业长青的年代<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【活动】</span>乐视回应“1分钱买会员后自动续费”：将赠送一年会员<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【推荐】</span>高德开放平台发布AMAP Inside战略 服务神州租车等30万移动应用<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【推荐】</span>50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="newslist01">
+                    <li><a href="#"><span>【前端】</span>可是姑娘，你为什么要编程呢？<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【前端】</span>知其所以然（以算法学习为例）<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【福利】</span>如何给变量取个简短且无歧义的名字<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【活动】</span>写给初学前端工程师的一封信<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【推荐】</span>融云即时通讯云－豆果美食、Faceu等亿级APP都在用<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【推荐】</span>50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--选项卡 -->
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function (e) {
+        $(".tab li").click(function () {
+            $(".tab li").eq($(this).index()).addClass("activ").siblings().removeClass("activ");
+            $(".tabCon div").hide().eq($(this).index()).show();
+        })
+    });
+</script>
+<style>
+    /* 选项卡 */
+    body {
+        font: 12px/20px Open Sans,微软雅黑, Helvetica, Arial, sans-serif;
+        background: #F9F9F9;
+        margin: 0;
+        padding: 0;
+        color: #555555;
+        min-width: 1000px;
+    }
+
+    a {
+        color: #111111;
+        text-decoration: none;
+        -webkit-transition: color 0.2s linear;
+        -moz-transition: color 0.2s linear;
+        -o-transition: color 0.2s linear;
+        transition: color 0.2s linear;
+    }
+
+        a:focus, a:link, a:active {
+            outline: none;
+        }
+
+        a:hover {
+            color: #F30;
+        }
+
+    ol, ul, li {
+        list-style: none;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+
+    .table_card {
+        width: 720px;
+        margin: 0 auto;
+        margin-top: 20px;
+    }
+
+        .table_card .tab {
+            height: 37px;
+            font-size: 14px;
+            border-bottom: 1px #e1e1e1 solid;
+        }
+
+            .table_card .tab li {
+                float: left;
+                height: 36px;
+                line-height: 36px;
+                padding: 0 25px;
+                margin-right: 5px;
+                background: #f0f0f0;
+                border-top: 1px #e1e1e1 solid;
+                border-left: 1px #e1e1e1 solid;
+                border-right: 1px #e1e1e1 solid;
+            }
+
+                .table_card .tab li:hover {
+                    height: 37px;
+                    background: #fff;
+                    color: #333;
+                    cursor: pointer;
+                }
+
+        .table_card .activ {
+            height: 37px !important;
+            background: #fff !important;
+            color: #333;
+        }
+
+        .table_card .tabCon {
+            background: #fff;
+            padding: 15px;
+            border-bottom: 1px #e1e1e1 solid;
+            border-left: 1px #e1e1e1 solid;
+            border-right: 1px #e1e1e1 solid;
+        }
+
+            .table_card .tabCon div {
+                display: none;
+            }
+
+            .table_card .tabCon .on {
+                display: block;
+            }
+
+    .newslist01 {
+        font-size: 14px;
+    }
+
+        .newslist01 li {
+            line-height: 36px;
+        }
+
+            .newslist01 li .ding {
+                color: #F30;
+                margin-left: 5px;
+            }
+
+            .newslist01 li .time {
+                float: right;
+                font-size: 12px;
+                color: #888;
+            }
+</style>
+

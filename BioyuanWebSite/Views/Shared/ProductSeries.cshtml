@@ -1,0 +1,151 @@
+﻿@using Models;
+
+@{
+    List<LaboratoryQuailtyControl> lqcs = null;
+    List<InterroomQualityControl> iqcs = null;
+    List<Material> ms = null;
+    int lqcLen = 0, iqcLen = 0, mLen = 0;
+
+    lqcs = @ViewBag.lqcs;
+    iqcs = @ViewBag.iqcs;
+    ms = @ViewBag.rm;
+    lqcLen = lqcs != null ? lqcs.Count : 0;
+    iqcLen = iqcs != null ? iqcs.Count : 0;
+    mLen = ms != null ? ms.Count : 0;
+}
+
+<div class="content">
+    <div class="row">
+        <div class="col-xs-2">
+            <dl class="menu-list">
+                @{
+                    string title = @ViewBag.categoryName + "系列";
+                    <dt class="">@title</dt>
+
+                    if (@ViewBag.pro == "lqc")
+                    {
+                        for (int i = 0; i < lqcLen; i++)
+                        {
+                            LaboratoryQuailtyControl laboratory = lqcs[i];
+                            string link = "/Home/Products/pro=" + @ViewBag.pro + "&cat=pd&id=" + laboratory.LaboratoryQualityControlId;
+                            <dd><a href=@link class="">@laboratory.ProductName</a></dd>
+                        }
+                    }
+                    else if (@ViewBag.pro == "iqc")
+                    {
+                        for (int i = 0; i < iqcLen; i++)
+                        {
+                            InterroomQualityControl interroomQC = iqcs[i];
+                            string link = "/Home/Products/pro=" + @ViewBag.pro + "&cat=pd&id=" + interroomQC.InterroomQualityControlId;
+                            <dd><a href=@link class="">@interroomQC.ProductName</a></dd>
+                        }
+                    }
+                    else if (@ViewBag.pro == "rm")
+                    {
+                        for (int i = 0; i < mLen; i++)
+                        {
+                            Material material = ms[i];
+                            string link = "/Home/Products/pro=" + @ViewBag.pro + "&cat=pd&id=" + material.MaterialId;
+                            <dd><a href=@link class="">@material.ProductName</a></dd>
+                        }
+                    }
+                }
+
+
+            </dl>
+        </div>
+        <div class="col-xs-10">
+            <div class="content-panel-title">
+                @{
+                    <h4>@ViewBag.panel_title</h4>
+                }
+
+            </div>
+            <div class="content-panel-body ">
+                <p class="col-md-6 product_introduce">
+                    覆盖多种分析物的各种质控品，包括免疫分析、TDM、化学、心脏评估、免疫学、糖尿病、凝血、血液学、血气、药物滥用和传染性疾病测试
+                </p>
+                <div class="clear"></div>
+                <img src="~/Res/picture/qsd_qualitycontrolproducts_cat_feature.jpg" />
+                <div class="protit">
+                    <span>产品列表</span>
+                </div>
+                <ul class="list-unstyled">
+
+                    @{
+                        if (@ViewBag.pro == "lqc")
+                        {
+                            for (int i = 0; i < lqcLen; i++)
+                            {
+                                LaboratoryQuailtyControl laboratory = lqcs[i];
+                                string link = "/Home/Products/pro=" + @ViewBag.pro + "&cat=pd&id=" + laboratory.LaboratoryQualityControlId;
+
+                                <li class="product_item">
+                                    <table cellpadding="4">
+                                        <tr>
+                                            <td>
+                                                <a href=@link> <img src="@Url.Action("ShowImage", "Home", new { id = @laboratory.Img })" style="height:40px;"/></a>
+
+                                            </td>
+                                            <td>
+                                                <h4><a href=@link>@laboratory.ProductName</a></h4>
+                                                <p>@laboratory.Description</p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>
+                            }
+                        }
+                        else if (@ViewBag.pro == "iqc")
+                        {
+                            for (int i = 0; i < iqcLen; i++)
+                            {
+                                InterroomQualityControl interroomQC = iqcs[i];
+                                string link = "/Home/Products/pro=" + @ViewBag.pro + "&cat=pd&id=" + interroomQC.InterroomQualityControlId;
+
+                                <li class="product_item">
+                                    <table cellpadding="4">
+                                        <tr>
+                                            <td>
+                                                <a href=@link><img src="@Url.Action("ShowImage", "Home", new { id = @interroomQC.Img })" style="height:40px;"/></a>
+                                            </td>
+                                            <td>
+                                                <h4><a href=@link>@interroomQC.ProductName</a></h4>
+                                                <p>@interroomQC.Description</p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>
+                            }
+                        }
+                        else if (@ViewBag.pro == "rm")
+                        {
+                            for (int i = 0; i < mLen; i++)
+                            {
+                                Material material = ms[i];
+                                string link = "/Home/Products/pro=" + @ViewBag.pro + "&cat=pd&id=" + material.MaterialId;
+
+                                <li class="product_item">
+                                    <table cellpadding="4">
+                                        <tr>
+                                            <td>
+                                                <a href=@link><img src="@Url.Action("ShowImage", "Home", new { id = @material.Img })" style="height:40px;"/></a>
+                                            </td>
+                                            <td>
+                                                <h4><a href=@link>@material.ProductName</a></h4>
+                                                <p>@material.Description</p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>
+                            }
+                        }
+                    }
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+

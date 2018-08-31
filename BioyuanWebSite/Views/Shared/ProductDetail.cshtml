@@ -1,0 +1,565 @@
+﻿@using Models;
+@{
+    LaboratoryQuailtyControl lqc = null;
+    InterroomQualityControl iqc = null;
+    Material mat = null;
+
+    lqc = @ViewBag.lqc;
+    iqc = @ViewBag.iqc;
+    mat = @ViewBag.mat;
+}
+
+<div class="content">
+    <div class="row" style="margin-left:0;margin-right:0;">
+        @{
+            if (@lqc != null)//显示室内质控品
+            {
+                <div class="content-panel-title" style="background: #41985d;color:white;">
+                    @lqc.ProductName
+                </div>
+                <div class="content-panel-body">
+                    <div class="detail_img_div">
+                        <div style="display:inline-block;margin-bottom:30px; float:left;">
+                            <img src="@Url.Action("ShowImage", "Home", new { id = @lqc.Img })" style="height:350px;" />
+                        </div>
+                        <div class="col-md-3" style="float:right;">
+                            @Html.Partial("Consultion")
+                        </div>
+                        @*<a href="" style="font-size:16px;float:right;">证书预览下载</a>*@
+                    </div>
+
+                    <div class="clear"></div>
+                    <div class="protit">
+                        <span>产品描述</span>
+                    </div>
+
+                    <div class="product_attribute">
+                        @if (@lqc.Description == string.Empty)
+                        {
+                            <span style="font-size:16px;margin-bottom:40px;">
+                                无
+                            </span>
+                        }
+                        else
+                        {
+                            <span style="font-size:16px;margin-bottom:40px;">
+                                @lqc.Description
+                            </span>
+                        }
+                        
+                    </div>
+                    <br /><br />
+                    <div class="protit">
+                        <span>规格</span>
+                    </div>
+                    <div>
+                        <div class="product_attribute">
+                            <table class="table table-bordered table-striped">
+                                @if (@lqc.Specifications.Count <= 0)
+                                {
+                                    <tr>无</tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <th>货号</th>
+                                        <th>浓度</th>
+                                        <th>规格</th>
+                                        <th>证书编号</th>
+                                    </tr>
+                                    for (int i = 0; i < @lqc.Specifications.Count; ++i)
+                                    {
+                                        LaboratorySpecification spec = @lqc.Specifications[i];
+                                        
+                                        <tr>
+                                            <th>@spec.ProductCode</th>
+                                            <th>@spec.Concentration</th>
+                                            <th>@spec.Specification</th>
+                                            <th>@spec.CertificateNo</th>
+                                        </tr>
+                                    }
+                                
+                                    
+                                }
+                            </table>
+                        </div>
+                    </div>
+                    <div class="protit">
+                        <span>分析物</span>
+                    </div>
+                    <div class="product_attribute">
+                        
+                            @if (@lqc.Analyte == string.Empty)
+                            {
+                                <span>无</span>
+                            }
+                            else
+                            {
+                                <span>@lqc.Analyte</span>
+                            }
+
+                        
+                    </div>
+                    <br /><br />
+                    <div class="protit">
+                        <span>稳定性</span><br />
+                    </div>
+                    <div class="product_attribute">
+                        @if (@lqc.Stability == string.Empty)
+                        {
+                            <ul>
+                                无
+                            </ul>
+                        }
+                        else
+                        {
+                            <ul>
+                                @{
+                                    string[] stabs = @lqc.Stability.Split('|');
+                                }
+                                @for (int i = 0; i < @stabs.Length; ++i)
+                                {
+                                    string val = stabs[i];
+                                    <li>@val</li>
+                                }
+                            </ul>
+                        }
+                    </div>
+
+                    <br /><br />
+                    <div class="protit">
+                        <span>产品特征</span><br />
+                    </div>
+                    <div class="product_attribute">
+                        @if (@lqc.Feature == string.Empty)
+                        {
+                            <ul>
+                                无
+                            </ul>
+                        }
+                        else
+                        {
+                            <ul>
+                                @{
+                                        string[] features = @lqc.Feature.Split('|');
+                                }
+                                @for (int i = 0; i < @features.Length; ++i)
+                                {
+                                    string val = features[i];
+                                    <li>@val</li>
+                                }
+                            </ul>
+                        }
+                        <br />
+                    </div>
+                    @if (@lqc.Annotation != string.Empty)
+                    {
+                        <div class="protit">
+                            <span>备注</span>
+                            <br />
+                        </div>
+                        <div class="product_attribute">
+                            <span>
+                                @lqc.Annotation
+                            </span>
+                        </div>
+                    }
+
+                </div>
+            }
+
+            if (@iqc != null)//显示室间质评品
+            {
+                <div class="content-panel-title" style="background: #41985d;color:white;">
+                    @iqc.ProductName
+                </div>
+                <div class="content-panel-body">
+                    <div class="detail_img_div">
+                        <div style="display:inline-block;margin-bottom:30px; float:left;">
+                            <img src="@Url.Action("ShowImage", "Home", new { id = @iqc.Img })" style="height:350px;" />
+                        </div>
+                        <div class="col-md-3" style="float:right;">
+                            @Html.Partial("Consultion")
+                        </div>
+                        @*<a href="" style="font-size:16px;float:right;">证书预览下载</a>*@
+                    </div>
+
+                    <div class="clear"></div>
+                    <div class="protit">
+                        <span>产品描述</span>
+                    </div>
+                    <div class="product_attribute">
+                        @if (@iqc.Description == string.Empty)
+                        {
+                            <span style="font-size:16px;margin-bottom:40px;">
+                                无
+                            </span>
+                        }
+                        else
+                        {
+                            <span style="font-size:16px;margin-bottom:40px;">
+                                @iqc.Description
+                            </span>
+                        }
+                    </div>
+                    <br /><br />
+                    <div class="protit">
+                        <span>分析物</span>
+                    </div>
+                    <div class="product_attribute">
+                        
+                            @if (@iqc.Analyte == string.Empty)
+                            {
+                                <span>无</span>
+                            }
+                            else
+                            {
+                                <span>@iqc.Analyte</span>
+                            }
+                    </div>
+                    <br /><br />
+                    <div class="protit">
+                        <span>产品组成</span>
+                    </div>
+                    <div class="product_attribute">
+
+                        @if (@iqc.Constitute == string.Empty)
+                        {
+                            <span>无</span>
+                        }
+                        else
+                        {
+                            <span>@iqc.Constitute</span>
+                        }
+
+
+                    </div>
+                    <br /><br />
+                    <div class="protit">
+                        <span>单支规格</span>
+                    </div>
+                    <div class="product_attribute">
+
+                        @if (@iqc.SingleSpecification == string.Empty)
+                        {
+                            <span>无</span>
+                        }
+                        else
+                        {
+                            <span>@iqc.SingleSpecification</span>
+                        }
+
+
+                    </div>
+                    <br /><br />
+                    <div class="protit">
+                        <span>产品特征</span><br />
+                    </div>
+                    <div class="product_attribute">
+                        @if (@iqc.Feature == string.Empty)
+                        {
+                            <span>
+                                无
+                            </span>
+                        }
+                        else
+                        {
+                            <span>@iqc.Feature</span>
+                        }
+                    </div>
+                    <br /><br />
+                    <div class="protit">
+                        <span>产品规格</span><br />
+                    </div>
+                    <div class="product_attribute">
+                        @if (@iqc.Specification == string.Empty)
+                        {
+                            <span>
+                                无
+                            </span>
+                        }
+                        else
+                        {
+                            <span>
+                                @iqc.Specification
+                            </span>
+                        }
+                        <br />
+                    </div>
+                    <div class="protit">
+                        <span>保存条件</span><br />
+                    </div>
+                    <div class="product_attribute">
+                        @if (@iqc.StorageCondition == string.Empty)
+                        {
+                            <span>
+                                无
+                            </span>
+                        }
+                        else
+                        {
+                            <span>@iqc.StorageCondition</span>
+                        }
+                    </div>
+                    <br /><br />
+                    <div class="protit">
+                        <span>产品效期</span><br />
+                    </div>
+                    <div class="product_attribute">
+                        @if (@iqc.UsefulLife == string.Empty)
+                        {
+                            <span>
+                                无
+                            </span>
+                        }
+                        else
+                        {
+                            <span>@iqc.UsefulLife</span>
+                        }
+                    </div>
+                    <br />
+                    @if (@iqc.Annotation != string.Empty)
+                    {
+                        <div class="protit">
+                            <span>备注</span>
+                            <br />
+                        </div>
+                        <div class="product_attribute">
+                            <span>
+                                @iqc.Annotation
+                            </span>
+                        </div>
+                    }
+                </div>
+            }
+            
+            
+            if (@mat != null)//显示标准物质
+            {
+                <div class="content-panel-title" style="background: #41985d;color:white;">
+                    @mat.ProductName
+                </div>
+                <div class="content-panel-body">
+                    <div class="detail_img_div">
+                        <div style="display:inline-block;margin-bottom:30px; float:left;">
+                            <img src="@Url.Action("ShowImage", "Home", new { id = @mat.Img })" style="height:350px;" />
+                        </div>
+                        <div class="col-md-3" style="float:right;">
+                            @Html.Partial("Consultion")
+                        </div>
+                        @*<a href="" style="font-size:16px;float:right;">证书预览下载</a>*@
+                    </div>
+
+                    <div class="clear"></div>
+                    <div class="protit">
+                        <span>产品描述</span>
+                    </div>
+
+                    <div class="product_attribute">
+                        @if (@mat.Description == string.Empty)
+                        {
+                            <span style="font-size:16px;margin-bottom:40px;">
+                                无
+                            </span>
+                        }
+                        else
+                        {
+                            <span style="font-size:16px;margin-bottom:40px;">
+                                @mat.Description
+                            </span>
+                        }
+                        
+                    </div>
+                    <br /><br />
+                    <div class="protit">
+                        <span>规格</span>
+                    </div>
+                    <div>
+                        <div class="product_attribute">
+                            <table class="table table-bordered table-striped">
+
+                                @if (@mat.materialProjects.Count == 1)
+                                {
+                                    if (@mat.materialProjects[0].materialProjectName == "")
+                                    {
+                                        string stand = "标准值及不确定度(" + @mat.materialProjects[0].unit + ")";
+                                        <tr>
+                                            <th>货号</th>
+                                            <th>@stand</th>
+                                            <th>规格</th>
+                                            <th>标准物质编号</th>
+                                        </tr>
+                                        for (int i = 0; i < @mat.materialProjects[0].materialSpecifications.Count; ++i)
+                                        {
+                                            MaterialSpecification spec = @mat.materialProjects[0].materialSpecifications[i];
+                                        
+                                            <tr>
+                                                <th>@spec.ProductCode</th>
+                                                <th>@spec.StardardUncertairty</th>
+                                                <th>@spec.Specification</th>
+                                                <th>@spec.CertificateNo</th>
+                                            </tr>
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                        
+                                        <tr>
+                                            <th rowspan="2" align="center">货号</th>
+                                            @for (int i = 0; i < @mat.materialProjects.Count; ++i)
+                                            {
+                                                <th>@mat.materialProjects[i].materialProjectName</th>
+                                            }
+                                            
+                                            <th rowspan="2" align="center">规格</th>
+                                            <th rowspan="2" align="center">标准物质编号</th>
+                                        </tr>
+                                        <tr>
+                                            @for (int i = 0; i < @mat.materialProjects.Count; ++i)
+                                            {
+                                                string stand = "标准值及不确定度(" + @mat.materialProjects[i].unit + ")";
+                                                <th>@stand</th>
+                                            }
+                                        </tr>
+                                        for (int i = 0; i < @mat.materialProjects[0].materialSpecifications.Count; ++i)
+                                        {
+                                            MaterialSpecification spec = @mat.materialProjects[0].materialSpecifications[i];
+                                        
+                                            <tr>
+                                                <th>@spec.ProductCode</th>
+                                                @for (int j = 0; j < @mat.materialProjects.Count; ++j)
+                                                {
+                                                    <th>@mat.materialProjects[j].materialSpecifications[i].StardardUncertairty</th>    
+                                                }
+                                                
+                                                <th>@spec.Specification</th>
+                                                <th>@spec.CertificateNo</th>
+                                            </tr>
+                                        }
+                                }
+
+                                @*@if (@mat.Specifications.Count <= 0)
+                                {
+                                    <tr>无</tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <th>货号</th>
+                                        <th>浓度</th>
+                                        <th>规格</th>
+                                        <th>证书编号</th>
+                                    </tr>
+                                    for (int i = 0; i < @lqc.Specifications.Count; ++i)
+                                    {
+                                        LaboratorySpecification spec = @lqc.Specifications[i];
+                                        
+                                        <tr>
+                                            <th>@spec.ProductCode</th>
+                                            <th>@spec.Concentration</th>
+                                            <th>@spec.Specification</th>
+                                            <th>@spec.CertificateNo</th>
+                                        </tr>
+                                    }
+                                }*@
+                            </table>
+                        </div>
+                    </div>
+                    <div class="protit">
+                        <span>推荐浓度</span>
+                    </div>
+                    <div class="product_attribute">
+                        
+                        @if (@mat.RecommendedConcentration == string.Empty)
+                        {
+                            <ul>
+                                无
+                            </ul>
+                        }
+                        else
+                        {
+                            <ul>
+                                @{
+                                    string[] recommands = @mat.RecommendedConcentration.Split('|');
+                                }
+                                @for (int i = 0; i < @recommands.Length; ++i)
+                                {
+                                    string val = recommands[i];
+                                    <li>@val</li>
+                                }
+                            </ul>
+                        }
+                        
+                    </div>
+                    <br /><br />
+                    <div class="protit">
+                        <span>稳定性</span><br />
+                    </div>
+                    <div class="product_attribute">
+                        @if (@mat.Stability == string.Empty)
+                        {
+                            <ul>
+                                无
+                            </ul>
+                        }
+                        else
+                        {
+                            <ul>
+                                @{
+                                    string[] stabs = @mat.Stability.Split('|');
+                                }
+                                @for (int i = 0; i < @stabs.Length; ++i)
+                                {
+                                    string val = stabs[i];
+                                    <li>@val</li>
+                                }
+                            </ul>
+                        }
+                    </div>
+
+                    <br /><br />
+                    <div class="protit">
+                        <span>产品特征</span><br />
+                    </div>
+                    <div class="product_attribute">
+                        @if (@mat.Feature == string.Empty)
+                        {
+                            <ul>
+                                无
+                            </ul>
+                        }
+                        else
+                        {
+                            <ul>
+                                @{
+                                        string[] features = @mat.Feature.Split('|');
+                                }
+                                @for (int i = 0; i < @features.Length; ++i)
+                                {
+                                    string val = features[i];
+                                    <li>@val</li>
+                                }
+                            </ul>
+                        }
+                        <br />
+                    </div>
+
+                    @if (@mat.Annotation != string.Empty)
+                    {
+                        <div class="protit">
+                            <span>备注</span>
+                            <br />
+                        </div>
+                        <div class="product_attribute">
+                            <span>
+                                @mat.Annotation
+                            </span>
+                        </div>
+                    }
+
+                </div>
+            }
+        }
+    </div>
+</div>

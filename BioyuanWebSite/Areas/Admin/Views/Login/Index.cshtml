@@ -1,0 +1,72 @@
+﻿@model Models.Admin
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台系统管理</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <link href="@Url.Content("~/Areas/Admin/Style/css/font.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Areas/Admin/Style/css/login.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Areas/Admin/Style/css/completer.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Areas/Admin/Style/css/magic-check.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Areas/Admin/Style/css/normalize.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Areas/Admin/Style/css/validator.css")" rel="stylesheet" />
+
+    <script src="@Url.Content("~/Areas/Admin/Style/js/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/Style/lib/layui/layui.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/Style/js/login.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/Style/js/jquery-validate.js")"></script>
+    <script src="@Url.Content("~/Areas/Admin/Style/js/validator.js")"></script>
+</head>
+<body class="login-bg">
+    <div class="login">
+        <div class="message" style="text-align:center">管理登录</div>  
+        <div id="darkbannerwrap"></div>
+
+        <form id="login_form" role="form" method="post" class="" action="/Admin/Login/Login">
+            <div>
+                <input id="LoginName" name="LoginName" placeholder="登录名" type="text" class="form-control">
+                <span></span>
+            </div>
+            <hr class="hr15">
+            <div>
+                <input id="LoginPwd" name="LoginPwd" placeholder="密码" type="password" class="form-control">
+            </div>
+            <hr class="hr15">
+            <div>
+                <input class="btn btn-default" value="登录" style="width:100%;" type="submit">    
+            </div>
+            <div style="height:20px;text-align:center;color:red;margin-top:10px;">
+                <span id="login_info_id" class="login_info">@(@ViewBag.LoginFailed == null ? "" : @ViewBag.LoginFailed)</span>
+            </div>
+            <hr class="hr15">
+        </form>
+    </div>
+
+    <script>
+        $(function () {
+            $(".form-control").on("click", function () {
+                $(".login_info").text("");
+            })
+        })
+
+        $(function () {
+
+            $("#LoginName").focus();
+
+        })
+
+    </script>
+</body>
+</html>
+

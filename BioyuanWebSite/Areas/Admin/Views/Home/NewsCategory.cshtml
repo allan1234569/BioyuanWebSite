@@ -1,0 +1,109 @@
+﻿@model Models.NewsCategory
+@{
+    ViewBag.Title = "标源后台管理系统-新闻分类";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+
+    List<Models.NewsCategory> list = (List<Models.NewsCategory>)@ViewBag.categoryList;
+
+    int categoryCount = list != null ? list.Count : 0;
+}
+
+<div class="x-nav">
+    <ol class="breadcrumb" id="breadcrumb">
+        <li><a href="/Admin/Home/Index">首页</a></li>
+        <li class="active">新闻分类</li>
+    </ol>
+    <a class="refresh_btn" href="javascript:location.replace(location.href);" title="刷新">
+        <span class="glyphicon glyphicon-refresh"></span>
+    </a>
+</div>
+<div class="x-body">
+    <div class="row search">
+        <form class="form-inline row" role="form" method="post" @*action="/Admin/Home/NewsManage/GetNewsCategorysByName"*@>
+            <div class="form-group">
+                <input type="text" class="form-control" name="name" placeholder="请输入分类名称">
+            </div>
+            <button id="SearchNews_Btn" type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> 查找</button>
+        </form>
+    </div>
+    <div class="clear"></div>
+    <div class="user_info_title">
+        <div style="float:left;">
+            <button class="btn add_btn btn-primary" data-toggle="modal" data-target="#addNewsCategoryModel"> <i class="glyphicon glyphicon-plus"></i> 添加</button>
+        </div>
+        <span class="x-right">共有分类：@categoryCount 个</span>
+    </div>
+    <div class="table-div">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>分类名称</th>
+                    <th>创建时间</th>
+                    <th>修改时间</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody class="img_table">
+                @{
+                    
+                    for (int i = 0; i < categoryCount; ++i)
+                    {
+                        Models.NewsCategory category = list.ElementAt(i);
+                        if (category != null)
+                        {
+                            <tr>
+                                <td>
+                                    <span>@(i + 1)</span>
+                                </td>
+                                <td>
+                                    <span>@category.CategoryName</span>
+                                </td>
+                                <td>
+                                    <span>@category.CreateTime</span>
+                                </td>
+                                <td>
+                                    <span>@category.ModifyTime</span>
+                                </td>
+                                <td class="td-status">
+                                    <span class="layui-btn layui-btn-normal layui-btn-mini">@(category.State == 1 ? "启用" : "未启用")</span>
+                                </td>
+                                <td class="td-manage">
+                                    <a class="enable_news_category" title="启用" href="javascript:;">
+                                        <span class="glyphicon glyphicon-download"></span>
+                                    </a>
+                                    <a class="modify_news_category" data-toggle="modal" title="修改" href="javascript:;">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                    <a class="delete_news_category" data-toggle="modal" data-target="#deleteNewsCategoryModal" title="删除" href="javascript:;">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                </td>
+                                <td class="hidden">
+                                    @category.CategoryId
+                                </td>
+                            </tr>
+
+                        }
+                    }
+
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!--翻页-->
+    <div class="pagination-container">
+        <ul class="pagination ">
+            <li><a href="#">&laquo;</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
+    </div>
+
+</div>

@@ -1,0 +1,211 @@
+﻿@using Models;
+
+@{
+    List<LaboratoryQuailtyControl> lqcs = null;
+    List<InterroomQualityControl> iqcs = null;
+    List<Material> ms = null;
+    int lqcLen = 0, iqcLen = 0, mLen = 0;
+
+    if (@ViewBag.pro == "lqc")
+    {
+        lqcs = @ViewBag.lqcs;
+        lqcLen = Math.Min(6, lqcs.Count);
+    }
+    else if (@ViewBag.pro == "iqc")
+    {
+        iqcs = @ViewBag.iqcs;
+        iqcLen = Math.Min(6, iqcs.Count);
+    }
+    else if (@ViewBag.pro == "rm")
+    {
+        ms = @ViewBag.ms;
+        mLen = Math.Min(6, ms.Count);
+    }
+}
+<div class="content">
+    <div class="row">
+        <div class="col-xs-2">
+            <dl class="menu-list" data-spy="">
+                <dt class="">质控产品</dt>
+                @{
+                    if (lqcs != null)
+                    {
+                        <dd><a href="/Home/Products/pro=lqc&cat=p" class= "active">室内质控品  </a></dd>
+                    }
+                    else{
+                        <dd><a href="/Home/Products/pro=lqc&cat=p" class= "">室内质控品  </a></dd>
+                    }
+                        
+                        
+                    if (iqcs != null)
+                    {
+                        <dd><a href="/Home/Products/pro=iqc&cat=p" class="active">室间质评品  </a></dd>
+                    }
+                    else
+                    {
+                        <dd><a href="/Home/Products/pro=iqc&cat=p" class="">室间质评品  </a></dd>
+                    }
+                        
+                    if (ms != null)
+                    {
+                        <dd><a href="/Home/Products/pro=rm&cat=p" class="active">标准物质  </a></dd>
+                    }
+                    else
+                    {
+                        <dd><a href="/Home/Products/pro=rm&cat=p" class="">标准物质  </a></dd>
+                    }
+                    
+                }
+                
+            </dl>
+        </div>
+
+        <div class="col-xs-10">
+            <div class="content-title">
+                @ViewBag.panel_title
+
+                <span style="float:right;">
+
+                    @{
+                        string action = "";
+
+                        action = "/Home/Products/pro=" + @ViewBag.pro + "&cat=pm";
+                    }
+                    <a href="@action" style="font: bold 14px '宋体'; color: #fff; ">更多</a>
+                </span>
+            </div>
+            <div class="body_content">
+                <!--面板内内容-->
+                @{                                        
+                    <ul class="box2List list-unstyled row">
+                        @{
+                            int i = 0;
+                            if (@ViewBag.pro == "lqc" && lqcs != null)
+                            {
+                                while (i < lqcLen)
+                                {
+                                    <li class="col-xs-12 col-sm-4 col-md-4 wow">
+                                        <div class="box2Con">
+                                            <div class="box2Img">
+                                                <img src="@Url.Action("ShowImage", "Home", new { id = @lqcs[i].Img })" alt="图片加载失败" class="img-responsive" />
+                                            </div>
+                                            <h3 class="box2Tit">
+                                                <span class="ellipsis">
+                                                    @lqcs[i].ProductName
+                                                </span>
+                                            </h3>
+                                            <div class="box2HovBg">
+                                                <div class="box2Hov">
+                                                    <h4 class="ellipsis">
+                                                        <strong>
+                                                            @Html.ActionLink(@lqcs[i].ProductName, "/Products/pro=lqc&cat=pd&id=" + @lqcs[i].LaboratoryQualityControlId)
+                                                        </strong>
+                                                    </h4>
+                                                    <div class="box2Item">
+                                                        <p>
+                                                            编号：GBW（E）090682
+                                                        </p>
+                                                        <br />
+                                                        <p>
+                                                            产品特征：@lqcs[i].Feature
+                                                        </p>
+                                                        <div class="clear">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    i++;
+                                }
+                            }
+                            else if (@ViewBag.pro == "iqc" && iqcs != null)
+                            {
+                                while (i < iqcLen)
+                                {
+                                    <li class="col-xs-12 col-sm-4 col-md-4 wow">
+                                        <div class="box2Con">
+                                            <div class="box2Img">
+                                                <img src="@Url.Action("ShowImage", "Home", new { id = @iqcs[i].Img })" alt="图片加载失败" class="img-responsive" />
+                                            </div>
+                                            <h3 class="box2Tit">
+                                                <span class="ellipsis">
+                                                    @iqcs[i].ProductName
+                                                </span>
+                                            </h3>
+                                            <div class="box2HovBg">
+                                                <div class="box2Hov">
+                                                    <h4 class="ellipsis">
+                                                        <strong>
+                                                            @Html.ActionLink(@iqcs[i].ProductName, "/Products/pro=lqc&cat=pd&id=" + @iqcs[i].InterroomQualityControlId)
+                                                        </strong>
+                                                    </h4>
+                                                    <div class="box2Item">
+                                                        <p>
+                                                            编号：GBW（E）090682
+                                                        </p>
+                                                        <br />
+                                                        <p>
+                                                            产品特征：@iqcs[i].Feature
+                                                        </p>
+
+                                                        <div class="clear">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    i++;
+                                }
+                            }
+                            else if (@ViewBag.pro == "rm" && ms != null)
+                            {
+                                while (i < mLen)
+                                {
+                                    <li class="col-xs-12 col-sm-4 col-md-4 wow">
+                                        <div class="box2Con">
+                                            <div class="box2Img">
+                                                <img src="@Url.Action("ShowImage", "Home", new { id = @ms[i].Img })" alt="图片加载失败" class="img-responsive" />
+                                            </div>
+                                            <h3 class="box2Tit">
+                                                <span class="ellipsis">
+                                                    @ms[i].ProductName
+                                                </span>
+                                            </h3>
+                                            <div class="box2HovBg">
+                                                <div class="box2Hov">
+                                                    <h4 class="ellipsis">
+                                                        <strong>
+                                                            @Html.ActionLink(@ms[i].ProductName, "/Products/pro=rm&cat=pd&id=" + @ms[i].MaterialId)
+                                                        </strong>
+                                                    </h4>
+                                                    <div class="box2Item">
+                                                        <p>
+                                                            编号：GBW（E）090682
+                                                        </p>
+                                                        <br />
+                                                        <p>
+                                                            产品特征：@ms[i].Feature
+                                                        </p>
+
+                                                        <div class="clear">
+                                                        </div>
+                                                    </div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    i++;
+                                }
+                            }
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

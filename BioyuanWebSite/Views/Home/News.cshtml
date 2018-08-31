@@ -1,0 +1,456 @@
+﻿@model Models.News
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="@Url.Content("~/Style/css/news.css")" rel="stylesheet" />
+<div class="bannerN">
+    <div class="imgFull">
+        <img src="~/Res/picture/5df8f48ab160adae7bd00c38412aa747.jpg" class="img-responsive">
+    </div>
+    <h2 class="banH2 wow fadeInUp">
+        @ViewBag.Title
+    </h2>
+</div>
+
+
+
+@*<div class="col-xs-10">
+    <div class="content-body" style="margin-top:0;padding-top:0;margin-left:3px;">
+        <div class="col-xs-10 nePg">
+
+            <div class="table_card">
+                <ul class="tab">
+                    <li class="activ">最新</li>
+                    <li>热门</li>
+                    <li>新闻</li>
+                </ul>
+                <div class="tabCon">
+                    <div class="on">
+                        <ul class="newslist01">
+                            <li><a href="#"><span>【前端】</span>iframe实现关闭当前窗口效果<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                            <li><a href="#"><span>【前端】</span>div透明边框的设置及ie兼容<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                            <li><a href="#"><span>【福利】</span>你是我的好朋友，我要送你个天猫红包<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                            <li><a href="#"><span>【活动】</span>蚂蚁金服开放平台合作伙伴大会(北京8.10)<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                            <li><a href="#"><span>【推荐】</span>融云即时通讯云－豆果美食、Faceu等亿级APP都在用<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                            <li><a href="#"><span>【推荐】</span>50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul class="newslist01">
+                            <li><a href="#"><span>【前端】</span>OpenBSD 6.0将移除Linux子系统以改进安全<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                            <li><a href="#"><span>【前端】</span>Facebook计划在旧金山设立首个办公室<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                            <li><a href="#"><span>【福利】</span>雅虎也“死”了 互联网到了谈论基业长青的年代<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                            <li><a href="#"><span>【活动】</span>乐视回应“1分钱买会员后自动续费”：将赠送一年会员<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                            <li><a href="#"><span>【推荐】</span>高德开放平台发布AMAP Inside战略 服务神州租车等30万移动应用<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                            <li><a href="#"><span>【推荐】</span>50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul class="newslist01">
+                            <li><a href="#"><span>【前端】</span>可是姑娘，你为什么要编程呢？<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                            <li><a href="#"><span>【前端】</span>知其所以然（以算法学习为例）<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                            <li><a href="#"><span>【福利】</span>如何给变量取个简短且无歧义的名字<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                            <li><a href="#"><span>【活动】</span>写给初学前端工程师的一封信<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                            <li><a href="#"><span>【推荐】</span>融云即时通讯云－豆果美食、Faceu等亿级APP都在用<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                            <li><a href="#"><span>【推荐】</span>50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <label class="listMore">
+                    <a href="/Home/NewsMore">更多
+                        <i class="fa fa-angle-double-down"></i>
+                    </a>
+                    
+                </label>
+            </div>
+            
+        </div>
+    </div>
+</div>*@
+
+
+
+
+
+
+<div class="mainBg">
+    <div class="onepage">
+        <ul class="artlist list-unstyled">
+            <li class="wow fadeInUp">
+                <div class="container">
+                    <a href="/Home/About/NewsShow">
+                        <div class="arImg">
+                            <img src="picture/46b21b75b881c03af655b4a724631436.png" class="img-responsive">
+                            <div class="arTime">
+                                <p class="date">
+                                    01
+                                </p>
+                                <p class="month text-uppercase">
+                                    Sep
+                                </p>
+                            </div>
+                        </div>
+                        <div class="arText">
+                            <h3 class="arTit ellipsis">
+                                住建部舆情培训班特邀XX科技授课 为政企舆情应对建言献策
+                            </h3>
+                            <div class="arBrief">
+                                <p>
+                                    2017年8月31日，XX科技董事长李青龙先生受邀为《中国建设报》主办的“住建部舆情应对培训班”进行现场授课。作为首席舆情处置专家、中国建设报大数据顾问，李青龙董事长依托其在大数据领域多年的研究与实践，在现场有针对性的系统讲解了在互联网+时代，政企部门如何有效应对突发事件和导控社会热点舆论，旨在协助住建部各系统相关领导高效提升舆情应对的工作水平。
+                                </p>
+                            </div>
+                            <div class="arBot">
+                                <div class="pull-left">
+                                    <i class="fa fa-eye" style="font-size:16px;">
+                                    </i>
+                                    @*浏览(28)*@
+                                </div>
+                                <div class="pull-right">
+                                    阅读全文
+                                    <i class="fa fa-angle-down">
+                                    </i>
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li class="wow fadeInUp">
+                <div class="container">
+                    <a href="/Home/About/NewsShow">
+                        <div class="arImg">
+                            <img src="picture/7e6b716d6d257cd8d53b3667421a05e6.png" class="img-responsive">
+                            <div class="arTime">
+                                <p class="date">
+                                    30
+                                </p>
+                                <p class="month text-uppercase">
+                                    Aug
+                                </p>
+                            </div>
+                        </div>
+                        <div class="arText">
+                            <h3 class="arTit ellipsis">
+                                XX科技出席清华大学公共管理高层论坛 打造城市治理的智慧引擎
+                            </h3>
+                            <div class="arBrief">
+                                <p>
+                                    近日，XX科技董事长李青龙先生受邀参加第十二届清华大学公共管理高层论坛，此次论坛以“产业转型与现代城市治理”为主题，近500名专家学者、行业代表及机构负责人齐聚一堂，围绕
+                                    “大数据与现代城市治理”、 “协同治理与地方政府创新”等内容展开深入交流研讨。
+                                </p>
+                            </div>
+                            <div class="arBot">
+                                <div class="pull-left">
+                                    <i class="fa fa-eye" style="font-size:16px;">
+                                    </i>
+                                    @*浏览(33)*@
+                                </div>
+                                <div class="pull-right">
+                                    阅读全文
+                                    <i class="fa fa-angle-down">
+                                    </i>
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li class="wow fadeInUp">
+                <div class="container">
+                    <a href="/Home/About/NewsShow">
+                        <div class="arImg">
+                            <img src="picture/8579f96d92e37f229fbf84bcde525977.png" class="img-responsive">
+                            <div class="arTime">
+                                <p class="date">
+                                    23
+                                </p>
+                                <p class="month text-uppercase">
+                                    Aug
+                                </p>
+                            </div>
+                        </div>
+                        <div class="arText">
+                            <h3 class="arTit ellipsis">
+                                一秒锁定KOL，XX科技“重点人物监控系统”抢鲜发布！
+                            </h3>
+                            <div class="arBrief">
+                                <p>
+                                    近日，XX科技发布舆情应用系列新品——重点人物监控系统，用以对网络社交媒体上的意见领袖、危险分子、敏感言论进行监测、分析。
+                                </p>
+                            </div>
+                            <div class="arBot">
+                                <div class="pull-left">
+                                    <i class="fa fa-eye" style="font-size:16px;">
+                                    </i>
+                                    @*浏览(27)*@
+                                </div>
+                                <div class="pull-right">
+                                    阅读全文
+                                    <i class="fa fa-angle-down">
+                                    </i>
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li class="wow fadeInUp">
+                <div class="container">
+                    <a href="/Home/About/NewsShow">
+                        <div class="arImg">
+                            <img src="picture/059df76914f40270a222f4f2a5772cec.png" class="img-responsive">
+                            <div class="arTime">
+                                <p class="date">
+                                    22
+                                </p>
+                                <p class="month text-uppercase">
+                                    Aug
+                                </p>
+                            </div>
+                        </div>
+                        <div class="arText">
+                            <h3 class="arTit ellipsis">
+                                XX科技拟与SPLUNK开启战略合作，发力数据应用服务
+                            </h3>
+                            <div class="arBrief">
+                                <p>
+                                    日前，全球首家大数据上市公司——SPLUNK领导层一行来访北京XX科技信息技术有限公司（以下简称“XX科技”），SPLUNK首席产品官Richard
+                                    Campione带队并携亚太区销售副总载、北亚区国家经理、全球研发副总裁及中国区总经理等，就中国区网络数据分析领域的合作事宜进行现场洽谈，并初步确立战略合作伙伴关系，未来双方将立足中国市场，在数据分析与应用层强强联合，共谋宏图。
+                                </p>
+                            </div>
+                            <div class="arBot">
+                                <div class="pull-left">
+                                    <i class="fa fa-eye" style="font-size:16px;">
+                                    </i>
+                                    @*浏览(30)*@
+                                </div>
+                                <div class="pull-right">
+                                    阅读全文
+                                    <i class="fa fa-angle-down">
+                                    </i>
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li class="wow fadeInUp">
+                <div class="container">
+                    <a href="/Home/About/NewsShow">
+                        <div class="arImg">
+                            <img src="picture/7c3047fc2bfcea2964f71afa7a78ad6b.png" class="img-responsive">
+                            <div class="arTime">
+                                <p class="date">
+                                    22
+                                </p>
+                                <p class="month text-uppercase">
+                                    Aug
+                                </p>
+                            </div>
+                        </div>
+                        <div class="arText">
+                            <h3 class="arTit ellipsis">
+                                XX科技“编++”亮相2017中国国际互联网+时代博览会
+                            </h3>
+                            <div class="arBrief">
+                                <p>
+                                    2017年8月10日至12日，“第二届中国（北京）国际互联网+时代博览会”在北京中国国际展览中心盛大开幕，同期举办有2017第二届中国互联网+时代大会及20多个行业论坛，是行业最具规模与影响力的“互联网+”年度盛会。北京XX科技信息技术有限公司（以下简称：XX科技）携传媒行业新力作——“编++”产品倾情参会，并发表主题演讲。
+                                </p>
+                            </div>
+                            <div class="arBot">
+                                <div class="pull-left">
+                                    <i class="fa fa-eye" style="font-size:16px;">
+                                    </i>
+                                    @*浏览(22)*@
+                                </div>
+                                <div class="pull-right">
+                                    阅读全文
+                                    <i class="fa fa-angle-down">
+                                    </i>
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li class="wow fadeInUp">
+                <div class="container">
+                    <a href="/Home/About/NewsShow">
+                        <div class="arImg">
+                            <img src="picture/9a185a38f86fc97151a934cfb35618e3.jpg" class="img-responsive">
+                            <div class="arTime">
+                                <p class="date">
+                                    20
+                                </p>
+                                <p class="month text-uppercase">
+                                    Aug
+                                </p>
+                            </div>
+                        </div>
+                        <div class="arText">
+                            <h3 class="arTit ellipsis">
+                                各界伙伴贺XX科技乔迁庆典 共话佳绩绘蓝图
+                            </h3>
+                            <div class="arBrief">
+                                <p>
+                                    2017年8月9日，XX科技正式乔迁辉煌时代大厦，并以“心手相携，共步辉煌”为主题举行乔迁庆典。XX科技众多合作伙伴悉数莅临到场。 当天，XX科技董事长李青龙、总裁白剑波、首席技术官贺伟刚、以及重要嘉宾闫军先生、刘武战先生，五位领导共同进行剪彩。
+                                </p>
+                            </div>
+                            <div class="arBot">
+                                <div class="pull-left">
+                                    <i class="fa fa-eye" style="font-size:16px;">
+                                    </i>
+                                    @*浏览(29)*@
+                                </div>
+                                <div class="pull-right">
+                                    阅读全文
+                                    <i class="fa fa-angle-down">
+                                    </i>
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li class="wow fadeInUp">
+                <div class="container">
+                    <a href="/Home/About/NewsShow">
+                        <div class="arImg">
+                            <img src="picture/07a6e6d72c16663ad1d982682593b615.jpg" class="img-responsive">
+                            <div class="arTime">
+                                <p class="date">
+                                    14
+                                </p>
+                                <p class="month text-uppercase">
+                                    Aug
+                                </p>
+                            </div>
+                        </div>
+                        <div class="arText">
+                            <h3 class="arTit ellipsis">
+                                XX科技编++喜获“2017中国大数据.文化传媒行业最佳创新应用”大奖
+                            </h3>
+                            <div class="arBrief">
+                                <p>
+                                    2017年8月2日至3日，国内大数据领域重量级的行业盛会——“2017中国大数据产业生态大会暨中国大数据产业生态联盟周年庆”在京举行，为大家带来了一场持续2天的饕餮盛宴。北京XX科技的“编++”产品得到了中国大数据产业生态联盟评审专家的一致肯定，一举拿下了“2017中国大数据.文化传媒行业最佳创新应用”大奖。
+                                </p>
+                            </div>
+                            <div class="arBot">
+                                <div class="pull-left">
+                                    <i class="fa fa-eye" style="font-size:16px;">
+                                    </i>
+                                    @*浏览(38)*@
+                                </div>
+                                <div class="pull-right">
+                                    阅读全文
+                                    <i class="fa fa-angle-down">
+                                    </i>
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li class="wow fadeInUp">
+                <div class="container">
+                    <a href="/Home/About/NewsShow">
+                        <div class="arImg">
+                            <img src="picture/963dbff82c5fc2f34e13b6751dff8d41.png" class="img-responsive">
+                            <div class="arTime">
+                                <p class="date">
+                                    14
+                                </p>
+                                <p class="month text-uppercase">
+                                    Aug
+                                </p>
+                            </div>
+                        </div>
+                        <div class="arText">
+                            <h3 class="arTit ellipsis">
+                                XX科技荣膺“2017中国大数据企业50强”称号
+                            </h3>
+                            <div class="arBrief">
+                                <p>
+                                    2017年8月2日-3日，由中国电子信息产业发展研究院主办的，以“智领先机 数见未来”为主题的“2017中国大数据产业生态大会暨中国大数据产业生态联盟周年庆”在京召开。北京XX科技信息技术有限公司以其雄厚的技术实力，前瞻的产品理念，绝佳的服务体系跻身大数据50强，荣膺“2017中国大数据企业50强”称号。
+                                </p>
+                            </div>
+                            <div class="arBot">
+                                <div class="pull-left">
+                                    <i class="fa fa-eye" style="font-size:16px;">
+                                    </i>
+                                  @*浏览(47)*@
+                                </div>
+                                <div class="pull-right">
+                                    阅读全文
+                                    <i class="fa fa-angle-down">
+                                    </i>
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+        </ul>
+        <div class="container">
+            <div class="page">
+                每页
+                <font>
+                    8
+                </font>
+                条，共
+                <font>
+                    58
+                </font>
+                条记录
+                &nbsp;
+                <a class="p-2" href="/Home/About/News?page=next">
+                    首页
+                </a>
+                &nbsp;
+                <a class="p-2" href="/Home/About/News?page=next">
+                    上一页
+                </a>
+                &nbsp;
+                <a class="" href="/Home/About/News?page=1">
+                    1
+                </a>
+                &nbsp;
+                <a class="current" href="/Home/About/News?page=2">
+                    2
+                </a>
+                &nbsp;
+                <a href="/Home/About/News?page=3">
+                    3
+                </a>
+                &nbsp;
+                <a class="p-2" href="/Home/About/News?page=next">
+                    下一页
+                </a>
+                &nbsp;&nbsp;
+                <a class="p-last" href="/Home/About/News?page=last">
+                    尾页
+                </a>
+            </div>
+            <!-- <div class="page"><img src="picture/page.png" class="img-responsive"></div> -->
+        </div>
+    </div>
+</div>
+
+

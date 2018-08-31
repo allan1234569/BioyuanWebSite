@@ -1,0 +1,69 @@
+.tagsContaine .tagList,.tagsContaine .tagInput{
+	float: left;
+}
+
+.tagsContaine .tagList .tagItem{
+    width:auto;
+	height: 30px;
+	line-height: 30px;
+	/*background-color: #66CCFF;*/
+    background-color:#337AB7;
+	padding: 5px 10px;
+	text-align: center;
+	float: left;
+	margin: 5px;
+	border-radius: 4px;
+	color: #FFFFFF;
+	font-size: 18px;
+	letter-spacing: 2px;
+	cursor: pointer;
+}
+
+.tagsContaine .tagList .tagItem:hover{
+	/*background-color: #0099FF;*/
+    background-color:#68c8f2;
+}
+
+.tagsContaine .tagList .tagItem .delete{
+	float: right; 
+	width: 15px; 
+	height: 15px; 
+	background-image: url(/Areas/Admin/Res/images/x.png); 
+	background-repeat: round; 
+	margin-top: -10px; 
+	margin-right: -10px;
+	display: none;
+}
+
+.tagsContaine .tagList .tagItem:hover .delete{
+	display: block;
+}
+
+.tagsContaine .tagList .updateInput{
+	outline: none;
+	height: 40px;
+	line-height: 40px;
+	font-size: 18px;
+	border: solid thin #AAAAAA;
+	border-radius: 5px;
+	margin: 5px;
+	padding: 0px 5px;
+	text-indent: 2px;
+	float: left;
+}
+
+.tagsContaine .tagInput{
+	outline: none;
+	height: 30px;
+	line-height: 30px;
+	font-size: 18px;
+	border: solid thin #AAAAAA;
+	border-radius: 5px;
+	margin: 5px;
+	padding: 0px 5px;
+	text-indent: 2px;
+}
+
+.tagsContaine .tagInput:focus{
+	border-color: #66CCFF;
+}

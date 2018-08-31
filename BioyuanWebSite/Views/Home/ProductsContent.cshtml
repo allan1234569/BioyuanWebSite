@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "质控产品";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bannerN">
+    <div class="imgFull">
+        <img src="~/Res/picture/5717574e2fc88a4018415bc81e49e5d7.jpg" class="img-responsive" />
+    </div>
+    <h2 class="banH2 wow fadeInUp">
+        质控产品
+    </h2>
+</div>
+
+<div class="panel-heading" id="panel-heading-breadcrumb">
+    <div class="container">
+        当前位置：
+        <ol class="breadcrumb" id="breadcrumb">
+            <li><a href="/Home/Index">首页</a></li>
+            <li><a href="/Home/Products/pro=lqc&cat=p">质控产品</a></li>
+            <li class="active">标准物质</li>
+        </ol>
+    </div>
+</div>
+
+<div class="container">
+
+        <!-- 主要内容 -->
+        @{
+            string partialViewAction = null;
+            string catName = null;
+            partialViewAction = @ViewBag.partialViewAction;
+            catName = @ViewBag.catName;
+        }
+
+        @if (catName != null && catName != string.Empty)
+        {
+            @Html.Action(@partialViewAction, new { id = catName == null ? "" : catName });
+        }
+        else
+        {
+            @Html.Action(@partialViewAction)
+        }
+        
+</div>

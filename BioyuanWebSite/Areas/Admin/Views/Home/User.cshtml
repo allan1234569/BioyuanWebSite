@@ -1,0 +1,205 @@
+﻿@model Models.Admin
+
+@{
+    ViewBag.Title = "标源后台管理系统-用户管理";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+@{
+    List<Models.UserInfo> admins = ViewBag.userList;
+
+    int userCount = 0;
+    if (admins != null)
+    {
+        userCount = admins.Count;
+    }
+    
+
+    bool userExist = false;
+    
+    if (ViewBag.userExist != null)
+    {
+        userExist = ViewBag.userExist;
+    }
+}
+
+<div class="x-nav">
+    <ol class="breadcrumb" id="breadcrumb">
+        <li><a href="/Admin/Home/Index">首页</a></li>
+        <li class="active">用户</li>
+    </ol>
+    <a class="refresh_btn" href="javascript:location.replace(location.href);" title="刷新">
+        <span class="glyphicon glyphicon-refresh"></span>
+    </a>
+</div>
+<div class="x-body">
+    <div class="row search">
+        <form class="form-inline row" role="form" method="post" action="/Admin/Home/ProductsManage/GetAdminByAdminName">
+            <div class="form-group">
+                <input type="text" class="form-control" id="UserName" placeholder="请输入用户名">
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> 查找</button>
+        </form>
+    </div>
+    <div class="clear"></div>
+    <div class="user_info_title">
+        <div style="float:left;">
+            <button class="btn add_btn btn-primary" data-toggle="modal" data-target="#addUserModel"> <i class="glyphicon glyphicon-plus"></i> 添加</button>
+        </div>
+        <span class="x-right" >共有 @userCount 个用户</span>
+    </div>
+    <form role="form" method="get" action="/Admin/Home/GetAllUser">
+        <div class="table-div">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>呢称</th>
+                        <th>登录名</th>
+                        <th>用户分组</th>
+                        <th>创建时间</th>
+                        <th>修改时间</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if (ViewBag.userList != null)
+                        {
+
+                            for (int i = 0; i < admins.Count; ++i)
+                            {
+                                if (i < 10)
+                                {
+                                    Models.UserInfo admin = admins[i];
+                                    <tr>
+                                        <td>@(i + 1)</td>
+                                        <td>@admin.NickName</td>
+                                        <td>@admin.LoginName</td>
+                                        <td>@(admin.UserRank == 0 ? "管理员" : "普通用户")</td>
+                                        <td>@admin.CreateTime</td>
+                                        <td>@admin.ModifyTime</td>
+                                        <td class="td-status">
+                                            <span>@(admin.State == 1 ? "启用" : "禁用")</span>
+                                        </td>
+                                        <td class="td-manage">
+                                            <a class="enable_user" title="启用" href="javascript:;">
+                                                <span class="glyphicon glyphicon-download"></span>
+                                            </a>
+                                            <a class="modify_user" data-toggle="modal"  title="修改密码" href="javascript:;">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </a>
+                                            <a class="delete_user" data-toggle="modal" data-target="#deleteUserModal" title="删除" href="javascript:;">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </a>
+                                        </td>
+                                        <td class="hidden">
+                                            @admin.UserId
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        }
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <!--翻页-->
+        <div class="pagination-container">
+            <ul class="pagination ">
+                <li><a href="#">&laquo;</a></li>
+                @{
+                    int count = userCount/10;
+                    int count_p = userCount % 10;
+                    if(count_p > 0)
+                    {
+                        count += 1;
+                    }
+                    
+                    count = Math.Min(5, count);
+
+
+                    for (int i = 1; i <= count; ++i)
+                    {
+                        <li><a href="#">@i</a></li>
+                    }
+                }
+                <li><a href="#">&raquo;</a></li>
+            </ul>
+        </div>
+
+    </form>
+</div>
+
+<script>
+    //layui.use('laydate', function () {
+    //    var laydate = layui.laydate;
+
+    //    //执行一个laydate实例
+    //    laydate.render({
+    //        elem: '#start' //指定元素
+    //    });
+
+    //    //执行一个laydate实例
+    //    laydate.render({
+    //        elem: '#end' //指定元素
+    //    });
+    //});
+
+    /*用户-停用*/
+    function member_stop(obj, id) {
+        layer.confirm('确认要停用吗？', function (index) {
+
+            if ($(obj).attr('title') == '启用') {
+
+                //发异步把用户状态进行更改
+                $(obj).attr('title', '停用')
+                $(obj).find('i').html('&#xe62f;');
+
+                $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
+                layer.msg('已停用!', { icon: 5, time: 1000 });
+
+            } else {
+                $(obj).attr('title', '启用')
+                $(obj).find('i').html('&#xe601;');
+
+                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
+                layer.msg('已启用!', { icon: 5, time: 1000 });
+            }
+
+        });
+    }
+
+    /*用户-删除*/
+    function member_del(obj, id) {
+        alert(id);
+
+        layer.confirm('确认要删除吗？', function (index) {
+            //发异步删除数据
+            $(obj).parents("tr").remove();
+            layer.msg('已删除!', { icon: 1, time: 1000 });
+        });
+    }
+
+
+    function delAll(argument) {
+
+        var data = tableCheck.getData();
+
+        layer.confirm('确认要删除吗？' + data, function (index) {
+            //捉到所有被选中的，发异步进行删除
+            layer.msg('删除成功', { icon: 1 });
+            $(".layui-form-checked").not('.header').parents('tr').remove();
+        });
+    }
+
+</script>
+
+<script>
+   
+</script>
+

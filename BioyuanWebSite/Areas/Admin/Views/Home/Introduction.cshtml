@@ -1,0 +1,88 @@
+﻿@model Models.Introduction
+
+@{
+    ViewBag.Title = "标源后台管理系统-公司简介";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+    bool bIntroductionExist = ViewBag.bIntroductionExist;
+}
+
+<div class="x-nav">
+    <ol class="breadcrumb" id="breadcrumb">
+        <li><a href="/Admin/Home/Index">首页</a></li>
+        <li class="active">公司简介</li>
+    </ol>
+    <a class="refresh_btn" href="javascript:location.replace(location.href);" title="刷新">
+        <span class="glyphicon glyphicon-refresh"></span>
+    </a>
+</div>
+<div id="intro-body" class="x-body"  style="overflow-y:scroll;height:100%;width:auto;">
+    <div style="height: 43px; border-bottom: 1px solid #EEEEEE; margin-left: 20px; margin-right: 20px;">
+        <div style="float: left;">
+            @{
+                if (bIntroductionExist)
+                {
+                    <button id="modifyIntroduction_btn" class="btn add_btn btn-primary" data-toggle="modal" @*data-target="#modifyIntroductionModal"*@> <i class="glyphicon glyphicon-pencil"></i> 修改</button>
+                }
+                else
+                {
+                    <button id="addIntroduction_btn" class="btn add_btn btn-primary" data-toggle="modal" data-target="#addIntroductionModal"> <i class="glyphicon glyphicon-plus"></i> 添加</button>
+                }
+            }
+
+        </div>
+    </div>
+
+    @{
+        if (bIntroductionExist)
+        {
+            <div class="panel panel-default" style="margin-left:20px;margin-right:20px;">
+                <div class="panel-heading">
+                    公司简介
+                </div>
+                <div id="companyIntroductionDiv" class="panel-body">
+                    @Html.Raw(Model.companyIntroduction)
+                </div>
+            </div>
+
+            <div class="panel panel-default" style="margin-left:20px;margin-right:20px;">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        企业宗旨
+                    </h3>
+                </div>
+                <div  class="panel-body">
+                        @Html.Raw(Model.corporatePurpose)
+                </div>
+            </div>
+        
+            <div class="panel panel-default" style="margin-left:20px;margin-right:20px;">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        企业愿景
+                    </h3>
+                </div>
+                <div id="corporateVisionDiv" class="panel-body">
+                        @Html.Raw(Model.corporateVision)
+                </div>
+            </div>
+        
+ 
+        }
+    }
+
+</div>
+<script>
+
+    $(function () {
+
+
+        var body = $("#intro-body");
+
+        var w = body.width();
+        var h = body.height();
+        
+        
+
+    })
+
+</script>

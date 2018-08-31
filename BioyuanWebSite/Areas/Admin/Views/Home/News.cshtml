@@ -1,0 +1,63 @@
+﻿@model Models.News
+
+@{
+    ViewBag.Title = "标源后台管理系统-新闻管理";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+
+    List<Models.News> newsList = (List<Models.News>)@ViewBag.newsList;
+
+    int newCount = newsList != null ? newsList.Count : 0;
+}
+
+<script src="@Url.Content("~/Areas/Admin/Style/js/bootstrap-paginator.min.js")"></script>
+<script src="@Url.Content("~/Areas/Admin/Style/js/datetime-convert.js")"></script>
+
+<div class="x-nav">
+    <ol class="breadcrumb" id="breadcrumb">
+        <li><a href="/Admin/Home/Index">首页</a></li>
+        <li class="active">新闻管理</li>
+    </ol>
+    <a class="refresh_btn" href="javascript:location.replace(location.href);" title="刷新">
+        <span class="glyphicon glyphicon-refresh"></span>
+    </a>
+</div>
+<div class="x-body">
+    <div class="row search">
+        <form class="form-inline row" role="form" method="post" action="/Admin/Home/NewsManage/GetNewsByName">
+            <div class="form-group">
+                <input type="text" class="form-control" name="name" placeholder="请输入新闻标题">
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> 查找</button>
+        </form>
+    </div>
+    <div class="clear"></div>
+    <div class="user_info_title">
+        <div style="float:left;">
+            <button class="btn add_btn btn-primary" data-toggle="modal" data-target="#addNewsModel"> <i class="glyphicon glyphicon-plus"></i> 添加</button>
+        </div>
+        <span class="x-right">共有新闻消息：@newCount 个</span>
+    </div>
+    <div class="table-div">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>新闻分类</th>
+                    <th>新闻标题</th>
+                    <th>作者</th>
+                    <th>日期</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="news_table" class="">
+            </tbody>
+        </table>
+    </div>
+
+    <!--翻页-->
+    <div class="pagination-container">
+        <ul id="news_pagination" class="pagination"></ul>
+    </div>
+
+</div>

@@ -1,0 +1,109 @@
+﻿@model Models.InterroomQualityControl
+
+@{
+    ViewBag.Title = "标源后台管理系统-室间质评品管理";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+
+
+    List<Models.InterroomQualityControl> controlList = (List<Models.InterroomQualityControl>)@ViewBag.interroomQualityControlList;
+    int cotrolCount = (controlList != null) ? controlList.Count : 0; 
+}
+
+<script src="@Url.Content("~/Areas/Admin/Style/js/bootstrap-paginator.min.js")"></script>
+<script src="@Url.Content("~/Areas/Admin/Style/js/datetime-convert.js")"></script>
+
+<div class="x-nav">
+    <ol class="breadcrumb" id="breadcrumb">
+        <li><a href="/Admin/Home/Index">首页</a></li>
+        <li class="active">室间质评品管理</li>
+    </ol>
+    <a class="refresh_btn" href="javascript:location.replace(location.href);" title="刷新">
+        <span class="glyphicon glyphicon-refresh"></span>
+    </a>
+</div>
+<div class="x-body">
+    <div class="row search">
+        <form class="form-inline row" role="form">
+            <div class="form-group">
+                <input type="text" class="form-control" id="name" placeholder="请输入质控品名称">
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> 查找</button>
+        </form>
+    </div>
+    <div class="clear"></div>
+    <div class="user_info_title">
+        <div style="float:left;">
+            <button class="btn add_btn btn-primary" data-toggle="modal" data-target="#addInterroomQualityControlModel"> <i class="glyphicon glyphicon-plus"></i> 添加</button>
+        </div>
+        <span class="x-right">共有室间质控品：@cotrolCount 个</span>
+    </div>
+    <div class="table-div">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>质评品名称</th>
+                    <th>样品图片</th>
+                    <th>创建时间</th>
+                    <th>修改时间</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="iqc_table"  class="img_table">
+                @*@{
+                    for (int i = 0; i < cotrolCount; ++i)
+                    {
+                        Models.InterroomQualityControl control = controlList.ElementAt(i);
+
+                        if (control != null)
+                        {
+                            <tr>
+                                <td>
+                                    <span>@(i + 1)</span>
+                                </td>
+                                <td>
+                                    <span>@control.ProductName</span>
+                                </td>
+                                <td>
+                                    <a>
+                                        <img src="@Url.Action("ShowImage", "Home", new { id = @control.Img })" height="60" width="90" />
+                                    </a>
+                                </td>
+                                <td>
+                                    <span>@control.CreateTime</span>
+                                </td>
+                                <td>
+                                    <span>@control.ModifyTime</span>
+                                </td>
+                                <td class="td-status">
+                                    <span>@(control.State == 1 ? "启用" : "禁用")</span>
+                                </td>
+                                <td class="td-manage">
+                                    <a class="enable_interroomControl" title="启用" href="javascript:;">
+                                        <span class="glyphicon glyphicon-download"></span>
+                                    </a>
+                                    <a class="modify_interroomControl" data-toggle="modal" title="修改" href="javascript:;">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                    <a class="delete_interroomControl" data-toggle="modal" data-target="#deleteInterroomQualityControlModal" title="删除" href="javascript:;">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                </td>
+                                <td class="hidden">
+                                    @control.InterroomQualityControlId
+                                </td>
+                            </tr>
+                        }
+                    }
+                }*@
+            </tbody>
+        </table>
+    </div>
+
+    <!--翻页-->
+    <div class="pagination-container">
+        <ul id="iqc_pagination" class="pagination"></ul>
+    </div>
+
+</div>

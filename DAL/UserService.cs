@@ -99,11 +99,52 @@ namespace DAL
         /// </summary>
         /// <param name="userName"></param>
         /// <returns></returns>
-        public int Login(UserInfo user)
+        //public int Login(UserInfo user)
+        //{
+        //    if(GetUser(user) == null)
+        //    {
+        //        return -1;
+        //    }
+
+        //    string sql = "SELECT * FROM T_User";
+        //    sql += " WHERE LoginName = '{0}' AND LoginPwd = '{1}';";
+        //    sql = string.Format(sql,
+        //        user.LoginName,
+        //        user.LoginPwd);
+
+        //    SqlDataReader reader = SQLHelper.GetReader(sql);
+        //    UserInfo admin = null;
+
+        //    if (reader.Read())   //获取第一条记录
+        //    {
+        //        admin = new UserInfo();
+        //        admin.UserId = reader["UserId"].ToString();
+        //        admin.NickName = reader["NickName"].ToString();
+        //        admin.LoginName = reader["LoginName"].ToString();
+        //        admin.LoginPwd = reader["LoginPwd"].ToString();
+        //        admin.UserEmail = reader["UserEmail"].ToString();
+        //        admin.CreateTime = Convert.ToDateTime(reader["CreateTime"]);
+        //        admin.ModifyTime = Convert.ToDateTime(reader["ModifyTime"]);
+        //        admin.State = Convert.ToInt32(reader["State"]);
+        //    }
+
+        //    if(admin == null)
+        //    {
+        //        return 0;
+        //    }
+        //    else
+        //    {
+        //        return 1;
+        //    }
+        //}
+
+
+
+        public UserInfo Login(UserInfo user)
         {
-            if(GetUser(user) == null)
+            if (GetUser(user) == null)
             {
-                return -1;
+                return null;
             }
 
             string sql = "SELECT * FROM T_User";
@@ -128,14 +169,7 @@ namespace DAL
                 admin.State = Convert.ToInt32(reader["State"]);
             }
 
-            if(admin == null)
-            {
-                return 0;
-            }
-            else
-            {
-                return 1;
-            }
+            return admin;
         }
 
 

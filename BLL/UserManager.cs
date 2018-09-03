@@ -21,7 +21,16 @@ namespace BLL
         /// -1  用户不存在
         /// 0   密码错误
         /// </returns>
-        public int Login(UserInfo user)
+        //public int Login(UserInfo user)
+        //{
+        //    string pwd = user.LoginPwd;
+
+        //    user.LoginPwd = new AEncryption().Encryption(user.LoginPwd);
+
+        //    return new UserService().Login(user);
+        //}
+
+        public UserInfo Login(UserInfo user)
         {
             string pwd = user.LoginPwd;
 

@@ -9,13 +9,11 @@ namespace MvcApplication1.Controllers
 {
     public class UserController : Controller
     {
-        private string urlReferrer = "";
+
         #region 登录
 
         public ActionResult Login()
         {
-            urlReferrer = Request.UrlReferrer.ToString();
-
             return View();
         }
 
@@ -26,25 +24,25 @@ namespace MvcApplication1.Controllers
 
 
 
+
         [HttpPost]
-        public ActionResult LoginIn(UserInfo user)
+        public string LoginIn(UserInfo user)
         {
-            UserInfo myUser = null;
+            UserInfo t_User = new UserInfo();
 
-           
-            if (user.LoginName != string.Empty && user.LoginPwd != string.Empty)
+            t_User.LoginName = Request.Params["loginname"].ToString();
+            t_User.LoginPwd = Request.Params["loginpwd"].ToString();
+
+            if (t_User.LoginName != string.Empty && t_User.LoginPwd != string.Empty)
             {
-                myUser = new UserManager().Login(user);
+                //UserInfo user = new UserManager().GetUser(t_User);
+
+                int ret = new UserManager().Login(t_User);
+
+                return ret.ToString();
             }
 
-            if (myUser == null)
-            {
-                return View("Login");
-            }
-            else
-            {
-                return Redirect(urlReferrer);
-            }
+            return "";
 
             //    //tAdmin不为空
             //    if (user != null)

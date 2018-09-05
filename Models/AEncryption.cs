@@ -9,7 +9,7 @@ namespace Models
     public class AEncryption
     {
         /// <summary>
-        /// 加密
+        /// 密码加密
         /// </summary>
         /// <param name="express">加密文本</param>
         /// <returns>返回加密后的文本</returns>
@@ -26,7 +26,7 @@ namespace Models
         }
 
         /// <summary>
-        /// 解密
+        /// 密码解密
         /// </summary>
         /// <param name="ciphertext">解密文本</param>
         /// <returns>返回解密后的文本</returns>

@@ -26,7 +26,7 @@ namespace MvcApplication1.Areas.Admin.Controllers
             string name = admin.LoginName;
             string password = admin.LoginPwd;
 
-            Models.UserInfo tAdmin = new UserManager().GetUser(admin);
+            Models.UserInfo tAdmin = new UserManager().Login(admin);
 
             //tAdmin不为空
             if (tAdmin != null)

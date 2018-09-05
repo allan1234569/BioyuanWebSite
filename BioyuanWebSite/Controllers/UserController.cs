@@ -14,7 +14,16 @@ namespace MvcApplication1.Controllers
 
         public ActionResult Login()
         {
-            urlReferrer = Request.UrlReferrer.ToString();
+            var urlReferrer = Request.UrlReferrer;
+
+            if (urlReferrer.LocalPath == "/User/Login" | urlReferrer.LocalPath == "/User/Register" | urlReferrer.LocalPath == "/User/ResetPassword")
+            {
+             
+            }
+            else
+            {
+                TempData["urlReferrer"] = urlReferrer == null ? "" : urlReferrer.ToString();
+            }
 
             return View();
         }
@@ -39,42 +48,16 @@ namespace MvcApplication1.Controllers
 
             if (myUser == null)
             {
+                TempData["LoginFailed"] = "登录失败，请检查您的账号和密码是否正确！";
+                //ViewBag.LoginFailed = "登录失败，请检查您的账号和密码是否正确！";
                 return View("Login");
             }
             else
             {
-                return Redirect(urlReferrer);
+                var urlReferrer = TempData["urlReferrer"];
+
+                return Redirect(urlReferrer == null ? "/Home/Index" : urlReferrer.ToString());
             }
-
-            //    //tAdmin不为空
-            //    if (user != null)
-            //    {
-            //        if (user.LoginPwd != t_User.LoginPwd)
-            //        {
-            //            ViewBag.LoginFailed = "登录失败：登录密码错误";
-            //            return base.Content("0");
-            //        }
-
-            //        //保存记录
-            //        ViewBag.LoginName = user.LoginName;
-            //        Session["NickName"] = user.NickName;
-            //        Session["LoginName"] = user.LoginName;
-            //        FormsAuthentication.SetAuthCookie(user.NickName, false);
-
-            //        return base.Content("1");
-            //    }
-            //    else
-            //    {
-            //        return base.Content("-1");
-            //    }
-
-            //    //tAdmin为空，用户不存在
-            //    ViewBag.LoginFailed = "登录失败：用户不存在";
-            //}
-            //else
-            //{
-            //    return base.Content("-1");
-            //}
         }
         /// <summary>
         /// 

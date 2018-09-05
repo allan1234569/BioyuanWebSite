@@ -32,10 +32,6 @@ namespace BLL
 
         public UserInfo Login(UserInfo user)
         {
-            string pwd = user.LoginPwd;
-
-            user.LoginPwd = new AEncryption().Encryption(user.LoginPwd);
-
             return new UserService().Login(user);
         }
 
@@ -48,11 +44,6 @@ namespace BLL
         {
             UserInfo tUser = new UserService().GetUser(user);
 
-            if (tUser != null)
-            {
-                tUser.LoginPwd = new AEncryption().Decrypt(tUser.LoginPwd);
-            }
-            
             return tUser;
         }
 
@@ -107,8 +98,6 @@ namespace BLL
 
             user.UserId = new Common().getGUID();
 
-            user.LoginPwd = new AEncryption().Encryption(user.LoginPwd);
-
             user.CreateTime = DateTime.Now;
 
             user.ModifyTime = DateTime.Now;
@@ -123,19 +112,9 @@ namespace BLL
 
         public int ModifyUser(UserInfo user, string originPwd)
         {
-            UserService ads = new UserService();
+            UserService us = new UserService();
 
-            UserInfo tempUser = ads.GetUserById(user.UserId);
-            tempUser.LoginPwd = new AEncryption().Decrypt(tempUser.LoginPwd);
-
-            if (tempUser.LoginPwd != originPwd)
-            {
-                return 0;
-            }
-            else
-            {
-                return ads.UpdateUser(user);
-            }
+            return us.UpdateUser(user);
         }
 
         public int EnableUser(string id)

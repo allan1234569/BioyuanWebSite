@@ -61,6 +61,9 @@
                                 <div class="form-group">
                                     <input type="password" name="LoginPwd" placeholder="密码" class="form-username form-control" id="form-pwd">
                                 </div>
+                                <div style="height:20px;text-align:center;color:red;margin-top:10px;margin-bottom:10px;">
+                                    <span id="login_info_id" class="login_info">@(@TempData["LoginFailed"] == null ? "" : @TempData["LoginFailed"])</span>
+                                </div>
                                 <button id="form-login-btn" type="submit" class="btn">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</button>
                             </form>
                         </div>
@@ -89,16 +92,14 @@
     <![endif]-->
     <script>
 
-        $(document).ready(function ()  {
-            $("#form-login-btn").on("click", function(){
-                alert("click");
-            })
-        }
+
 
     </script>
 
     <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 1280px; width: 1920px; z-index: -999999; position: fixed;">
         <img src="@Url.Content("~/Style/css/aserts/img/backgrounds/1.jpg")" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1903px; height: 1560px; max-height: none; max-width: none; z-index: -999999; left: 0px; top: -475.333px;">
     </div>
+
+
 </body>
 </html>

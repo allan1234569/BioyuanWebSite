@@ -543,6 +543,7 @@ namespace MvcApplication1.Controllers
         }
 
 
+        #region 通用模块
         public string GetUrlFiled(Dictionary<string, string> d, string filedName)
         {
             if (d.ContainsKey(filedName) && string.Empty != d[filedName].ToString())
@@ -576,6 +577,8 @@ namespace MvcApplication1.Controllers
 
             return d;
         }
+        #endregion
+
 
         #region 图形验证码
         public ActionResult SecurityCode()

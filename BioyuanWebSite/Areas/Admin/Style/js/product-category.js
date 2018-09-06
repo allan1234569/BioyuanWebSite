@@ -1,6 +1,42 @@
 ﻿//产品分类管理
 $(function () {
 
+    $('#add_product_category_form')
+    .bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            CategoryName: {
+                validators: {
+                    notEmpty: {
+                        message: '分类名不能为空'
+                    }
+                }
+            }
+        }
+    })
+
+    $('#modify_product_category_form')
+    .bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            CategoryName: {
+                validators: {
+                    notEmpty: {
+                        message: '分类名不能为空'
+                    }
+                }
+            }
+        }
+    })
+
     $('#addProductCategoryModel').modal({
         backdrop: 'static',
         keyboard: false,

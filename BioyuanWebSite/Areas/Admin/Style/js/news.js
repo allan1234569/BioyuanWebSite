@@ -3,6 +3,50 @@
 
     var modifyNewsEditor = CKEDITOR.replace("ModifyNewsTextArea");
 
+    $('#add_news_form')
+    .bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            title: {
+                validators: {
+                    notEmpty: {
+                        message: '标题不能为空'
+                    }
+                }
+            },
+            author: {
+                validators: {
+                    notEmpty: {
+                        message: '作者不能为空'
+                    }
+                }
+            },
+            keyword: {
+                validators: {
+                    notEmpty: {
+                        message: '关键词不能为空'
+                    }
+                }
+            },
+            content: {
+                validators: {
+                    notEmpty: {
+                        message: '新闻内容不能为空'
+                    }
+                }
+            }
+        }
+    })
+
+    addNewsEditor.on('change', function () {
+        
+    })
+
+
     //发布新闻
     $('.release_news_btn').on('click', function () {
         var obj = $(this);
@@ -108,10 +152,14 @@
         
         var jsonObj = JSON.parse(data);
         $("#modifyNews_title").val(jsonObj.title);
+        
         $("#modifyNews_author").val(jsonObj.author);
         $("#modifyNews_keyword").val(jsonObj.keyword);
+        
         modifyNewsEditor.setData(jsonObj.content);
+
         $("#modifyNews_remark").val(jsonObj.remark);
+        
 
     };
 
@@ -327,7 +375,6 @@
                                                 async: false,
                                                 dataType: "text",
                                                 success: function (data) {
-
                                                     if (data != "null") {
                                                         setModifyNewsFormData(data);
                                                         $("#modifyNewsModel").modal('show');
@@ -335,8 +382,8 @@
                                                     } else {
                                                         alert("数据加载失败");
                                                     }
-
-                                                }
+                                                },
+                                     
                                             })
                                         }
                                     })
@@ -392,4 +439,5 @@
         element.bootstrapPaginator(options);
         $("#news_pagination li:first a").trigger("click");
     });
+
 })

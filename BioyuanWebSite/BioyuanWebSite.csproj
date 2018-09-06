@@ -492,6 +492,11 @@
     <Content Include="Areas\Admin\Style\js\index.js" />
     <Content Include="Areas\Admin\Style\js\interroom-quality-control.js" />
     <Content Include="Areas\Admin\Style\js\introduction.js" />
+    <Content Include="Areas\Admin\Style\js\iscroll\iscroll-infinite.js" />
+    <Content Include="Areas\Admin\Style\js\iscroll\iscroll-lite.js" />
+    <Content Include="Areas\Admin\Style\js\iscroll\iscroll-probe.js" />
+    <Content Include="Areas\Admin\Style\js\iscroll\iscroll-zoom.js" />
+    <Content Include="Areas\Admin\Style\js\iscroll\iscroll.js" />
     <Content Include="Areas\Admin\Style\js\jedate\jedate.js" />
     <Content Include="Areas\Admin\Style\js\jedate\jedate.min.js" />
     <Content Include="Areas\Admin\Style\js\jedate\skin\gray.css" />
@@ -848,6 +853,7 @@
     <Content Include="Areas\Admin\Style\lib\layui\font\iconfont.svg" />
     <Content Include="Areas\Admin\Style\lib\layui\font\iconfont.ttf" />
     <Content Include="Areas\Admin\Style\lib\layui\font\iconfont.woff" />
+    <Content Include="Areas\Admin\Views\Home\NonConstantQuailtyControl.cshtml" />
     <None Include="Properties\PublishProfiles\网站测试目录.pubxml" />
     <None Include="Scripts\_references.js" />
     <Content Include="Style\css\animate.css" />

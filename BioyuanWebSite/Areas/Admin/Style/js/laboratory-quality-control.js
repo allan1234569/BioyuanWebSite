@@ -1,5 +1,67 @@
-﻿//室内质控品管理
+﻿//[室内质控品管理]
+
 $(function () {
+
+    //表单验证
+    $('#add_lqc_form')
+    .bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            ProductName: {
+                message: '质控品名称无效',
+                validators: {
+                    notEmpty: {
+                        message: '质控品不能为空'
+                    }
+                },
+                remote: {
+                    url: ''
+                }
+            },
+            CategoryName: {
+                validators: {
+                    notEmpty: {
+                        message: '专业不能为空'
+                    }
+                }
+            }
+        }
+    })
+    .on('click', '#add_lab_item_no', function () {
+        alert("我被点击了");
+    })
+    .on('click', '.deleteRow', function () {
+        alert("这一行将被删除")
+    })
+
+    
+
+    $('#modify_lqc_form').bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            ProductName: {
+                message: '室内质控品名称无效',
+                validators: {
+                    notEmpty: {
+                        message: '室内质控品不能为空'
+                    }
+                },
+                remote: {
+                    url: ''
+                }
+            }
+        }
+    });
+
+
 
     //添加质控品
     $('#addLabQualityControlModel').modal({
@@ -329,40 +391,6 @@ $(function () {
     }
 
 
-
-    //添加室内质控品表单验证
-    $("#add-lqc-form").validate();
-
-    //产品名称
-    $("#add-ProductName").rules('add', {
-        required: true,
-        minlength: 1,
-        maxlength: 40,
-        messages: {
-            required: '请输入产品名称！',
-            minlength: '帐号不能小于{0}位！',
-            maxlength: '帐号不能小于{0}位！'
-        }
-    });
-
-
-
-    //修改室内质控品表单验证
-    $("#modify-lqc-form").validate();
-
-    //产品名称
-    $("#modify_ProductName").rules('add', {
-        required: true,
-        minlength: 1,
-        maxlength: 40,
-        messages: {
-            required: '请输入产品名称！',
-            minlength: '帐号不能小于{0}位！',
-            maxlength: '帐号不能小于{0}位！'
-        }
-    });
-
-
     //表格分页处理
     $(function () {
         var dataLength = 0;
@@ -486,10 +514,11 @@ $(function () {
                                     })
 
                                     var img = $("<img/>", {
-                                        "src": '@Url.Action("ShowImage", "Home", new { id = ' + jsonObj[i].Img + '})',
+                                        "src": '/Admin/Home/ProductsManage/ShowImage?id=' + jsonObj[i].Img,
                                         "height": 60,
                                         "width": 90
                                     })
+
 
                                     td.append(img);
                                 } else if (j == 3) {//创建时间
@@ -587,6 +616,7 @@ $(function () {
 
                                                         //$("#modify_lab_Img").val(jsonObj.Img);
                                                         $("#modify_lab_preview").attr('src', '/Admin/Home/ProductsManage/ShowImage?id=' + jsonObj.Img);
+                                                        
 
                                                         $("#modify_lab_CategoryName").find("option[value='" + jsonObj.CategoryName + "']").attr("selected", true);
 

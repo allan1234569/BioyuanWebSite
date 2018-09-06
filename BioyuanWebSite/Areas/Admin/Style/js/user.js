@@ -1,6 +1,171 @@
 ﻿//用户管理
 $(function () {
 
+    //表单验证
+    $('#add_user_form')
+    .bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            UserName: {
+                validators: {
+                    notEmpty: {
+                        message: '昵称不能为空'
+                    }
+                },
+                remote: {
+                    url: ''
+                }
+            },
+            LoginName: {
+                validators: {
+                    stringLength: {
+                        min: 4,
+                        max: 30,
+                        message: '登录名长度不能小于4位或超过30位'
+                    },
+                    threshold: 4, //有4字符以上才发送ajax请求，（input中输入一个字符，插件会向服务器发送一次，设置限制，6字符以上才开始）
+                    remote: {//ajax验证。server result:{"valid",true or false} 向服务发送当前input name值，获得一个json数据。例表示正确：{"valid",true}  
+                        url: '/User/UserExists',//验证地址
+                        message: '此用户名已经被使用',//提示消息
+                        delay: 50,//每输入一个字符，就发ajax请求，服务器压力还是太大，设置2秒发送一次ajax（默认输入一个字符，提交一次，服务器压力太大）
+                        type: 'POST',//请求方式
+                        /**自定义提交数据，默认值提交当前input value
+                         *  data: function(validator) {
+                              return {
+                                  password: $('[name="passwordNameAttributeInYourForm"]').val(),
+                                  whatever: $('[name="whateverNameAttributeInYourForm"]').val()
+                              };
+                           }
+                         */
+                        success: function (data) {
+                            alert(data);
+                        }
+                    },
+                    notEmpty: {
+                        message: '登录名必填不能为空'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_\.]+$/,
+                        message: '用户名只能由字母、数字、点和下划线组成。'
+                    }
+                }
+            },
+            LoginPwd: {
+                validators: {
+                    stringLength: {
+                        min: 8,
+                        max: 16,
+                        message: '密码不能少于8个或超过16个字符'
+                    },
+                    notEmpty: {
+                        message: '密码不能为空'
+                    },
+                    regexp: {
+                        regexp: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/,
+                        message: '必须是字母和数字的组合，不能使用特殊字符，长度在8-16之间'
+                    }
+                }
+            },
+            LoginPwdConfirm: {
+                validators: {
+                    stringLength: {
+                        min: 8,
+                        max: 16,
+                        message: '密码不能少于8个或超过16个字符'
+                    },
+                    notEmpty: {
+                        message: '密码不能为空'
+                    },
+                    regexp: {
+                        regexp: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/,
+                        message: '必须是字母和数字的组合，不能使用特殊字符，长度在8-16之间'
+                    },
+                    identical: {
+                        field: 'LoginPwd',
+                        message: '密码和确认密码不相同'
+                    },
+                }
+            }
+        }
+    })
+
+
+    $('#modify_password_form')
+    .bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            OriginLoginPwd: {
+                validators: {
+                    stringLength: {
+                        min: 8,
+                        max: 16,
+                        message: '密码不能少于8个或超过16个字符'
+                    },
+                    notEmpty: {
+                        message: '密码不能为空'
+                    },
+                    regexp: {
+                        regexp: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/,
+                        message: '必须是字母和数字的组合，不能使用特殊字符，长度在8-16之间'
+                    }
+                }
+            },
+            LoginPwd: {
+                validators: {
+                    stringLength: {
+                        min: 8,
+                        max: 16,
+                        message: '密码不能少于8个或超过16个字符'
+                    },
+                    notEmpty: {
+                        message: '密码不能为空'
+                    },
+                    regexp: {
+                        regexp: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/,
+                        message: '必须是字母和数字的组合，不能使用特殊字符，长度在8-16之间'
+                    }
+                }
+            },
+            LoginPwdConfirm: {
+                validators: {
+                    stringLength: {
+                        min: 8,
+                        max: 16,
+                        message: '密码不能少于8个或超过16个字符'
+                    },
+                    notEmpty: {
+                        message: '密码不能为空'
+                    },
+                    regexp: {
+                        regexp: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/,
+                        message: '必须是字母和数字的组合，不能使用特殊字符，长度在8-16之间'
+                    },
+                    identical: {
+                        field: 'LoginPwd',
+                        message: '密码和确认密码不相同'
+                    },
+                }
+            }
+        }
+    })
+
+
+    $('#addUserModel').on('hidden.bs.modal', function (e) {
+        $("#add_user_form").data("bootstrapValidator").resetForm();
+    })
+
+    $('#modifyUserModal').on('hidden.bs.modal', function (e) {
+        $("#modify_password_form").data("bootstrapValidator").resetForm();
+    })
+
     $('#addUserModel').modal({
         backdrop: 'static',
         keyboard: false,
@@ -120,104 +285,4 @@ $(function () {
     })
 
 
-
-
-    //添加用户表单验证
-    $("#add_user_form").validate();
-
-    //昵称
-    $("#userName").rules('add', {
-        required: true,
-        minlength: 1,
-        maxlength: 20,
-        messages: {
-            required: '请输入昵称！',
-            minlength: '帐号不能小于{0}位！',
-            maxlength: '帐号不能小于{0}位！'
-        }
-    });
-
-    //登录名
-    $("#loginName").rules('add', {
-        required: true,
-        minlength: 4,
-        maxlength: 20,
-        messages: {
-            required: '请输入登录名！',
-            minlength: '帐号不能小于{0}位！',
-            maxlength: '帐号不能小于{0}位！'
-        }
-    });
-
-    //密码
-    $("#password").rules('add', {
-        required: true,
-        minlength: 6,
-        maxlength: 20,
-        pass: true,
-        messages: {
-            required: '请输入6-20位密码，数字和字母！',
-            minlength: '密码不能小于{0}位！',
-            maxlength: '密码不能超过{0}位！',
-            pass: '密码不能含数字和字母以外的符号！'
-        }
-    });
-    //确认密码
-    $("#notpass").rules('add', {
-        required: true,
-        equalTo: '#password',
-        messages: {
-            required: '请再次输入密码',
-            equalTo: '密码输入不一致',
-        }
-    });
-
-
-
-    //修改密码表单验证
-    $("#modify_password_form").validate();
-
-    //原始密码
-    $("#origin-password").rules('add', {
-        required: true,
-        minlength: 6,
-        maxlength: 20,
-        pass: true,
-        messages: {
-            required: '请输入6-20位密码，数字和字母！',
-            minlength: '密码不能小于{0}位！',
-            maxlength: '密码不能超过{0}位！',
-            pass: '密码不能含数字和字母以外的符号！'
-        }
-    });
-
-    //新密码
-    $("#new-password").rules('add', {
-        required: true,
-        minlength: 6,
-        maxlength: 20,
-        pass: true,
-        messages: {
-            required: '请输入6-20位密码，数字和字母！',
-            minlength: '密码不能小于{0}位！',
-            maxlength: '密码不能超过{0}位！',
-            pass: '密码不能含数字和字母以外的符号！'
-        }
-    });
-
-    //确认密码
-    $("#new-notpass").rules('add', {
-        required: true,
-        equalTo: '#new-password',
-        messages: {
-            required: '请再次输入密码',
-            equalTo: '密码输入不一致',
-        }
-    });
-
-    //密码验证规则
-    $.validator.addMethod('pass', function (value, element) {
-        var pass = /^[\w]+$/
-        return this.optional(element) || (pass.test(value));
-    });
 })

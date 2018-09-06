@@ -562,40 +562,6 @@ $(function () {
     }
 
 
-    ////添加标准物表单验证
-    //$("#add-material-form").validate();
-
-    ////产品名称
-    //$("#addMaterial_ProductName").rules('add', {
-    //    required: true,
-    //    minlength: 1,
-    //    maxlength: 40,
-    //    messages: {
-    //        required: '请输入产品名称！',
-    //        minlength: '帐号不能小于{0}位！',
-    //        maxlength: '帐号不能小于{0}位！'
-    //    }
-    //});
-
-
-
-    ////修改标准物表单验证
-    //$("#modify-material-form").validate();
-
-    ////产品名称
-    //$("#modifyMaterial_ProductName").rules('add', {
-    //    required: true,
-    //    minlength: 1,
-    //    maxlength: 40,
-    //    messages: {
-    //        required: '请输入产品名称！',
-    //        minlength: '帐号不能小于{0}位！',
-    //        maxlength: '帐号不能小于{0}位！'
-    //    }
-    //});
-
-
-
 
     //显示数据列表、分页处理
     $(function () {
@@ -720,7 +686,7 @@ $(function () {
                                     })
 
                                     var img = $("<img/>", {
-                                        "src": '@Url.Action("ShowImage", "Home", new { id = ' + jsonObj[i].Img + '})',
+                                        "src": '/Admin/Home/ProductsManage/ShowImage?id=' + jsonObj[i].Img,
                                         "height": 60,
                                         "width": 90
                                     })

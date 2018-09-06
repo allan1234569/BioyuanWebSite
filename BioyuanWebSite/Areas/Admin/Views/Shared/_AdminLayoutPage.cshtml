@@ -37,24 +37,8 @@
     <script src="@Url.Content("~/Areas/Admin/Style/js/bootstrap/bootstrap-paginator.min.js")"></script>
 
     <script src="@Url.Content("~/Areas/Admin/Style/js/index.js")"></script>
-    <script src="@Url.Content("~/Areas/Admin/Style/js/tag.js")"></script>
-    <script src="@Url.Content("~/Areas/Admin/Style/js/group-list.js")"></script>
-
-    <script src="@Url.Content("~/Areas/Admin/Style/js/laboratory-quality-control.js")"></script>
-    <script src="@Url.Content("~/Areas/Admin/Style/js/interroom-quality-control.js")"></script>
     <script src="@Url.Content("~/Areas/Admin/Style/js/jquery.hotkeys.js")"></script>
     <script src="@Url.Content("~/Areas/Admin/Style/js/google-code-prettify/prettify.js")"></script>
-    <script src="@Url.Content("~/Areas/Admin/Style/js/material.js")"></script>
-    <script src="@Url.Content("~/Areas/Admin/Style/js/user.js")"></script>
-    <script src="@Url.Content("~/Areas/Admin/Style/js/news-category.js")"></script>
-    <script src="@Url.Content("~/Areas/Admin/Style/js/product-category.js")"></script>
-    @*<script src="@Url.Content("~/Areas/Admin/Style/js/introduction.js")"></script>*@
-    @*<script src="@Url.Content("~/Areas/Admin/Style/js/news.js")"></script>*@
-
-    @*<script src="//cdn.bootcss.com/angular.js/1.5.8/angular.min.js"></script>*@
-    @*<script src="~@Url.Content("/Areas/Admin/Style/js/ckeditor/ckeditor.js")"></script>*@
-    <script src="//cdn.ckeditor.com/4.9.1/standard/ckeditor.js"></script>
-    @*<script src="@Url.Content("~/Areas/Admin/Style/js/ckeditor/ckeditor.js")"></script>*@
 
 </head>
 <body>
@@ -125,6 +109,9 @@
                         <a href="/Admin/Home/ProductsManage/LaboratoryQuailtyControl" class="panel-body">
                             室内质控品
                         </a>
+                        <a href="/Admin/Home/ProductsManage/NonConstantQuailtyControl" class="panel-body">
+                            非定值质控品
+                        </a>
                         <a href="/Admin/Home/ProductsManage/InterroomQualityControl" class="panel-body">
                             室间质评品
                         </a>
@@ -193,11 +180,11 @@
     </div>
     <!-- 底部结束 -->
     <!--模态框定义开始-->
-    <!--添加室内质控哭模态框-->
+    <!--添加室内质控品模态框-->
     <div class="modal fade" id="addLabQualityControlModel" tabindex="-1" role="dialog" aria-labelledby="addLabQualityControlModalLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog custom_modal_dialog">
             <div class="modal-content">
-                <form id="add-lqc-form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/Admin/Home/ProductsManage/AddLaboratoryQuailtyControl">
+                <form id="add_lqc_form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/Admin/Home/ProductsManage/AddLaboratoryQuailtyControl">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="addMaterialModalLabel">添加室内质控品</h4>
@@ -292,7 +279,7 @@
     <div class="modal fade" id="modifyLabQualityControlModal" tabindex="-1" role="dialog" aria-labelledby="modifyLabQualityControlModalLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog custom_modal_dialog">
             <div class="modal-content">
-                <form id="modify-lqc-form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/Admin/Home/UserManage/ModifyLaboratoryQUalityControl">
+                <form id="modify_lqc_form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/Admin/Home/UserManage/ModifyLaboratoryQUalityControl">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="addMaterialModalLabel">修改室内质控品</h4>
@@ -841,7 +828,7 @@
                                 公司简介
                             </div>
                             <div class="panel-body">
-                                <textarea id="TextArea1" cols="20" rows="2" class="ckeditor" name="companyIntroduction"></textarea>
+                                <textarea id="TextArea1" cols="20" rows="2"  name="companyIntroduction"></textarea>
                             </div>
                         </div>
                         <div class="panel panel-default">
@@ -849,7 +836,7 @@
                                 企业宗旨
                             </div>
                             <div class="panel-body">
-                                <textarea id="TextArea2" cols="20" rows="2" class="ckeditor" name="corporatePurpose"></textarea>
+                                <textarea id="TextArea2" cols="20" rows="2"  name="corporatePurpose"></textarea>
                             </div>
                         </div>
                         <div class="panel panel-default">
@@ -857,7 +844,7 @@
                                 企业愿景
                             </div>
                             <div class="panel-body">
-                                <textarea id="TextArea3" cols="20" rows="2" class="ckeditor" name="corporateVision"></textarea>
+                                <textarea id="TextArea3" cols="20" rows="2"  name="corporateVision"></textarea>
                             </div>
                         </div>
                     </div>
@@ -890,7 +877,7 @@
                                 公司简介
                             </div>
                             <div class="panel-body">
-                                <textarea id="ModifyTextArea1" cols="20" rows="2" class="col-sm-12 ckeditor" name="companyIntroduction"></textarea>
+                                <textarea id="ModifyTextArea1" cols="20" rows="2" class="col-sm-12" name="companyIntroduction"></textarea>
                             </div>
                         </div>
                         <div class="panel panel-default">
@@ -898,7 +885,7 @@
                                 企业宗旨
                             </div>
                             <div class="panel-body">
-                                <textarea id="ModifyTextArea2" cols="20" rows="2" class="ckeditor" name="corporatePurpose"></textarea>
+                                <textarea id="ModifyTextArea2" cols="20" rows="2" name="corporatePurpose"></textarea>
                             </div>
                         </div>
                         <div class="panel panel-default">
@@ -906,7 +893,7 @@
                                 企业愿景
                             </div>
                             <div class="panel-body">
-                                <textarea id="ModifyTextArea3" cols="20" rows="2" class="ckeditor" name="corporateVision"></textarea>
+                                <textarea id="ModifyTextArea3" cols="20" rows="2" name="corporateVision"></textarea>
                             </div>
                         </div>
                     </div>
@@ -928,7 +915,7 @@
     <div class="modal fade" id="addNewsModel" tabindex="-1" role="dialog" aria-labelledby="addNewsModalLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog custom_modal_dialog">
             <div class="modal-content">
-                <form id="add-material-form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/Admin/Home/NewsManage/AddNews">
+                <form id="add_news_form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/Admin/Home/NewsManage/AddNews">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="">添加新闻</h4>
@@ -937,7 +924,9 @@
                         <div class="form-group">
                             <label for="" class="col-sm-1 control-label">新闻分类</label>
                             <div class="col-sm-11">
-                                <select id="addNews_f_name" class="form-control" name="f_name"><option >哈哈</option></select>
+                                <select id="addNews_f_name" class="form-control" name="f_name">
+                                    <option>--请选择新闻分类-- </option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -961,7 +950,7 @@
                         <div class="form-group">
                             <label for="" class="col-sm-1 control-label">新闻内容</label>
                             <div class="col-sm-11">
-                                <textarea id="AddNewsTextArea" cols="20" rows="2" class="ckeditor" name="content"></textarea>
+                                <textarea id="AddNewsTextArea" cols="20" rows="2"  name="content"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -985,7 +974,7 @@
     <div class="modal fade" id="modifyNewsModel" tabindex="-1" role="dialog" aria-labelledby="modifyNewsModalLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog custom_modal_dialog">
             <div class="modal-content">
-                <form id="add-material-form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/Admin/Home/NewsManage/ModifyNews">
+                <form id="modify-news-form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/Admin/Home/NewsManage/ModifyNews">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="addNewsModalLabel">添加新闻</h4>
@@ -1021,7 +1010,7 @@
                         <div class="form-group">
                             <label for="" class="col-sm-1 control-label">新闻内容</label>
                             <div class="col-sm-11">
-                                <textarea id="ModifyNewsTextArea" cols="20" rows="2" class="ckeditor" name="content"></textarea>
+                                <textarea id="ModifyNewsTextArea" cols="20" rows="2" name="content"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -1086,23 +1075,27 @@
                             <div class="col-sm-10">
                                 <input style="display:none"><!-- for disable autocomplete on chrome -->
                                 <input id="loginName" type="text" class="form-control" name="LoginName" placeholder="请输入登录名" autocomplete="off" @*oninput="if(this.value==''){this.type='text'}else(this.type='password')"*@>
-                                <span></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">用户分组</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="UserRank">
+                                    <option>普通用户</option>
+                                    <option>管理员用户</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">密码</label>
                             <div class="col-sm-10">
                                 <input id="password" type="password" class="form-control" name="LoginPwd" placeholder="请输入密码" autocomplete="off">
-                                <i class="glyphicon glyphicon-eye-close form-control-feedback" id="toogle-password"></i>
-                                <span></span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">密码确认</label>
                             <div class="col-sm-10">
                                 <input id="notpass" type="password" class="form-control" name="LoginPwdConfirm" placeholder="确认密码" autocomplete="off">
-                                <i class="glyphicon glyphicon-eye-close form-control-feedback" id="toggle-notpass"></i>
-                                <span></span>
                             </div>
                         </div>
                     </div>
@@ -1146,29 +1139,23 @@
                             <label for="" class="col-sm-2 control-label">原密码</label>
                             <div class="col-sm-10">
                                 <input id="origin-password" type="password" class="form-control" name="OriginLoginPwd" placeholder="请原密码密码" autocomplete="off">
-                                <i class="glyphicon glyphicon-eye-close form-control-feedback" id="toggle-notpass"></i>
-                                <span></span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">密码</label>
                             <div class="col-sm-10">
                                 <input id="new-password" type="password" class="form-control" name="LoginPwd" placeholder="请输入密码" autocomplete="off">
-                                <i class="glyphicon glyphicon-eye-close form-control-feedback" id="toggle-notpass"></i>
-                                <span></span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">密码确认</label>
                             <div class="col-sm-10">
                                 <input id="new-notpass" type="password" class="form-control" name="LoginPwdConfirm" placeholder="确认密码" autocomplete="off">
-                                <i class="glyphicon glyphicon-eye-close form-control-feedback" id="toggle-notpass"></i>
-                                <span></span>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button id="modify_password_close_btn" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                         <button type="submit" class="btn btn-primary">修改</button>
                     </div>
                 </form>
@@ -1207,7 +1194,7 @@
     <div class="modal fade" id="addProductCategoryModel" tabindex="" role="dialog" aria-labelledby="addProductCategoryModalLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="add_category_form" class="form-horizontal" method="post" action="/Admin/Home/ProductCategoryManage/AddProductCategory">
+                <form id="add_product_category_form" class="form-horizontal" method="post" action="/Admin/Home/ProductCategoryManage/AddProductCategory">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="addProductCategoryModalLabel">添加产品分类</h4>
@@ -1240,7 +1227,7 @@
     <div class="modal fade" id="modifyProductCategoryModal" tabindex="-1" role="dialog" aria-labelledby="modifyProductCategoryModalLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form class="form-horizontal" method="post" action="/Admin/Home/ProductCategoryManage/ModifyProductCategory">
+                <form id="modify_product_category_form" class="form-horizontal" method="post" action="/Admin/Home/ProductCategoryManage/ModifyProductCategory">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="modifyCategoryModalLabel">修改产品分类</h4>
@@ -1305,7 +1292,7 @@
     <div class="modal fade" id="addNewsCategoryModel" tabindex="" role="dialog" aria-labelledby="addNewsCategoryModalLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="add_category_form" class="form-horizontal" method="post" action="/Admin/Home/NewsCategoryManage/AddNewsCategory">
+                <form id="add_news_category_form" class="form-horizontal" method="post" action="/Admin/Home/NewsCategoryManage/AddNewsCategory">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="addNewsCategoryModalLabel">添加新闻分类</h4>
@@ -1338,7 +1325,7 @@
     <div class="modal fade" id="modifyNewsCategoryModal" tabindex="-1" role="dialog" aria-labelledby="modifyNewsCategoryModalLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form class="form-horizontal" method="post" action="/Admin/Home/NewsCategoryManage/ModifyNewsCategory">
+                <form id="modify_news_category_form" class="form-horizontal" method="post" action="/Admin/Home/NewsCategoryManage/ModifyNewsCategory">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="modifyCategoryModalLabel">修改新闻分类</h4>

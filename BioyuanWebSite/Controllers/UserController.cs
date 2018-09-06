@@ -49,7 +49,6 @@ namespace MvcApplication1.Controllers
             if (myUser == null)
             {
                 TempData["LoginFailed"] = "登录失败，请检查您的账号和密码是否正确！";
-                //ViewBag.LoginFailed = "登录失败，请检查您的账号和密码是否正确！";
                 return View("Login");
             }
             else
@@ -70,8 +69,6 @@ namespace MvcApplication1.Controllers
         {
             user.UserRank = 1;//普通用户
             user.State = 1;
-
-            string pwd = user.LoginPwd;//临时保存未加密的密码
 
             //RegisterType val = new UserManager().CheckLoginName(user.LoginName);
             //if (val != RegisterType.检查通过)
@@ -96,7 +93,7 @@ namespace MvcApplication1.Controllers
 		<p>尊敬的用户你好，恭喜您注册成为上海标源的一员，请使用以下账号登录上海标源官方网站</p>
 		<div>
 			<p >您的账号为：<a class='account' href='#'>" + user.LoginName + @"</a></p>
-			<p>您的密码为：<a class='account' href='#'>" + pwd + @"</a></p>
+			<p>您的密码为：<a class='account' href='#'>" + user.LoginPwd + @"</a></p>
 			<p>如果你忘记标源账户密码，请登录标源官网使用你注册使用的邮箱<a class='mail' href='#'>443200254@qq.com</a> 重置您的密码</p>
 		</div>
 		<p>请妥善保管好您的账号信息，切误泄漏</p>

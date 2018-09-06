@@ -73,6 +73,31 @@ function delCookie(name) {
 
 
 
+/**
+ *
+ * @param $imgURL//加载图片的地址
+ * @param callback//加载完成后腰进行的动作
+ */
+function checkImgLoaded($id, $imgURL, callback) {
+    var $img = $($id);//创建Image()对象
+    $img.src = $imgURL;//赋值
+    if (!!window.ActiveXObject) {//判断是否为IE浏览器
+        $img.onreadystatechange = function () {//使用ActiveX控件
+            if (this.readystate == "complete" || this.readystate == "loaded") {
+                callback();
+            }
+        }
+    }
+    else {
+        $img.onload = function () {
+            callback();
+        }
+    }
+}
+
+
+
+
 
 
 

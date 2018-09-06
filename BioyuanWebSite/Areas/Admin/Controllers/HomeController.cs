@@ -568,6 +568,14 @@ namespace MvcApplication1.Areas.Admin.Controllers
         #endregion
 
 
+        #region 非定值质控品
+        public ActionResult NonConstantQuailtyControl()
+        {
+            return View();
+        }
+        #endregion
+
+
         #region 室间质评品管理模块
         public ActionResult InterroomQualityControl()
         {

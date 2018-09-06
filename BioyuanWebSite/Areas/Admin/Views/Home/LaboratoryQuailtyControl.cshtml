@@ -12,6 +12,7 @@
 @*<link href="@Url.Content("~/Areas/Admin/Style/css/bootstrap.min.css")" rel="stylesheet" />*@
 <script src="@Url.Content("~/Areas/Admin/Style/js/bootstrap-paginator.min.js")"></script>
 <script src="@Url.Content("~/Areas/Admin/Style/js/datetime-convert.js")"></script>
+<script src="~/Areas/Admin/Style/js/iscroll/iscroll.js"></script>
 
 <div class="x-nav">
     <ol class="breadcrumb" id="breadcrumb">
@@ -38,8 +39,11 @@
         </div>
         <span class="x-right">共有室内质控品：@controlCount 个</span>
     </div>
+
+
+    
     <div class="table-div">
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped scrolltable">
             <thead>
                 <tr>
                     <th>序号</th>
@@ -102,6 +106,7 @@
             </tbody>
         </table>
     </div>
+
     
     <!--翻页-->
 
@@ -112,3 +117,7 @@
     </div>
 
 </div>
+
+<script src="@Url.Content("~/Areas/Admin/Style/js/laboratory-quality-control.js")"></script>
+<script src="@Url.Content("~/Areas/Admin/Style/js/tag.js")"></script>
+<script src="@Url.Content("~/Areas/Admin/Style/js/group-list.js")"></script>

@@ -13,11 +13,41 @@ $(function () {
         show: false
     });
 
-    //$('#deleteUserModal').modal({
-    //    backdrop: 'static',
-    //    keyboard: false,
-    //    show: false
-    //});
+    $('#add_news_category_form')
+    .bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            CategoryName: {
+                validators: {
+                    notEmpty: {
+                        message: '分类名不能为空'
+                    }
+                }
+            }
+        }
+    })
+    
+    $('#modify_news_category_form')
+    .bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            CategoryName: {
+                validators: {
+                    notEmpty: {
+                        message: '分类名不能为空'
+                    }
+                }
+            }
+        }
+    })
 
 
     //启用分类

@@ -18,7 +18,7 @@ namespace DAL
         /// <returns></returns>
         public int InsertProductCategory(ProductCategory category)
         {
-            string sql = "INSERT INTO ProductCategory(CategoryId, CategoryName, Description, CreateTime, ModifyTime, State) VALUES('{0}', '{1}', '{2}', '{3}', {4});";
+            string sql = "INSERT INTO ProductCategory(CategoryId, CategoryName, Description, CreateTime, ModifyTime, State) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', {5});";
             sql = string.Format(sql,
                 category.CategoryId,
                 category.CategoryName,
@@ -170,5 +170,28 @@ namespace DAL
             return id;
         }
 
+
+        public bool ProductCategoryExists(string name)
+        {
+            if (name == string.Empty || name == null)
+            {
+                return false;
+            }
+
+            string sql = "SELECT * FROM ProductCategory";
+            sql += " WHERE CategoryName = '{0}';";
+
+            sql = string.Format(sql, name);
+
+            SqlDataReader reader = SQLHelper.GetReader(sql);
+            if (reader.HasRows)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

@@ -379,8 +379,14 @@ $(function () {
                                     td = $("<td/>", {
                                     })
 
+                                    var src = "";
+                                    if (jsonObj[i].Img == "") {
+                                        src = "";
+                                    } else {
+                                        src = '/Admin/Home/ProductsManage/ShowImage?id=' + jsonObj[i].Img;
+                                    }
                                     var img = $("<img/>", {
-                                        "src": '/Admin/Home/ProductsManage/ShowImage?id=' + jsonObj[i].Img,
+                                        "src": src,
                                         "height": 60,
                                         "width": 90
                                     })

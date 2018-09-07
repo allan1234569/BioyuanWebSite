@@ -55,5 +55,9 @@ namespace BLL
             return new ProductCategoryService().GetProductCategoryId(categoryName);
         }
 
+        public bool ProductCategoryExists(string name)
+        {
+            return new ProductCategoryService().ProductCategoryExists(name);
+        }
     }
 }

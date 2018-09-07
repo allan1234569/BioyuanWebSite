@@ -170,5 +170,28 @@ namespace DAL
             return id;
         }
 
+        public bool NewsCategoryExists(string name)
+        {
+            if (name == string.Empty || name == null)
+            {
+                return false;
+            }
+
+            string sql = "SELECT * FROM NewsCategory";
+            sql += " WHERE CategoryName = '{0}';";
+
+            sql = string.Format(sql, name);
+
+            SqlDataReader reader = SQLHelper.GetReader(sql);
+            if (reader.HasRows)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

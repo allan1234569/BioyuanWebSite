@@ -55,5 +55,9 @@ namespace BLL
             return new NewsCategoryService().GetNewsCategoryId(categoryName);
         }
 
+        public bool NewsCategoryExists(string name)
+        {
+            return new NewsCategoryService().NewsCategoryExists(name);
+        }
     }
 }

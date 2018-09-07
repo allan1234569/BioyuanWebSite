@@ -84,7 +84,7 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a class="left-menu-item" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                @*<span class="glyphicon glyphicon-user"></span>*@ 分类管理 <span class="glyphicon glyphicon-menu-down menu_indicator"></span>
+                                分类管理 <span class="glyphicon glyphicon-menu-down menu_indicator"></span>
                             </a>
                         </h4>
                     </div>
@@ -101,7 +101,7 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a class="left-menu-item" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                @*<span class="glyphicon glyphicon-user"></span>*@产品管理 <span class="glyphicon glyphicon-menu-down menu_indicator"></span>
+                                产品管理 <span class="glyphicon glyphicon-menu-down menu_indicator"></span>
                             </a>
                         </h4>
                     </div>
@@ -124,7 +124,7 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a class="left-menu-item" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                                @*<span class="glyphicon glyphicon-user"></span>*@简介管理 <span class="glyphicon glyphicon-menu-down menu_indicator"></span>
+                                简介管理 <span class="glyphicon glyphicon-menu-down menu_indicator"></span>
                             </a>
                         </h4>
                     </div>
@@ -138,7 +138,7 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a class="left-menu-item" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-                                @*<span class="glyphicon glyphicon-user"></span>*@新闻管理 <span class="glyphicon glyphicon-menu-down menu_indicator"></span>
+                                新闻管理 <span class="glyphicon glyphicon-menu-down menu_indicator"></span>
                             </a>
                         </h4>
                     </div>
@@ -152,7 +152,7 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a class="left-menu-item" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
-                                @*<span class="glyphicon glyphicon-user"></span>*@用户管理 <span class="glyphicon glyphicon-menu-down menu_indicator"></span>
+                                用户管理 <span class="glyphicon glyphicon-menu-down menu_indicator"></span>
                             </a>
                         </h4>
                     </div>
@@ -974,7 +974,7 @@
     <div class="modal fade" id="modifyNewsModel" tabindex="-1" role="dialog" aria-labelledby="modifyNewsModalLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog custom_modal_dialog">
             <div class="modal-content">
-                <form id="modify-news-form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/Admin/Home/NewsManage/ModifyNews">
+                <form id="modify_news_form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/Admin/Home/NewsManage/ModifyNews">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="addNewsModalLabel">添加新闻</h4>
@@ -1209,7 +1209,7 @@
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">分类描述</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" name="CategoryName" placeholder="请输入分类描述"></textarea>
+                                <textarea class="form-control" name="Description" placeholder="请输入分类描述"></textarea>
                             </div>
                         </div>
                     </div>
@@ -1418,19 +1418,19 @@
     };
 </script>
 <script>
-
+    //初始化专业下拉框
     $(function () {
 
-        var selector = $("[name=CategoryName]");
+        var selector = $("select[name=CategoryName]");
+
         $.ajax({
             type:"post",
-            url: "/Admin/Home/CategoryManage/GetCategoryList",
+            url: "/Admin/Home/ProductCategoryManage/GetProductCategoryList",
             async: "false",
             datatype: "text",
             success: function (data) {
 
                 var jsonObj = JSON.parse(data);
-
                 selector.append("<option value='-1'>" + "--请选择专业--" + "</option>");
                 
                 for (var i = 0; i < jsonObj.length; ++i) {
@@ -1440,11 +1440,4 @@
         })
 
     })
-
-    $(function () {
-
-
-
-    })
-
 </script>

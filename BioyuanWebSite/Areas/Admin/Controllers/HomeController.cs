@@ -275,6 +275,17 @@ namespace MvcApplication1.Areas.Admin.Controllers
             return base.Content(jsonObj);
         }
 
+        [HttpPost]
+        public ActionResult ProductCategoryExists(string CategoryName)
+        {
+            bool ret = new ProductCategoryManager().ProductCategoryExists(CategoryName);
+
+            message msg = new message();
+            msg.valid = !ret;
+
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
+
         #endregion
 
 
@@ -392,6 +403,17 @@ namespace MvcApplication1.Areas.Admin.Controllers
             string jsonObj = getJsonByObject(list);
 
             return base.Content(jsonObj);
+        }
+
+        [HttpPost]
+        public ActionResult NewsCategoryExists(string CategoryName)
+        {
+            bool ret = new NewsCategoryManager().NewsCategoryExists(CategoryName);
+
+            message msg = new message();
+            msg.valid = !ret;
+
+            return Json(msg, JsonRequestBehavior.AllowGet);
         }
 
         #endregion

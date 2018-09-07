@@ -153,7 +153,7 @@ namespace MvcApplication1.Controllers
             return ret;
         }
 
-
+        [HttpPost]
         public ActionResult EmailExists(string UserEmail)
         {
             bool ret = new UserManager().EmailExists(UserEmail);

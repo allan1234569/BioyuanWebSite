@@ -42,6 +42,45 @@
         }
     })
 
+    $('#modify_news_form')
+    .bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            title: {
+                validators: {
+                    notEmpty: {
+                        message: '标题不能为空'
+                    }
+                }
+            },
+            author: {
+                validators: {
+                    notEmpty: {
+                        message: '作者不能为空'
+                    }
+                }
+            },
+            keyword: {
+                validators: {
+                    notEmpty: {
+                        message: '关键词不能为空'
+                    }
+                }
+            },
+            content: {
+                validators: {
+                    notEmpty: {
+                        message: '新闻内容不能为空'
+                    }
+                }
+            }
+        }
+    })
+
     addNewsEditor.on('change', function () {
         
     })

@@ -21,8 +21,8 @@ namespace DAL
         /// <returns></returns>
         public int InsertInterroomQualityControl(InterroomQualityControl qualityControl)
         {
-            string sql = "INSERT INTO InterroomQualityControl(InterroomQualityControlId, ProductName, Description, Img, CategoryId, CategoryName, Analyte, Constitute, SingleSpecification, Specification, Feature, StorageCondition, UsefulLife, CertificateNo, Annotation, CreateTime, ModifyTime, State) VALUES";
-            sql += "('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}', '{15}','{16}',{17});";
+            string sql = "INSERT INTO InterroomQualityControl(InterroomQualityControlId, ProductName, Description, Img, CategoryId, CategoryName, Concentration, SingleSpecification, PackingSpecification, Status, StorageCondition, UsefulLife, PreservationStability, ProductMatrix, ContainedItems, RegistrationDocument, Manufacturer, CertificateNo, CreateTime, ModifyTime, Enable) VALUES";
+            sql += "('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}', '{15}','{16}','{17}','{18}','{19}',{20});";
             sql = string.Format(sql,
                 qualityControl.InterroomQualityControlId, //0
                 qualityControl.ProductName,//1
@@ -30,18 +30,21 @@ namespace DAL
                 qualityControl.Img,//3
                 qualityControl.CategoryId,//4
                 qualityControl.CategoryName,//5
-                qualityControl.Analyte,//6
-                qualityControl.Constitute,//7
-                qualityControl.SingleSpecification,//8
-                qualityControl.Specification,//9
-                qualityControl.Feature,//10
-                qualityControl.StorageCondition,//11
-                qualityControl.UsefulLife,//12
-                qualityControl.CertificateNo,//13
-                qualityControl.Annotation,//14
-                qualityControl.CreateTime,//15
-                qualityControl.ModifyTime,//16
-                qualityControl.State);//17
+                qualityControl.Concentration,//6
+                qualityControl.SingleSpecification,//7
+                qualityControl.PackingSpecification,//8
+                qualityControl.Status,//9
+                qualityControl.StorageCondition,//10
+                qualityControl.UsefulLife,//11
+                qualityControl.PreservationStability,//12
+                qualityControl.ProductMatrix,//13
+                qualityControl.ContainedItems,//14
+                qualityControl.RegistrationDocument,//15
+                qualityControl.Manufacturer,//16
+                qualityControl.CertificateNo,//17
+                qualityControl.CreateTime,//18
+                qualityControl.ModifyTime,//19
+                qualityControl.Enable);//20
 
             return SQLHelper.Update(sql);
         }
@@ -67,24 +70,27 @@ namespace DAL
         /// <returns></returns>
         public int UpdateInterroomQualityControl(InterroomQualityControl qualityControl)
         {
-            string sql = "UPDATE InterroomQualityControl SET ProductName = '{1}', Description = '{2}', Img = '{3}', CategoryId = '{4}', CategoryName = '{5}', Analyte = '{6}', Constitute = '{7}', SingleSpecification = '{8}', Specification = '{9}', Feature = '{10}', StorageCondition = '{11}', UsefulLife = '{12}', CertificateNo = '{13}', Annotation = '{14}', ModifyTime  = '{15}' WHERE InterroomQualityControlId = '{0}';";
+            string sql = "UPDATE InterroomQualityControl SET ProductName = '{1}', Description = '{2}', Img = '{3}', CategoryId = '{4}', CategoryName = '{5}', Concentration = '{6}', SingleSpecification = '{7}', PackingSpecification = '{8}', Status = '{9}', StorageCondition = '{10}', UsefulLife = '{11}', PreservationStability = '{12}', ProductMatrix = '{13}', ContainedItems = '{14}', RegistrationDocument  = '{15}', Manufacturer = '{16}', CertificateNo = '{17}', ModifyTime = '{18}' WHERE InterroomQualityControlId = '{0}';";
             sql = string.Format(sql,
-                qualityControl.InterroomQualityControlId,
-                qualityControl.ProductName,
-                qualityControl.Description,
-                qualityControl.Img,
-                qualityControl.CategoryId,
-                qualityControl.CategoryName,
-                qualityControl.Analyte,
-                qualityControl.Constitute,
-                qualityControl.SingleSpecification,
-                qualityControl.Specification,
-                qualityControl.Feature,
-                qualityControl.StorageCondition,
-                qualityControl.UsefulLife,
-                qualityControl.CertificateNo,
-                qualityControl.Annotation,
-                qualityControl.ModifyTime);
+                qualityControl.InterroomQualityControlId,//0
+                qualityControl.ProductName,//1
+                qualityControl.Description,//2
+                qualityControl.Img,//3
+                qualityControl.CategoryId,//4
+                qualityControl.CategoryName,//5
+                qualityControl.Concentration,//6
+                qualityControl.SingleSpecification,//7
+                qualityControl.PackingSpecification,//8
+                qualityControl.Status,//9
+                qualityControl.StorageCondition,//10
+                qualityControl.UsefulLife,//11
+                qualityControl.PreservationStability,//12
+                qualityControl.ProductMatrix,//13
+                qualityControl.ContainedItems,//14
+                qualityControl.RegistrationDocument,//15
+                qualityControl.Manufacturer,//16
+                qualityControl.CertificateNo,//17
+                qualityControl.ModifyTime);//18
 
             return SQLHelper.Update(sql);
         }
@@ -95,7 +101,7 @@ namespace DAL
             {
                 return -1;
             }
-            string sql = "SELECT State from InterroomQualityControl";
+            string sql = "SELECT Enable from InterroomQualityControl";
             sql += " where InterroomQualityControlId = '{0}'";
             sql = string.Format(sql, id);
 
@@ -110,7 +116,7 @@ namespace DAL
                 state = 0;
             }
 
-            sql = "UPDATE InterroomQualityControl set State = {0} where InterroomQualityControlId = '{1}'";
+            sql = "UPDATE InterroomQualityControl set Enable = {0} where InterroomQualityControlId = '{1}'";
             sql = string.Format(sql, state, id);
 
             int retVal = SQLHelper.Update(sql);
@@ -146,18 +152,21 @@ namespace DAL
                 interroomQualityControl.Img = reader["Img"].ToString();
                 interroomQualityControl.CategoryId = (reader["CategoryId"] == null) ? "" : reader["CategoryId"].ToString();
                 interroomQualityControl.CategoryName = (reader["CategoryName"] == null) ? "" : reader["CategoryName"].ToString();
-                interroomQualityControl.Analyte = reader["Analyte"].ToString();
-                interroomQualityControl.Constitute = reader["Constitute"].ToString();
+                interroomQualityControl.Concentration = reader["Concentration"].ToString();
                 interroomQualityControl.SingleSpecification = reader["SingleSpecification"].ToString();
-                interroomQualityControl.Specification = reader["Specification"].ToString();
-                interroomQualityControl.Feature = reader["Feature"].ToString();
+                interroomQualityControl.PackingSpecification = reader["PackingSpecification"].ToString();
+                interroomQualityControl.Status = reader["Status"].ToString();
                 interroomQualityControl.StorageCondition = reader["StorageCondition"].ToString();
                 interroomQualityControl.UsefulLife = reader["UsefulLife"].ToString();
+                interroomQualityControl.PreservationStability = reader["PreservationStability"].ToString();
+                interroomQualityControl.ProductMatrix = reader["ProductMatrix"].ToString();
+                interroomQualityControl.ContainedItems = reader["ContainedItems"].ToString();
+                interroomQualityControl.RegistrationDocument = reader["RegistrationDocument"].ToString();
+                interroomQualityControl.Manufacturer = reader["Manufacturer"].ToString();
                 interroomQualityControl.CertificateNo = reader["CertificateNo"].ToString();
-                interroomQualityControl.Annotation = reader["Annotation"].ToString();
                 interroomQualityControl.CreateTime = Convert.ToDateTime(reader["CreateTime"]);
                 interroomQualityControl.ModifyTime = Convert.ToDateTime(reader["ModifyTime"]);
-                interroomQualityControl.State = Convert.ToInt16(reader["State"]);
+                interroomQualityControl.Enable = Convert.ToInt16(reader["Enable"]);
             }
 
             return interroomQualityControl;
@@ -184,9 +193,10 @@ namespace DAL
                     InterroomQualityControlId = reader["InterroomQualityControlId"].ToString(),
                     ProductName = reader["ProductName"].ToString(),
                     Img = reader["Img"].ToString(),
+                    Description = reader["Description"].ToString(),
                     CreateTime = Convert.ToDateTime(reader["CreateTime"]),
                     ModifyTime = Convert.ToDateTime(reader["ModifyTime"]),
-                    State = Convert.ToInt16(reader["State"])
+                    Enable = Convert.ToInt16(reader["Enable"])
                 });
             }
 
@@ -217,10 +227,11 @@ namespace DAL
                 {
                     InterroomQualityControlId = reader["InterroomQualityControlId"].ToString(),
                     ProductName = reader["ProductName"].ToString(),
+                    Description = reader["Description"].ToString(),
                     Img = reader["Img"].ToString(),
                     CreateTime = Convert.ToDateTime(reader["CreateTime"]),
                     ModifyTime = Convert.ToDateTime(reader["ModifyTime"]),
-                    State = Convert.ToInt16(reader["State"])
+                    Enable = Convert.ToInt16(reader["State"])
                 });
             }
 
@@ -248,9 +259,10 @@ namespace DAL
                     InterroomQualityControlId = reader["InterroomQualityControlId"].ToString(),
                     ProductName = reader["ProductName"].ToString(),
                     Img = reader["Img"].ToString(),
+                    Description = reader["Description"].ToString(),
                     CreateTime = Convert.ToDateTime(reader["CreateTime"]),
                     ModifyTime = Convert.ToDateTime(reader["ModifyTime"]),
-                    State = Convert.ToInt16(reader["State"])
+                    Enable = Convert.ToInt16(reader["State"])
                 });
             }
 

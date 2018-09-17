@@ -21,7 +21,7 @@ namespace Models
         public string ProductName { get; set; }
 
         /// <summary>
-        /// 产品描述
+        /// 产品描述/用途
         /// </summary>
         public string Description { get; set; }
 
@@ -41,14 +41,9 @@ namespace Models
         public string CategoryName { get; set; }
 
         /// <summary>
-        ///分析物
+        /// 浓度/模式
         /// </summary>
-        public string Analyte { get; set; }
-
-        /// <summary>
-        /// 产品组成
-        /// </summary>
-        public string Constitute { get; set; }
+        public string Concentration { get; set; }
 
         /// <summary>
         /// 单支规格
@@ -56,34 +51,54 @@ namespace Models
         public string SingleSpecification { get; set; }
 
         /// <summary>
-        /// 产品规格
+        /// 包装规格
         /// </summary>
-        public string Specification { get; set; }
+        public string PackingSpecification { get; set; }
 
         /// <summary>
-        /// 产品特征
+        /// 产品状态
         /// </summary>
-        public string Feature { get; set; }
+        public string Status { get; set; }
 
         /// <summary>
-        /// 保存条件
+        /// 储存条件
         /// </summary>
         public string StorageCondition { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// 效期
         /// </summary>
         public string UsefulLife { get; set; }
+
+        /// <summary>
+        /// 保存稳定性
+        /// </summary>
+        public string PreservationStability { get; set; }
+
+        /// <summary>
+        /// 产品基质
+        /// </summary>
+        public string ProductMatrix { get; set; }
+
+        /// <summary>
+        ///包含项目
+        /// </summary>
+        public string ContainedItems { get; set; }
+
+        /// <summary>
+        /// 注册文号
+        /// </summary>
+        public string RegistrationDocument { get; set; }
+
+        /// <summary>
+        /// 生产厂商
+        /// </summary>
+        public string Manufacturer { get; set; }
 
         /// <summary>
         /// 证书编号
         /// </summary>
         public string CertificateNo { get; set; }
-
-        /// <summary>
-        /// 注释
-        /// </summary>
-        public string Annotation { get; set; }
 
         /// <summary>
         /// 创建时间
@@ -98,6 +113,6 @@ namespace Models
         /// <summary>
         /// 启用状态
         /// </summary>
-        public int State { get; set; }
+        public int Enable { get; set; }
     }
 }

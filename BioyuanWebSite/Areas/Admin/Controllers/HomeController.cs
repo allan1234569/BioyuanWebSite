@@ -619,19 +619,10 @@ namespace MvcApplication1.Areas.Admin.Controllers
 
             interroomQuaControl.InterroomQualityControlId = new Common().getGUID();
             interroomQuaControl.Img = img_path;
-            //interroomQuaControl.ProductName = Request.Form["ProductName"] != null ? Server.UrlDecode(Request.Form["ProductName"]).Trim() : "";
-            //interroomQuaControl.Description = Request.Form["Description"] != null ? Server.UrlDecode(Request.Form["Description"]).Trim() : "";
-            //interroomQuaControl.Analyte = Request.Form["Analyte"] != null ? Server.UrlDecode(Request.Form["Analyte"]).Trim() : "";
-            //interroomQuaControl.Constitute = Request.Form["Constitute"] != null ? Server.UrlDecode(Request.Form["Constitute"]).Trim() : "";
-            //interroomQuaControl.SingleSpecification = Request.Form["SingleSpecification"] != null ? Server.UrlDecode(Request.Form["SingleSpecification"]).Trim() : "";
-            //interroomQuaControl.Feature = Request.Form["Feature"] != null ? Server.UrlDecode(Request.Form["Feature"]).Trim() : "";
-            //interroomQuaControl.Specification = Request.Form["Specification"] != null ? Server.UrlDecode(Request.Form["Specification"]).Trim() : "";
-            //interroomQuaControl.StorageCondition = Request.Form["StorageCondition"] != null ? Server.UrlDecode(Request.Form["StorageCondition"]).Trim() : "";
-            //interroomQuaControl.UsefulLife = Request.Form["UsefulLife"] != null ? Server.UrlDecode(Request.Form["UsefulLife"]).Trim() : "";
+
             interroomQuaControl.CreateTime = dt;
             interroomQuaControl.ModifyTime = dt;
-            //interroomQuaControl.Annotation = Request.Form["Annotation"] != null ? Server.UrlDecode(Request.Form["Annotation"]).Trim() : "";
-            interroomQuaControl.State = 0;
+            interroomQuaControl.Enable = 0;
 
             int ret = new InterroomQualityControlManager().InsertInterroomQualityControl(interroomQuaControl);
 

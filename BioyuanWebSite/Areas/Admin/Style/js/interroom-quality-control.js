@@ -21,34 +21,192 @@ $(function () {
     })
 
 
+    //表单验证
+    $('#add_interroom_form')
+    .bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            ProductName: {
+                message: '质评品名称无效',
+                validators: {
+                    notEmpty: {
+                        message: '质评品不能为空'
+                    }
+                },
+                remote: {
+                    url: ''
+                }
+            },
+            CategoryName: {
+                validators: {
+                    notEmpty: {
+                        message: '专业不能为空'
+                    }
+                }
+            },
+            Constitute: {
+                validators: {
+                    notEmpty: {
+                        message: '浓度模式不能为空'
+                    }
+                }
+            },
+            SingleSpecification: {
+                validators: {
+                    notEmpty: {
+                        message: '浓度模式不能为空'
+                    }
+                }
+            },
+            Status: {
+                validators: {
+                    notEmpty: {
+                        message: '产品状态不能为空'
+                    }
+                }
+            },
+            StorageCondition: {
+                validators: {
+                    notEmpty: {
+                        message: '储存条件不能为空'
+                    }
+                }
+            },
+            UsefulLife: {
+                validators: {
+                    notEmpty: {
+                        message: '产品效期不能为空'
+                    }
+                }
+            },
+            PreservationStability: {
+                validators: {
+                    notEmpty: {
+                        message: '保存稳定性不能为空'
+                    }
+                }
+            },
+            ProductMatrix: {
+                validators: {
+                    notEmpty: {
+                        message: '产品基质不能为空'
+                    }
+                }
+            }
+        }
+    })
+
+
+
+
+    $('#modify_interroom_form')
+    .bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            ProductName: {
+                message: '质评品名称无效',
+                validators: {
+                    notEmpty: {
+                        message: '质评品不能为空'
+                    }
+                },
+                remote: {
+                    url: ''
+                }
+            },
+            CategoryName: {
+                validators: {
+                    notEmpty: {
+                        message: '专业不能为空'
+                    }
+                }
+            },
+            Constitute: {
+                validators: {
+                    notEmpty: {
+                        message: '浓度模式不能为空'
+                    }
+                }
+            },
+            SingleSpecification: {
+                validators: {
+                    notEmpty: {
+                        message: '浓度模式不能为空'
+                    }
+                }
+            },
+            Status: {
+                validators: {
+                    notEmpty: {
+                        message: '产品状态不能为空'
+                    }
+                }
+            },
+            StorageCondition: {
+                validators: {
+                    notEmpty: {
+                        message: '储存条件不能为空'
+                    }
+                }
+            },
+            UsefulLife: {
+                validators: {
+                    notEmpty: {
+                        message: '产品效期不能为空'
+                    }
+                }
+            },
+            PreservationStability: {
+                validators: {
+                    notEmpty: {
+                        message: '保存稳定性不能为空'
+                    }
+                }
+            },
+            ProductMatrix: {
+                validators: {
+                    notEmpty: {
+                        message: '产品基质不能为空'
+                    }
+                }
+            }
+        }
+    })
+
+
+
+
+
+
+
     //初始化室间的分析物标签
     /* 添加质控品模块 */
-    var add_tagInterroomAnalyte = new Tag("add_interroomAnalyte");
-    //tag2.tagValue = "浙江,绍兴,上海,山东,北京,四川";     //初始化标签
-    add_tagInterroomAnalyte.initView();
+    //var add_tagInterroomContainedItems = new Tag("addInterroom_ContainedItems");
+    //add_tagInterroomContainedItems.initView();
 
-    var add_interroomGroupListInterroomFeature = new GroupList("add_interroomFeatureValue");
-    add_interroomGroupListInterroomFeature.initView();
+    //var add_interroomGroupListConstitute = new GroupList("addInterroom_Constitute");
+    //add_interroomGroupListConstitute.initView();
 
-    var add_interroomGroupListInterroomSpecification = new GroupList("add_interroomSpecificationValue");
-    add_interroomGroupListInterroomSpecification.initView();
+    //var add_interroomGroupListInterroomSpecification = new GroupList("add_interroomSpecificationValue");
+    //add_interroomGroupListInterroomSpecification.initView();
 
-    var add_interroomGroupListInterroomStorageCondition = new GroupList("add_interroomStorageConditionValue");
-    add_interroomGroupListInterroomStorageCondition.initView();
+    //var add_interroomGroupListInterroomStorageCondition = new GroupList("add_interroomStorageConditionValue");
+    //add_interroomGroupListInterroomStorageCondition.initView();
 
     /* 修改质控品模块 */
-    var modify_tagInterroomAnalyte = new Tag("modifyInterroom_InterroomAnalyte");
-    //tag2.tagValue = "浙江,绍兴,上海,山东,北京,四川";     //初始化标签
-    modify_tagInterroomAnalyte.initView();
+    //var modify_tagInterroomContainedItems = new Tag("modifyInterroom_ContainedItems");
+    //modify_tagInterroomContainedItems.initView();
 
-    var modify_interroomGroupListInterroomFeature = new GroupList("modifyInterroom_Feature");
-    modify_interroomGroupListInterroomFeature.initView();
-
-    var modify_interroomGroupListInterroomSpecification = new GroupList("modifyInterroom_Specification");
-    modify_interroomGroupListInterroomSpecification.initView();
-
-    var modify_interroomGroupListInterroomStorageCondition = new GroupList("modifyInterroom_StorageCondition");
-    modify_interroomGroupListInterroomStorageCondition.initView();
+    //var modify_interroomGroupListConstitute = new GroupList("modifyInterroom_Constitute");
+    //modify_interroomGroupListConstitute.initView();
 
 
 

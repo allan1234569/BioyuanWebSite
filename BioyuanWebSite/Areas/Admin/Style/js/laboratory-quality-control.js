@@ -32,7 +32,43 @@ $(function () {
         }
     })
     .on('click', '#add_lab_item_no', function () {
-        alert("我被点击了");
+        
+        var tableId = $(this).parent().next().children("div").next().children("div").children("div").children("table").attr("id");
+
+        var Table = document.getElementById(tableId);   //获取表格
+
+        var columnLength = Table.rows.item(0).cells.length;
+
+        var NewRow = Table.insertRow();         //插入行
+
+        var proObj = $('#table-project');
+
+        //NewRow.insertCell().innerHTML = '<input class="form-control hidden" name=""></input>';//项目ID
+        NewRow.insertCell().innerHTML = '<input class="form-control" name="ProductCode"></input>';//项目号
+        NewRow.insertCell().innerHTML = '<input class="form-control" name="Concentration"></input>';//浓度
+        NewRow.insertCell().innerHTML = '<input class="form-control" name="Specification"></input>';//规格
+        NewRow.insertCell().innerHTML = '<input class="form-control" name="CertificateNo"></input>';//证书编号
+        NewRow.insertCell().innerHTML = '<a data-toggle="modal" data-target="" title="删除" href="javascript:;"><span class="glyphicon glyphicon-trash deleteRow"></span></a>';   //操作
+
+        $("#" + tableId + " tr:last a .deleteRow").on('click', function () {
+            var obj = $(this);
+            obj.parent().parent().parent().remove();
+
+            var tab = $('.nav-tabs li.active a');
+
+            var proName = tab.text();
+            var rowCount = Table.rows.length - 1;
+            $("[name=" + proName + "]").val(rowCount);
+        })
+
+        var proName = tab.text();
+        var rowCount = Table.rows.length - 1;
+        $("[name=" + proName + "]").val(rowCount);
+
+
+
+        $option = $(this).find('[name="option[]"]');
+
     })
     .on('click', '.deleteRow', function () {
         alert("这一行将被删除")
@@ -40,7 +76,8 @@ $(function () {
 
     
 
-    $('#modify_lqc_form').bootstrapValidator({
+    $('#modify_lqc_form')
+    .bootstrapValidator({
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
@@ -59,7 +96,28 @@ $(function () {
                 }
             }
         }
-    });
+    })
+    .on('click', '#modify_lab_item_no', function () {
+        var tableId = $(this).parent().next().children("div").next().children("div").children("div").children("table").attr("id");
+
+        var Table = document.getElementById(tableId);   //获取表格
+
+        var columnLength = Table.rows.item(0).cells.length;
+
+        var NewRow = Table.insertRow();         //插入行
+
+        //NewRow.insertCell().innerHTML = '<input class="form-control hidden" name="SpecificationId"></input>';//项目ID
+        NewRow.insertCell().innerHTML = '<input class="form-control" name="ProductCode"></input>';//项目号
+        NewRow.insertCell().innerHTML = '<input class="form-control" name="Concentration"></input>';//浓度
+        NewRow.insertCell().innerHTML = '<input class="form-control" name="Specification"></input>';//规格
+        NewRow.insertCell().innerHTML = '<input class="form-control" name="CertificateNo"></input>';//证书编号
+        NewRow.insertCell().innerHTML = '<a data-toggle="modal" data-target="" title="删除" href="javascript:;"><span class="glyphicon glyphicon-trash deleteRow"></span></a>';   //操作
+
+        $("#" + tableId + " tr:last a .deleteRow").on('click', function () {
+            var obj = $(this);
+            obj.parent().parent().parent().remove();
+        })
+    })
 
 
 
@@ -315,40 +373,40 @@ $(function () {
 
 
     //新增质控品-添加货号
-    $('#add_lab_item_no').on('click', function () {
+    //$('#add_lab_item_no').on('click', function () {
 
-        var tableId = $(this).parent().next().children("div").next().children("div").children("div").children("table").attr("id");
+    //    var tableId = $(this).parent().next().children("div").next().children("div").children("div").children("table").attr("id");
 
-        var Table = document.getElementById(tableId);   //获取表格
+    //    var Table = document.getElementById(tableId);   //获取表格
 
-        var columnLength = Table.rows.item(0).cells.length;
+    //    var columnLength = Table.rows.item(0).cells.length;
 
-        var NewRow = Table.insertRow();         //插入行
+    //    var NewRow = Table.insertRow();         //插入行
 
-        var proObj = $('#table-project');
+    //    var proObj = $('#table-project');
         
-        //NewRow.insertCell().innerHTML = '<input class="form-control hidden" name=""></input>';//项目ID
-        NewRow.insertCell().innerHTML = '<input class="form-control" name="ProductCode"></input>';//项目号
-        NewRow.insertCell().innerHTML = '<input class="form-control" name="Concentration"></input>';//浓度
-        NewRow.insertCell().innerHTML = '<input class="form-control" name="Specification"></input>';//规格
-        NewRow.insertCell().innerHTML = '<input class="form-control" name="CertificateNo"></input>';//证书编号
-        NewRow.insertCell().innerHTML = '<a data-toggle="modal" data-target="" title="删除" href="javascript:;"><span class="glyphicon glyphicon-trash deleteRow"></span></a>';   //操作
+    //    //NewRow.insertCell().innerHTML = '<input class="form-control hidden" name=""></input>';//项目ID
+    //    NewRow.insertCell().innerHTML = '<input class="form-control" name="ProductCode"></input>';//项目号
+    //    NewRow.insertCell().innerHTML = '<input class="form-control" name="Concentration"></input>';//浓度
+    //    NewRow.insertCell().innerHTML = '<input class="form-control" name="Specification"></input>';//规格
+    //    NewRow.insertCell().innerHTML = '<input class="form-control" name="CertificateNo"></input>';//证书编号
+    //    NewRow.insertCell().innerHTML = '<a data-toggle="modal" data-target="" title="删除" href="javascript:;><span class="glyphicon glyphicon-trash deleteRow"></span></a>';   //操作
 
-        $("#" + tableId + " tr:last a .deleteRow").on('click', function () {
-            var obj = $(this);
-            obj.parent().parent().parent().remove();
+    //    $("#" + tableId + " tr:last a .deleteRow").on('click', function () {
+    //        var obj = $(this);
+    //        obj.parent().parent().parent().remove();
 
-            var tab = $('.nav-tabs li.active a');
+    //        var tab = $('.nav-tabs li.active a');
 
-            var proName = tab.text();
-            var rowCount = Table.rows.length - 1;
-            $("[name=" + proName + "]").val(rowCount);
-        })
+    //        var proName = tab.text();
+    //        var rowCount = Table.rows.length - 1;
+    //        $("[name=" + proName + "]").val(rowCount);
+    //    })
 
-        var proName = tab.text();
-        var rowCount = Table.rows.length - 1;
-        $("[name=" + proName + "]").val(rowCount);
-    });
+    //    var proName = tab.text();
+    //    var rowCount = Table.rows.length - 1;
+    //    $("[name=" + proName + "]").val(rowCount);
+    //});
 
 
     //修改质控品-添加货号

@@ -1,5 +1,6 @@
 ﻿//[室内质控品管理]
 
+
 $(function () {
 
     //表单验证
@@ -12,10 +13,10 @@ $(function () {
         },
         fields: {
             ProductName: {
-                message: '质控品名称无效',
+                message: '质评品名称无效',
                 validators: {
                     notEmpty: {
-                        message: '质控品不能为空'
+                        message: '质评品不能为空'
                     }
                 },
                 remote: {
@@ -28,51 +29,123 @@ $(function () {
                         message: '专业不能为空'
                     }
                 }
+            },
+            Concentration: {
+                validators: {
+                    notEmpty: {
+                        message: '浓度水平不能为空'
+                    }
+                }
+            },
+            SingleSpecification: {
+                validators: {
+                    notEmpty: {
+                        message: '单支规格不能为空'
+                    }
+                }
+            },
+            PackingSpecification: {
+                validators: {
+                    notEmpty: {
+                        message: '包装规格不能为空'
+                    }
+                }
+            },
+            Status: {
+                validators: {
+                    notEmpty: {
+                        message: '产品状态不能为空'
+
+
+                    }
+                }
+            },
+            StorageCondition: {
+                validators: {
+                    notEmpty: {
+                        message: '保存稳定性不能为空'
+                    }
+                }
+            },
+            PreservationStability: {
+                validators: {
+                    notEmpty: {
+                        message: '保存稳定性不能为空'
+                    }
+                }
+            },
+            UsefulLife: {
+                validators: {
+                    notEmpty: {
+                        message: '产品效期不能为空'
+                    }
+                }
+            },
+            PreservationStability: {
+                validators: {
+                    notEmpty: {
+                        message: '保存稳定性不能为空'
+                    }
+                }
+            },
+            ProductMatrix: {
+                validators: {
+                    notEmpty: {
+                        message: '产品基质不能为空'
+                    }
+                }
+            },
+            ContainedItems: {
+                validators: {
+                    notEmpty: {
+                        message: '检测项目不能为空'
+                    }
+                }
             }
         }
     })
-    .on('click', '#add_lab_item_no', function () {
+    //.on('click', '#add_lab_item_no', function () {
         
-        var tableId = $(this).parent().next().children("div").next().children("div").children("div").children("table").attr("id");
+    //    var tableId = $(this).parent().next().children("div").next().children("div").children("div").children("table").attr("id");
 
-        var Table = document.getElementById(tableId);   //获取表格
+    //    var Table = document.getElementById(tableId);   //获取表格
 
-        var columnLength = Table.rows.item(0).cells.length;
+    //    var columnLength = Table.rows.item(0).cells.length;
 
-        var NewRow = Table.insertRow();         //插入行
+    //    var NewRow = Table.insertRow();         //插入行
 
-        var proObj = $('#table-project');
+    //    var proObj = $('#table-project');
 
-        //NewRow.insertCell().innerHTML = '<input class="form-control hidden" name=""></input>';//项目ID
-        NewRow.insertCell().innerHTML = '<input class="form-control" name="ProductCode"></input>';//项目号
-        NewRow.insertCell().innerHTML = '<input class="form-control" name="Concentration"></input>';//浓度
-        NewRow.insertCell().innerHTML = '<input class="form-control" name="Specification"></input>';//规格
-        NewRow.insertCell().innerHTML = '<input class="form-control" name="CertificateNo"></input>';//证书编号
-        NewRow.insertCell().innerHTML = '<a data-toggle="modal" data-target="" title="删除" href="javascript:;"><span class="glyphicon glyphicon-trash deleteRow"></span></a>';   //操作
+    //    //NewRow.insertCell().innerHTML = '<input class="form-control hidden" name=""></input>';//项目ID
+    //    NewRow.insertCell().innerHTML = '<input class="form-control" name="ProductCode"></input>';//项目号
+    //    NewRow.insertCell().innerHTML = '<input class="form-control" name="Concentration"></input>';//浓度
+    //    NewRow.insertCell().innerHTML = '<input class="form-control" name="Specification"></input>';//规格
+    //    NewRow.insertCell().innerHTML = '<input class="form-control" name="CertificateNo"></input>';//证书编号
+    //    NewRow.insertCell().innerHTML = '<a data-toggle="modal" data-target="" title="删除" href="javascript:;"><span class="glyphicon glyphicon-trash deleteRow"></span></a>';   //操作
 
-        $("#" + tableId + " tr:last a .deleteRow").on('click', function () {
-            var obj = $(this);
-            obj.parent().parent().parent().remove();
+    //    $("#" + tableId + " tr:last a .deleteRow").on('click', function () {
+    //        var obj = $(this);
+    //        obj.parent().parent().parent().remove();
 
-            var tab = $('.nav-tabs li.active a');
+    //        var tab = $('.nav-tabs li.active a');
 
-            var proName = tab.text();
-            var rowCount = Table.rows.length - 1;
-            $("[name=" + proName + "]").val(rowCount);
-        })
+    //        var proName = tab.text();
+    //        var rowCount = Table.rows.length - 1;
+    //        $("[name=" + proName + "]").val(rowCount);
+    //    })
 
-        var proName = tab.text();
-        var rowCount = Table.rows.length - 1;
-        $("[name=" + proName + "]").val(rowCount);
+    //    var proName = tab.text();
+    //    var rowCount = Table.rows.length - 1;
+    //    $("[name=" + proName + "]").val(rowCount);
 
 
 
-        $option = $(this).find('[name="option[]"]');
+    //    $option = $(this).find('[name="option[]"]');
 
-    })
-    .on('click', '.deleteRow', function () {
-        alert("这一行将被删除")
-    })
+    //})
+    //.on('click', '.deleteRow', function () {
+    //    alert("这一行将被删除")
+    //})
 
     
 
@@ -85,39 +158,118 @@ $(function () {
         },
         fields: {
             ProductName: {
-                message: '室内质控品名称无效',
+                message: '质评品名称无效',
                 validators: {
                     notEmpty: {
-                        message: '室内质控品不能为空'
+                        message: '质评品不能为空'
                     }
                 },
                 remote: {
                     url: ''
                 }
+            },
+            CategoryName: {
+                validators: {
+                    notEmpty: {
+                        message: '专业不能为空'
+                    }
+                }
+            },
+            Concentration: {
+                validators: {
+                    notEmpty: {
+                        message: '浓度水平不能为空'
+                    }
+                }
+            },
+            SingleSpecification: {
+                validators: {
+                    notEmpty: {
+                        message: '单支规格不能为空'
+                    }
+                }
+            },
+            PackingSpecification: {
+                validators: {
+                    notEmpty: {
+                        message: '包装规格不能为空'
+                    }
+                }
+            },
+            Status: {
+                validators: {
+                    notEmpty: {
+                        message: '产品状态不能为空'
+
+
+                    }
+                }
+            },
+            PreservationStability: {
+                validators: {
+                    notEmpty: {
+                        message: '保存稳定性不能为空'
+                    }
+                }
+            },
+            StorageCondition: {
+                validators: {
+                    notEmpty: {
+                        message: '保存稳定性不能为空'
+                    }
+                }
+            },
+            UsefulLife: {
+                validators: {
+                    notEmpty: {
+                        message: '产品效期不能为空'
+                    }
+                }
+            },
+            PreservationStability: {
+                validators: {
+                    notEmpty: {
+                        message: '保存稳定性不能为空'
+                    }
+                }
+            },
+            ProductMatrix: {
+                validators: {
+                    notEmpty: {
+                        message: '产品基质不能为空'
+                    }
+                }
+            },
+            ContainedItems: {
+                validators: {
+                    notEmpty: {
+                        message: '检测项目不能为空'
+                    }
+                }
             }
         }
     })
-    .on('click', '#modify_lab_item_no', function () {
-        var tableId = $(this).parent().next().children("div").next().children("div").children("div").children("table").attr("id");
+    //.on('click', '#modify_lab_item_no', function () {
+    //    var tableId = $(this).parent().next().children("div").next().children("div").children("div").children("table").attr("id");
 
-        var Table = document.getElementById(tableId);   //获取表格
+    //    var Table = document.getElementById(tableId);   //获取表格
 
-        var columnLength = Table.rows.item(0).cells.length;
+    //    var columnLength = Table.rows.item(0).cells.length;
 
-        var NewRow = Table.insertRow();         //插入行
+    //    var NewRow = Table.insertRow();         //插入行
 
-        //NewRow.insertCell().innerHTML = '<input class="form-control hidden" name="SpecificationId"></input>';//项目ID
-        NewRow.insertCell().innerHTML = '<input class="form-control" name="ProductCode"></input>';//项目号
-        NewRow.insertCell().innerHTML = '<input class="form-control" name="Concentration"></input>';//浓度
-        NewRow.insertCell().innerHTML = '<input class="form-control" name="Specification"></input>';//规格
-        NewRow.insertCell().innerHTML = '<input class="form-control" name="CertificateNo"></input>';//证书编号
-        NewRow.insertCell().innerHTML = '<a data-toggle="modal" data-target="" title="删除" href="javascript:;"><span class="glyphicon glyphicon-trash deleteRow"></span></a>';   //操作
+    //    //NewRow.insertCell().innerHTML = '<input class="form-control hidden" name="SpecificationId"></input>';//项目ID
+    //    NewRow.insertCell().innerHTML = '<input class="form-control" name="ProductCode"></input>';//项目号
+    //    NewRow.insertCell().innerHTML = '<input class="form-control" name="Concentration"></input>';//浓度
+    //    NewRow.insertCell().innerHTML = '<input class="form-control" name="Specification"></input>';//规格
+    //    NewRow.insertCell().innerHTML = '<input class="form-control" name="CertificateNo"></input>';//证书编号
+    //    NewRow.insertCell().innerHTML = '<a data-toggle="modal" data-target="" title="删除" href="javascript:;"><span class="glyphicon glyphicon-trash deleteRow"></span></a>';   //操作
 
-        $("#" + tableId + " tr:last a .deleteRow").on('click', function () {
-            var obj = $(this);
-            obj.parent().parent().parent().remove();
-        })
-    })
+    //    $("#" + tableId + " tr:last a .deleteRow").on('click', function () {
+    //        var obj = $(this);
+    //        obj.parent().parent().parent().remove();
+    //    })
+    //})
 
 
 
@@ -608,7 +760,7 @@ $(function () {
                                         "class": "td-status"
                                     })
                                     var span = $("<span/>", {
-                                        "text": jsonObj[i].State == 1 ? "启用" : "禁用"
+                                        "text": jsonObj[i].Enable == 1 ? "启用" : "禁用"
                                     })
 
                                     td.append(span);
@@ -668,46 +820,26 @@ $(function () {
                                                 async: false,
                                                 dataType: "text",
                                                 success: function (data) {
-
                                                     if (data != "null") {
                                                         var jsonObj = JSON.parse(data);
 
                                                         //{"Analyte":"分析物,asad","Annotation":"备注","CertificateNo":null,"CreateTime":"\/Date(1514883601000+0800)\/","Description":"描述","Feature":"产品特征","Img":"","LaboratoryQualityControlId":"820f6d7d-c085-4a76-834b-57c559f6b842","ModifyTime":"\/Date(1514884141000+0800)\/","ProductName":"质控品名称111","Specifications":[{"CertificateNo":"","Concentration":"","LaboratoryQualityControlId":"820f6d7d-c085-4a76-834b-57c559f6b842","ProductCode":"","Specification":"","SpecificationId":"804d25b4-88a2-4c8d-b2ef-4955dc2b8948"}],"Stability":"稳定性","State":0}
 
-                                                        $("#modify_LaboratoryQualityId").val(jsonObj.LaboratoryQualityControlId);
-                                                        $("#modify_ProductName").val(jsonObj.ProductName);
-                                                        $("#modify_Description").val(jsonObj.Description);
+                                                        $("#modifyLab_LaboratoryQualityId").val(jsonObj.LaboratoryQualityControlId);
+                                                        $("#modifyLab_ProductName").val(jsonObj.ProductName);
+                                                        $("#modifyLab_Description").val(jsonObj.Description);
+                                                        $("#modifyLab_Preview").attr('src', '/Admin/Home/ProductsManage/ShowImage?id=' + jsonObj.Img);
+                                                        $("#modifyLab_CategoryName").find("option[value='" + jsonObj.CategoryName + "']").attr("selected", true);
+                                                        $("#modifyLab_Concentration").val(jsonObj.Concentration);
+                                                        $("#modifyLab_SingleSpecification").val(jsonObj.SingleSpecification);
+                                                        $("#modifyLab_PackingSpecification").val(jsonObj.PackingSpecification);
+                                                        $("#modifyLab_Status").val(jsonObj.Status);
+                                                        $("#modifyLab_StorageCondition").val(jsonObj.StorageCondition);
+                                                        $("#modifyLab_UsefulLife").val(jsonObj.UsefulLife);
+                                                        $("#modifyLab_PreservationStability").val(jsonObj.PreservationStability);
+                                                        $("#modifyLab_ProductMatrix").val(jsonObj.ProductMatrix);
+                                                        $("#modifyLab_ContainedItems").val(jsonObj.ContainedItems);
 
-                                                        //$("#modify_lab_Img").val(jsonObj.Img);
-                                                        $("#modify_lab_preview").attr('src', '/Admin/Home/ProductsManage/ShowImage?id=' + jsonObj.Img);
-                                                        
-
-                                                        $("#modify_lab_CategoryName").find("option[value='" + jsonObj.CategoryName + "']").attr("selected", true);
-
-                                                        var tableId = "modify_tabs_default";
-
-                                                        var table = document.getElementById(tableId);
-
-                                                        for (var i = 0; i < jsonObj.Specifications.length; ++i) {
-
-                                                            var NewRow = table.insertRow();//插入行
-
-                                                            NewRow.insertCell().innerHTML = '<input class="form-control" name="ProductCode" value="' + jsonObj.Specifications[i].ProductCode + '"></input>';//项目号
-                                                            NewRow.insertCell().innerHTML = '<input class="form-control" name="Concentration" value="' + jsonObj.Specifications[i].Concentration + '"></input>';//浓度
-                                                            NewRow.insertCell().innerHTML = '<input class="form-control" name="Specification" value="' + jsonObj.Specifications[i].Specification + '"></ input>';//规格
-                                                            NewRow.insertCell().innerHTML = '<input class="form-control" name="CertificateNo" value="' + jsonObj.Specifications[i].CertificateNo + '"></input>';//证书编号
-                                                            NewRow.insertCell().innerHTML = '<a data-toggle="modal" data-target="" title="删除" href="javascript:;"><span class="glyphicon glyphicon-trash deleteRow"></span></a>';//操作
-
-                                                            $("#" + tableId + " tr:last a .deleteRow").on('click', function () {
-                                                                var obj = $(this);
-                                                                obj.parent().parent().parent().remove();
-                                                            })
-                                                        }
-
-                                                        modify_tagAnalyte.setValue(jsonObj.Analyte);
-                                                        modify_GroupListStability.setValue(jsonObj.Stability)
-                                                        modify_GroupListFeature.setValue(jsonObj.Feature);
-                                                        $("#modify_Annotation").val(jsonObj.Annotation);
 
                                                         $("#modifyLabQualityControlModal").modal('show');
 

@@ -21,8 +21,8 @@ namespace DAL
         /// <returns></returns>
         public int InsertMaterial(Material material)
         {
-            string sql = "INSERT INTO Material(MaterialId, ProductName, Description, Img, CategoryId, CategoryName, RecommendedConcentration, Stability, Feature, Annotation, CreateTime, ModifyTime, State) Values";
-            sql += "('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}', '{9}', '{10}', '{11}', {12});";
+            string sql = "INSERT INTO Material(MaterialId, ProductName, Description, Img, CategoryId, CategoryName, Concentration, SingleSpecification, PackingSpecification, Status, StorageCondition, UsefulLife, PreservationStability, ProductMatrix, ContainedItems,  CreateTime, ModifyTime, State) Values";
+            sql += "('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}',{16});";
             sql = string.Format(sql, 
                 material.MaterialId, //0
                 material.ProductName, //1
@@ -30,57 +30,62 @@ namespace DAL
                 material.Img, //3
                 material.CategoryId,//4
                 material.CategoryName,//5
-                material.RecommendedConcentration, //6
-                material.Stability, //7
-                material.Feature, //8
-                material.Annotation,//9
-                material.CreateTime,//10
-                material.ModifyTime,//11
-                material.State);//12
+                material.Concentration, //6
+                material.SingleSpecification, //7
+                material.PackingSpecification, //8
+                material.Status,//9
+                material.StorageCondition,//10
+                material.UsefulLife,//11
+                material.PreservationStability,//12
+                material.ProductMatrix,//13
+                material.ContainedItems,//14
+                material.CreateTime,//15
+                material.ModifyTime,//16
+                material.Enable);//17
 
-            string sqlpro = "";
-            string sqlSpec = "";
+            //string sqlpro = "";
+            //string sqlSpec = "";
 
-            if(material.materialProjects.Count > 0){
-                if (sqlpro == "")
-                {
-                    sqlpro += " INSERT INTO MaterialProject(MaterialProjectId, MaterialId, MaterialProjectName, Unit) Values";
-                }
+            //if(material.materialProjects.Count > 0){
+            //    if (sqlpro == "")
+            //    {
+            //        sqlpro += " INSERT INTO MaterialProject(MaterialProjectId, MaterialId, MaterialProjectName, Unit) Values";
+            //    }
             
-                foreach(MaterialProject pro in material.materialProjects)
-                {
-                    string tmpProSql = "('{0}', '{1}', '{2}', '{3}'),";
-                    tmpProSql = string.Format(tmpProSql, pro.materialProjectId, pro.materialId, pro.materialProjectName, pro.unit);
-                    sqlpro += tmpProSql;
+            //    foreach(MaterialProject pro in material.materialProjects)
+            //    {
+            //        string tmpProSql = "('{0}', '{1}', '{2}', '{3}'),";
+            //        tmpProSql = string.Format(tmpProSql, pro.materialProjectId, pro.materialId, pro.materialProjectName, pro.unit);
+            //        sqlpro += tmpProSql;
 
-                    if (pro.materialSpecifications.Count > 0)
-                    {
-                        if (sqlSpec == "")
-                        {
-                            sqlSpec += " INSERT INTO MaterialSpecification(SpecificationId, MaterialProjectId, ProductCode, StardardUncertairty, Specification, CertificateNo) Values";
-                        }
+            //        if (pro.materialSpecifications.Count > 0)
+            //        {
+            //            if (sqlSpec == "")
+            //            {
+            //                sqlSpec += " INSERT INTO MaterialSpecification(SpecificationId, MaterialProjectId, ProductCode, StardardUncertairty, Specification, CertificateNo) Values";
+            //            }
 
-                        foreach (MaterialSpecification spec in pro.materialSpecifications)
-                        {
-                            string tmpSpecSql = "('{0}', '{1}', '{2}', '{3}', '{4}', '{5}'),";
-                            tmpSpecSql = string.Format(tmpSpecSql, spec.SpecificationId, spec.MaterialProjectId, spec.ProductCode, spec.StardardUncertairty, spec.Specification, spec.CertificateNo);
-                            sqlSpec += tmpSpecSql;
-                        }   
-                    }
-                }
+            //            foreach (MaterialSpecification spec in pro.materialSpecifications)
+            //            {
+            //                string tmpSpecSql = "('{0}', '{1}', '{2}', '{3}', '{4}', '{5}'),";
+            //                tmpSpecSql = string.Format(tmpSpecSql, spec.SpecificationId, spec.MaterialProjectId, spec.ProductCode, spec.StardardUncertairty, spec.Specification, spec.CertificateNo);
+            //                sqlSpec += tmpSpecSql;
+            //            }   
+            //        }
+            //    }
 
-                if (sqlSpec.Length != 0)
-                {
-                    sqlSpec = sqlSpec.Substring(0, sqlSpec.Length - 1);
-                    sqlSpec += ";";
-                }
-            }
+            //    if (sqlSpec.Length != 0)
+            //    {
+            //        sqlSpec = sqlSpec.Substring(0, sqlSpec.Length - 1);
+            //        sqlSpec += ";";
+            //    }
+            //}
 
-            sqlpro = sqlpro.Substring(0, sqlpro.Length - 1);//去掉最后的逗号
-            sqlpro += ";";//添加分号
+            //sqlpro = sqlpro.Substring(0, sqlpro.Length - 1);//去掉最后的逗号
+            //sqlpro += ";";//添加分号
             
-            sql += sqlpro;
-            sql += sqlSpec;
+            //sql += sqlpro;
+            //sql += sqlSpec;
 
             return SQLHelper.Update(sql);
         }
@@ -92,9 +97,7 @@ namespace DAL
         /// <returns></returns>
         public int DeleteMaterialById(string materialId)
         {
-            string sql = "DELETE FROM MaterialSpecification WHERE MaterialProjectId in (SELECT MaterialProjectId FROM MaterialProject WHERE MaterialId in (SELECT MaterialId FROM Material WHERE MaterialId = '{0}'));";
-            sql += " DELETE FROM MaterialProject WHERE MaterialProjectId in (SELECT MaterialProjectId FROM MaterialProject WHERE MaterialId = '{0}');";
-            sql += " DELETE FROM Material WHERE MaterialId = '{0}';";
+            string sql = "DELETE FROM Material WHERE MaterialId = '{0}';";
 
             sql = string.Format(sql, materialId);
 
@@ -130,7 +133,7 @@ namespace DAL
             {
                 return -1;
             }
-            string sql = "SELECT State from Material";
+            string sql = "SELECT Enable from Material";
             sql += " where MaterialId = '{0}'";
             sql = string.Format(sql, id);
 
@@ -145,7 +148,7 @@ namespace DAL
                 state = 0;
             }
 
-            sql = "UPDATE Material set State = {0} where MaterialId = '{1}'";
+            sql = "UPDATE Material set Enable = {0} where MaterialId = '{1}'";
             sql = string.Format(sql, state, id);
 
             int retVal = SQLHelper.Update(sql);
@@ -183,54 +186,18 @@ namespace DAL
                 material.Img = reader["Img"].ToString();
                 material.CategoryId = (reader["CategoryId"] == null) ? "" : reader["CategoryId"].ToString();
                 material.CategoryName = (reader["CategoryName"] == null) ? "" : reader["CategoryName"].ToString();
-                material.RecommendedConcentration = reader["RecommendedConcentration"].ToString();
-                material.Stability = reader["Stability"].ToString();
-                material.Feature = reader["Feature"].ToString();
-                material.Annotation = reader["Annotation"].ToString();
+                material.Concentration = (reader["Concentration"] == null) ? "" : reader["Concentration"].ToString();
+                material.SingleSpecification = (reader["SingleSpecification"] == null) ? "" : reader["SingleSpecification"].ToString();
+                material.PackingSpecification = (reader["PackingSpecification"] == null) ? "" : reader["PackingSpecification"].ToString();
+                material.Status = (reader["Status"] == null) ? "" : reader["Status"].ToString();
+                material.StorageCondition = (reader["StorageCondition"] == null) ? "" : reader["StorageCondition"].ToString();
+                material.UsefulLife = (reader["UsefulLife"] == null) ? "" : reader["UsefulLife"].ToString();
+                material.PreservationStability = (reader["PreservationStability"] == null) ? "" : reader["PreservationStability"].ToString();
+                material.ProductMatrix = (reader["ProductMatrix"] == null) ? "" : reader["ProductMatrix"].ToString();
+                material.ContainedItems = (reader["ContainedItems"] == null) ? "" : reader["ContainedItems"].ToString();
                 material.CreateTime = Convert.ToDateTime(reader["CreateTime"]);
                 material.ModifyTime = Convert.ToDateTime(reader["ModifyTime"]);
-                material.State = Convert.ToInt16(reader["State"]);
-            }
-
-            if (material != null && material.MaterialId != "")
-            {
-                sql = "SELECT * FROM MaterialProject WHERE MaterialId = '{0}' ORDER BY MaterialProjectName";
-                sql = string.Format(sql, material.MaterialId);
-                reader = SQLHelper.GetReader(sql);
-
-                material.materialProjects = new List<MaterialProject>();
-                while (reader.Read())
-                {
-                    MaterialProject mp = new MaterialProject();
-                    mp.materialProjectId = reader["materialProjectId"].ToString();
-                    mp.materialId = reader["materialId"].ToString();
-                    mp.materialProjectName = reader["materialProjectName"].ToString();
-                    mp.unit = reader["Unit"].ToString();
-
-                    if (mp.materialProjectId != "")
-                    {
-                        string specSql = "SELECT * FROM MaterialSpecification WHERE MaterialProjectId = '{0}' ORDER BY ProductCode";
-                        specSql = string.Format(specSql, mp.materialProjectId);
-                        SqlDataReader specReader = SQLHelper.GetReader(specSql);
-
-                        mp.materialSpecifications = new List<MaterialSpecification>();
-
-                        while (specReader.Read())
-                        {
-                            mp.materialSpecifications.Add(new MaterialSpecification()
-                            {
-                                SpecificationId = specReader["SpecificationId"].ToString(),
-                                MaterialProjectId = specReader["MaterialProjectId"].ToString(),
-                                ProductCode = specReader["ProductCode"].ToString(),
-                                StardardUncertairty = specReader["StardardUncertairty"].ToString(),
-                                Specification = specReader["Specification"].ToString(),
-                                CertificateNo = specReader["CertificateNo"].ToString(),
-                            });
-                        }
-                    }
-
-                    material.materialProjects.Add(mp);
-                }
+                material.Enable = Convert.ToInt16(reader["Enable"]);
             }
 
             return material;
@@ -239,73 +206,26 @@ namespace DAL
 
         public int UpdateMaterial(Material material)
         {
-            string sql = "DELETE FROM MaterialSpecification WHERE MaterialProjectId in (SELECT MaterialProjectId FROM MaterialProject WHERE MaterialId in (SELECT MaterialId FROM Material WHERE MaterialId = '{0}'));";
-            sql += " DELETE FROM MaterialProject WHERE MaterialProjectId in (SELECT MaterialProjectId FROM MaterialProject WHERE MaterialId = '{0}');";
-            sql = string.Format(sql, material.MaterialId);
+            string sql = "UPDATE Material SET ProductName = '{1}', Description = '{2}', Img = '{3}', CategoryId = '{4}', CategoryName = '{5}', Concentration = '{6}', SingleSpecification = '{7}', PackingSpecification = '{8}', Status = '{9}', StorageCondition = '{10}', UsefulLife = '{11}', PreservationStability = '{12}', ProductMatrix = '{13}', ContainedItems = '{14}', ModifyTime = '{15}' WHERE MaterialId = '{0}'";
+            sql = string.Format(sql,
+                material.MaterialId, //0
+                material.ProductName, //1
+                material.Description, //2
+                material.Img, //3
+                material.CategoryId,//4
+                material.CategoryName,//5
+                material.Concentration, //6
+                material.SingleSpecification, //7
+                material.PackingSpecification, //8
+                material.Status,//9
+                material.StorageCondition,//10
+                material.UsefulLife,//11
+                material.PreservationStability,//12
+                material.ProductMatrix,//13
+                material.ContainedItems,//14
+                material.ModifyTime);//15
 
-            SQLHelper.Update(sql);
-
-            string sqlpro = "";
-            string sqlSpec = "";
-
-            if (material.materialProjects.Count > 0)
-            {
-                if (sqlpro == "")
-                {
-                    sqlpro += " INSERT INTO MaterialProject(MaterialProjectId, MaterialId, MaterialProjectName, Unit) Values";
-                }
-
-                foreach (MaterialProject pro in material.materialProjects)
-                {
-                    string tmpProSql = "('{0}', '{1}', '{2}', '{3}'),";
-                    tmpProSql = string.Format(tmpProSql, pro.materialProjectId, pro.materialId, pro.materialProjectName, pro.unit);
-                    sqlpro += tmpProSql;
-
-                    if (pro.materialSpecifications.Count > 0)
-                    {
-                        if (sqlSpec == "")
-                        {
-                            sqlSpec += " INSERT INTO MaterialSpecification(SpecificationId, MaterialProjectId, ProductCode, StardardUncertairty, Specification, CertificateNo) Values";
-                        }
-
-                        foreach (MaterialSpecification spec in pro.materialSpecifications)
-                        {
-                            string tmpSpecSql = "('{0}', '{1}', '{2}', '{3}', '{4}', '{5}'),";
-                            tmpSpecSql = string.Format(tmpSpecSql, spec.SpecificationId, spec.MaterialProjectId, spec.ProductCode, spec.StardardUncertairty, spec.Specification, spec.CertificateNo);
-                            sqlSpec += tmpSpecSql;
-                        }
-                    }
-                }
-
-                if (sqlSpec.Length != 0)
-                {
-                    sqlSpec = sqlSpec.Substring(0, sqlSpec.Length - 1);
-                    sqlSpec += ";";
-                }
-            }
-
-            sqlpro = sqlpro.Substring(0, sqlpro.Length - 1);//去掉最后的逗号
-            sqlpro += ";";//添加分号
-
-            sql = sqlpro + sqlSpec;
-
-            SQLHelper.Update(sql);
-
-            string updateSql = "UPDATE Material SET ProductName = '{1}', Description = '{2}', Img = '{3}', CategoryId = '{4}', CategoryName = '{5}', RecommendedConcentration = '{6}', Stability = '{7}', Feature = '{8}', Annotation = '{9}', ModifyTime = '{10}' WHERE MaterialId = '{0}'";
-            updateSql = string.Format(updateSql,
-                material.MaterialId,
-                material.ProductName,
-                material.Description,
-                material.Img,
-                material.CategoryId,
-                material.CategoryName,
-                material.RecommendedConcentration,
-                material.Stability,
-                material.Feature,
-                material.Annotation,
-                material.ModifyTime);
-
-            return SQLHelper.Update(updateSql);
+            return SQLHelper.Update(sql);
         }
 
 
@@ -332,7 +252,7 @@ namespace DAL
                     Img = reader["Img"].ToString(),
                     CreateTime = Convert.ToDateTime((reader["CreateTime"] == null) ? null : reader["CreateTime"]),
                     ModifyTime = Convert.ToDateTime((reader["CreateTime"] == null) ? null : reader["ModifyTime"]),
-                    State = Convert.ToInt16(reader["State"])
+                    Enable = Convert.ToInt16(reader["Enable"])
                 });
             }
 
@@ -361,7 +281,7 @@ namespace DAL
                     Img = reader["Img"].ToString(),
                     CreateTime = Convert.ToDateTime((reader["CreateTime"] == null) ? null : reader["CreateTime"]),
                     ModifyTime = Convert.ToDateTime((reader["CreateTime"] == null) ? null : reader["ModifyTime"]),
-                    State = Convert.ToInt16(reader["State"])
+                    Enable = Convert.ToInt16(reader["Enable"])
                 });
             }
 
@@ -378,7 +298,7 @@ namespace DAL
 
             string sql = "SELECT * FROM Material";
             if(state){
-                sql += " WHERE State = 1";
+                sql += " WHERE Enable = 1";
             }
 
             sql += " ORDER BY CreateTime ASC";
@@ -394,7 +314,7 @@ namespace DAL
                     Img = (reader["Img"] == null) ? "" : reader["Img"].ToString(),
                     CreateTime = Convert.ToDateTime(reader["CreateTime"]),
                     ModifyTime = Convert.ToDateTime(reader["ModifyTime"]),
-                    State = Convert.ToInt16(reader["State"])
+                    Enable = Convert.ToInt16(reader["Enable"])
                 });
             }
 

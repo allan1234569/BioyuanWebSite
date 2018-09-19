@@ -1,6 +1,210 @@
 //标准物质管理
 $(function () {
 
+    //表单验证
+    $('#add_material_form')
+    .bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            ProductName: {
+                message: '质评品名称无效',
+                validators: {
+                    notEmpty: {
+                        message: '质评品不能为空'
+                    }
+                },
+                remote: {
+                    url: ''
+                }
+            },
+            CategoryName: {
+                validators: {
+                    notEmpty: {
+                        message: '专业不能为空'
+                    }
+                }
+            },
+            Concentration: {
+                validators: {
+                    notEmpty: {
+                        message: '浓度水平不能为空'
+                    }
+                }
+            },
+            SingleSpecification: {
+                validators: {
+                    notEmpty: {
+                        message: '单支规格不能为空'
+                    }
+                }
+            },
+            PackingSpecification: {
+                validators: {
+                    notEmpty: {
+                        message: '包装规格不能为空'
+                    }
+                }
+            },
+            Status: {
+                validators: {
+                    notEmpty: {
+                        message: '产品状态不能为空'
+
+
+                    }
+                }
+            },
+            StorageCondition: {
+                validators: {
+                    notEmpty: {
+                        message: '保存稳定性不能为空'
+                    }
+                }
+            },
+            PreservationStability: {
+                validators: {
+                    notEmpty: {
+                        message: '保存稳定性不能为空'
+                    }
+                }
+            },
+            UsefulLife: {
+                validators: {
+                    notEmpty: {
+                        message: '产品效期不能为空'
+                    }
+                }
+            },
+            PreservationStability: {
+                validators: {
+                    notEmpty: {
+                        message: '保存稳定性不能为空'
+                    }
+                }
+            },
+            ProductMatrix: {
+                validators: {
+                    notEmpty: {
+                        message: '产品基质不能为空'
+                    }
+                }
+            },
+            ContainedItems: {
+                validators: {
+                    notEmpty: {
+                        message: '检测项目不能为空'
+                    }
+                }
+            }
+        }
+    })
+
+
+    $('#modify_material_form')
+    .bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            ProductName: {
+                message: '质评品名称无效',
+                validators: {
+                    notEmpty: {
+                        message: '质评品不能为空'
+                    }
+                },
+                remote: {
+                    url: ''
+                }
+            },
+            CategoryName: {
+                validators: {
+                    notEmpty: {
+                        message: '专业不能为空'
+                    }
+                }
+            },
+            Concentration: {
+                validators: {
+                    notEmpty: {
+                        message: '浓度水平不能为空'
+                    }
+                }
+            },
+            SingleSpecification: {
+                validators: {
+                    notEmpty: {
+                        message: '单支规格不能为空'
+                    }
+                }
+            },
+            PackingSpecification: {
+                validators: {
+                    notEmpty: {
+                        message: '包装规格不能为空'
+                    }
+                }
+            },
+            Status: {
+                validators: {
+                    notEmpty: {
+                        message: '产品状态不能为空'
+
+
+                    }
+                }
+            },
+            StorageCondition: {
+                validators: {
+                    notEmpty: {
+                        message: '保存稳定性不能为空'
+                    }
+                }
+            },
+            PreservationStability: {
+                validators: {
+                    notEmpty: {
+                        message: '保存稳定性不能为空'
+                    }
+                }
+            },
+            UsefulLife: {
+                validators: {
+                    notEmpty: {
+                        message: '产品效期不能为空'
+                    }
+                }
+            },
+            PreservationStability: {
+                validators: {
+                    notEmpty: {
+                        message: '保存稳定性不能为空'
+                    }
+                }
+            },
+            ProductMatrix: {
+                validators: {
+                    notEmpty: {
+                        message: '产品基质不能为空'
+                    }
+                }
+            },
+            ContainedItems: {
+                validators: {
+                    notEmpty: {
+                        message: '检测项目不能为空'
+                    }
+                }
+            }
+        }
+    })
+
     //禁止点击背景或按ESC键关闭模态框
     $('#addMaterialModel').modal({
         backdrop: 'static',
@@ -90,94 +294,6 @@ $(function () {
         }
     })
 
-    function setModifyMaterialFormData(data) {
-
-        //{
-        //    "Annotation":"对，我就是备注",
-        //    "CategoryId":"",
-        //    "CategoryName":"血筛四项",
-        //    "CreateTime":"\/Date(1517905538000+0800)\/",
-        //    "Description":"我是标准物，有什么问题吗",
-        //    "Feature":"产品特征|产品特征|产品特征",
-        //    "Img":"cba8c7b0-7924-4c87-85b7-b80c990effca.jpg",
-        //    "MaterialId":"8c0bfa99-be51-44e2-ae3f-40988ce39863",
-        //    "ModifyTime":"\/Date(1517905538000+0800)\/",
-        //    "ProductName":"标准物名称",
-        //    "RecommendedConcentration":"推荐浓度|推荐浓度|推荐浓度",
-        //    "Stability":"稳定性|稳定性|稳定性",
-        //    "State":1,
-        //    "materialProjects":
-        //    [
-        //        {
-        //            "materialSpecifications":
-        //            [
-        //                {
-        //                    "CertificateNo":"11111",
-        //                    "MaterialProjectId":"cb8a7ceb-d907-4a7a-a856-cef214037557",
-        //                    "ProductCode":"1",
-        //                    "Specification":"1",
-        //                    "SpecificationId":"0e018cf5-4cf4-4f47-9b8d-fe7fc5b57914",
-        //                    "StardardUncertairty":"1"
-        //                },
-        //                {
-        //                    "CertificateNo":"22222",
-        //                    "MaterialProjectId":"cb8a7ceb-d907-4a7a-a856-cef214037557",
-        //                    "ProductCode":"2",
-        //                    "Specification":"2",
-        //                    "SpecificationId":"0abbf19f-35d2-4e3d-8a41-6036b49a7ead",
-        //                    "StardardUncertairty":"2"
-        //                },
-        //                {
-        //                    "CertificateNo":"33333",
-        //                    "MaterialProjectId":"cb8a7ceb-d907-4a7a-a856-cef214037557",
-        //                    "ProductCode":"3",
-        //                    "Specification":"3",
-        //                    "SpecificationId":"146a7f81-503a-46a7-9a68-0e7577251e78",
-        //                    "StardardUncertairty":"3"
-        //                }
-        //            ],
-        //            "materialId":"8c0bfa99-be51-44e2-ae3f-40988ce39863",
-        //            "materialProjectId":"cb8a7ceb-d907-4a7a-a856-cef214037557",
-        //            "materialProjectName":"",
-        //            "unit":"111mg\/L"
-        //        }
-        //    ]
-        //}
-
-        var jsonObj = JSON.parse(data);
-        $("#modifyMaterial_MaterialId").val(jsonObj.MaterialId);
-        $("#modifyMaterial_ProductName").val(jsonObj.ProductName);
-        $("#modifyMaterial_Description").val(jsonObj.Description);
-        $("#modifyMaterial_Preview").attr('src', '/Admin/Home/ProductsManage/ShowImage?id=' + jsonObj.Img);
-        $("#modifyMaterial_CategoryName").find("option[value='" + jsonObj.CategoryName + "']").attr("selected", true);
-        modify_materialGroupListConcentrantion.setValue(jsonObj.RecommendedConcentration);
-
-        if (jsonObj.materialProjects.length == 1 && jsonObj.materialProjects[0].materialProjectName == "") {
-            
-            for (var i = 0; i < jsonObj.materialProjects[0].materialSpecifications.length; ++i) {
-                
-                var materailSpecification = jsonObj.materialProjects[0].materialSpecifications[i];
-                fun_addItemNo1("modifyMaterial", materailSpecification);
-            }
-        }
-        else {
-            for (var i = 0; i < jsonObj.materialProjects.length; ++i) {
-
-                fun_addProject1("modifyMaterial", jsonObj.materialProjects[i].materialProjectName, jsonObj.materialProjects[i].unit);
-
-                for (var j = 0; j < jsonObj.materialProjects[i].materialSpecifications.length; ++j) {
-
-                    var materailSpecification = jsonObj.materialProjects[i].materialSpecifications[j];
-                    fun_addItemNo1("modifyMaterial", materailSpecification);
-                }
-            }
-        }
-        
-        modify_materialGroupListStability.setValue(jsonObj.Stability);
-        modify_materialGroupListFeature.setValue(jsonObj.Feature);
-        $("#modifyMaterial_Annotation").val(jsonObj.Annotation);
-        
-    }
 
     //清除添加标物的表单数据
     function clearAddMaterialFormData() {
@@ -206,33 +322,34 @@ $(function () {
         $("#modifyMaterial_Annotation").val("");
     }
 
-    //获取待修改室内质控品数据
-    $('.modify_material').on('click', function () {
+    ////获取待修改室内质控品数据
+    //$('.modify_material').on('click', function () {
 
-        var id = $(this).parent().next().text().trim();
+    //    var id = $(this).parent().next().text().trim();
 
-        $.ajax({
-            type: "post",
-            url: "/Admin/Home/ProductsManage/GetMaterialDetail",
-            data: { "id": id },
-            async: false,
-            dataType: "text",
-            success: function (data) {
+    //    $.ajax({
+    //        type: "post",
+    //        url: "/Admin/Home/ProductsManage/GetMaterialDetail",
+    //        data: { "id": id },
+    //        async: false,
+    //        dataType: "text",
+    //        success: function (data) {
 
-                if (data != "null") {
+    //            if (data != "null") {
 
-                    setModifyMaterialFormData(data);
+    //                setModifyMaterialFormData(data);
 
-                    $("#modifyMateriallModal").modal('show');
+    //                $("#modifyMateriallModal").modal('show');
 
-                } else {
-                    alert("数据加载失败");
-                }
+    //            } else {
+    //                alert("数据加载失败");
+    //            }
 
-            }
-        })
+    //        }
+    //    })
 
-    })
+    //})
+
 
 
 
@@ -562,10 +679,23 @@ $(function () {
     }
 
 
+    function setModifyMaterialFormData(data) {
+
+        var jsonObj = JSON.parse(data);
+        $("#modifyMaterial_MaterialId").val(jsonObj.MaterialId);
+        $("#modifyMaterial_ProductName").val(jsonObj.ProductName);
+        $("#modifyMaterial_Description").val(jsonObj.Description);
+        $("#modifyMaterial_Preview").attr('src', '/Admin/Home/ProductsManage/ShowImage?id=' + jsonObj.Img);
+        $("#modifyMaterial_CategoryName").find("option[value='" + jsonObj.CategoryName + "']").attr("selected", true);
+
+        $("#modifyMaterial_Annotation").val(jsonObj.Annotation);
+
+    }
+
 
     //显示数据列表、分页处理
     $(function () {
-
+        
         var dataLength = 0;
 
         $.ajax({
@@ -721,7 +851,7 @@ $(function () {
                                         "class": "td-status"
                                     })
                                     var span = $("<span/>", {
-                                        "text": jsonObj[i].State == 1 ? "启用" : "禁用"
+                                        "text": jsonObj[i].Enable == 1 ? "启用" : "禁用"
                                     })
 
                                     td.append(span);

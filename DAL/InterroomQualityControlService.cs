@@ -21,8 +21,8 @@ namespace DAL
         /// <returns></returns>
         public int InsertInterroomQualityControl(InterroomQualityControl qualityControl)
         {
-            string sql = "INSERT INTO InterroomQualityControl(InterroomQualityControlId, ProductName, Description, Img, CategoryId, CategoryName, Concentration, SingleSpecification, PackingSpecification, Status, StorageCondition, UsefulLife, PreservationStability, ProductMatrix, ContainedItems, RegistrationDocument, Manufacturer, CertificateNo, CreateTime, ModifyTime, Enable) VALUES";
-            sql += "('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}', '{15}','{16}','{17}','{18}','{19}',{20});";
+            string sql = "INSERT INTO InterroomQualityControl(InterroomQualityControlId, ProductName, Description, Img, CategoryId, CategoryName, Concentration, SingleSpecification, PackingSpecification, Status, StorageCondition, UsefulLife, PreservationStability, ProductMatrix, ContainedItems, CreateTime, ModifyTime, Enable) VALUES";
+            sql += "('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}', '{15}','{16}',{17});";
             sql = string.Format(sql,
                 qualityControl.InterroomQualityControlId, //0
                 qualityControl.ProductName,//1
@@ -39,12 +39,9 @@ namespace DAL
                 qualityControl.PreservationStability,//12
                 qualityControl.ProductMatrix,//13
                 qualityControl.ContainedItems,//14
-                qualityControl.RegistrationDocument,//15
-                qualityControl.Manufacturer,//16
-                qualityControl.CertificateNo,//17
-                qualityControl.CreateTime,//18
-                qualityControl.ModifyTime,//19
-                qualityControl.Enable);//20
+                qualityControl.CreateTime,//15
+                qualityControl.ModifyTime,//16
+                qualityControl.Enable);//17
 
             return SQLHelper.Update(sql);
         }
@@ -70,7 +67,7 @@ namespace DAL
         /// <returns></returns>
         public int UpdateInterroomQualityControl(InterroomQualityControl qualityControl)
         {
-            string sql = "UPDATE InterroomQualityControl SET ProductName = '{1}', Description = '{2}', Img = '{3}', CategoryId = '{4}', CategoryName = '{5}', Concentration = '{6}', SingleSpecification = '{7}', PackingSpecification = '{8}', Status = '{9}', StorageCondition = '{10}', UsefulLife = '{11}', PreservationStability = '{12}', ProductMatrix = '{13}', ContainedItems = '{14}', RegistrationDocument  = '{15}', Manufacturer = '{16}', CertificateNo = '{17}', ModifyTime = '{18}' WHERE InterroomQualityControlId = '{0}';";
+            string sql = "UPDATE InterroomQualityControl SET ProductName = '{1}', Description = '{2}', Img = '{3}', CategoryId = '{4}', CategoryName = '{5}', Concentration = '{6}', SingleSpecification = '{7}', PackingSpecification = '{8}', Status = '{9}', StorageCondition = '{10}', UsefulLife = '{11}', PreservationStability = '{12}', ProductMatrix = '{13}', ContainedItems = '{14}', ModifyTime = '{15}' WHERE InterroomQualityControlId = '{0}';";
             sql = string.Format(sql,
                 qualityControl.InterroomQualityControlId,//0
                 qualityControl.ProductName,//1
@@ -87,10 +84,7 @@ namespace DAL
                 qualityControl.PreservationStability,//12
                 qualityControl.ProductMatrix,//13
                 qualityControl.ContainedItems,//14
-                qualityControl.RegistrationDocument,//15
-                qualityControl.Manufacturer,//16
-                qualityControl.CertificateNo,//17
-                qualityControl.ModifyTime);//18
+                qualityControl.ModifyTime);//15
 
             return SQLHelper.Update(sql);
         }
@@ -161,9 +155,6 @@ namespace DAL
                 interroomQualityControl.PreservationStability = reader["PreservationStability"].ToString();
                 interroomQualityControl.ProductMatrix = reader["ProductMatrix"].ToString();
                 interroomQualityControl.ContainedItems = reader["ContainedItems"].ToString();
-                interroomQualityControl.RegistrationDocument = reader["RegistrationDocument"].ToString();
-                interroomQualityControl.Manufacturer = reader["Manufacturer"].ToString();
-                interroomQualityControl.CertificateNo = reader["CertificateNo"].ToString();
                 interroomQualityControl.CreateTime = Convert.ToDateTime(reader["CreateTime"]);
                 interroomQualityControl.ModifyTime = Convert.ToDateTime(reader["ModifyTime"]);
                 interroomQualityControl.Enable = Convert.ToInt16(reader["Enable"]);
@@ -212,7 +203,7 @@ namespace DAL
         {
             string sql = "SELECT * FROM InterroomQualityControl";
             if(state){
-                sql += " WHERE State = 1";
+                sql += " WHERE Enable = 1";
                      
             }
             sql += " ORDER BY CreateTime ASC";
@@ -231,7 +222,7 @@ namespace DAL
                     Img = reader["Img"].ToString(),
                     CreateTime = Convert.ToDateTime(reader["CreateTime"]),
                     ModifyTime = Convert.ToDateTime(reader["ModifyTime"]),
-                    Enable = Convert.ToInt16(reader["State"])
+                    Enable = Convert.ToInt16(reader["Enable"])
                 });
             }
 
@@ -247,7 +238,7 @@ namespace DAL
         {
             List<InterroomQualityControl> qualityControls = new List<InterroomQualityControl>();
 
-            string sql = "SELECT * FROM InterroomQualityControl WHERE CategoryName = '{0}' AND State = 1 ORDER BY CreateTime ASC";
+            string sql = "SELECT * FROM InterroomQualityControl WHERE CategoryName = '{0}' AND Enable = 1 ORDER BY CreateTime ASC";
             sql = string.Format(sql, categoryName);
 
             SqlDataReader reader = SQLHelper.GetReader(sql);
@@ -262,7 +253,7 @@ namespace DAL
                     Description = reader["Description"].ToString(),
                     CreateTime = Convert.ToDateTime(reader["CreateTime"]),
                     ModifyTime = Convert.ToDateTime(reader["ModifyTime"]),
-                    Enable = Convert.ToInt16(reader["State"])
+                    Enable = Convert.ToInt16(reader["Enable"])
                 });
             }
 

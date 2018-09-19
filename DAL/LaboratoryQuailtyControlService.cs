@@ -17,54 +17,59 @@ namespace DAL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="qualityControl"></param>
+        /// <param name="labQualityControl"></param>
         /// <returns></returns>
-        public int InsertLaboratoryQuailtyControl(LaboratoryQuailtyControl qualityControl)
+        public int InsertLaboratoryQuailtyControl(LaboratoryQuailtyControl labQualityControl)
         {
-            string sql = "INSERT INTO LaboratoryQuailtyControl(LaboratoryQuailtyControlId, ProductName, Description, Img, CategoryId, CategoryName, Analyte, Stability, Feature, Annotation, CreateTime, ModifyTIme, State) VALUES";
-            sql += "('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}',{12});";
+            string sql = "INSERT INTO LaboratoryQuailtyControl(LaboratoryQuailtyControlId, ProductName, Description, Img, CategoryId, CategoryName, Concentration, SingleSpecification, PackingSpecification, Status, StorageCondition, UsefulLife, PreservationStability, ProductMatrix, ContainedItems, CreateTime, ModifyTIme, Enable) VALUES";
+            sql += "('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}',{16});";
             sql = string.Format(sql,
-                qualityControl.LaboratoryQualityControlId,
-                qualityControl.ProductName,
-                qualityControl.Description,
-                qualityControl.Img,
-                qualityControl.CategoryId,
-                qualityControl.CategoryName,
-                qualityControl.Analyte,
-                qualityControl.Stability,
-                qualityControl.Feature,
-                qualityControl.Annotation,
-                qualityControl.CreateTime,
-                qualityControl.ModifyTime,
-                qualityControl.State);
+                labQualityControl.LaboratoryQualityControlId,//0
+                labQualityControl.ProductName,//1
+                labQualityControl.Description,//2
+                labQualityControl.Img,//3
+                labQualityControl.CategoryId,//4
+                labQualityControl.CategoryName,//5
+                labQualityControl.Concentration,//6
+                labQualityControl.SingleSpecification,//7
+                labQualityControl.PackingSpecification,//8
+                labQualityControl.Status,//9
+                labQualityControl.StorageCondition,//10
+                labQualityControl.UsefulLife,//11
+                labQualityControl.PreservationStability,//12
+                labQualityControl.ProductMatrix,//13
+                labQualityControl.ContainedItems,//14
+                labQualityControl.CreateTime,//15
+                labQualityControl.ModifyTime,//16
+                labQualityControl.Enable);//17
 
-            string sqlSpec = "";
+            //string sqlSpec = "";
 
-            foreach (LaboratorySpecification spec in qualityControl.Specifications)
-            {
-                if(sqlSpec == "")
-                {
-                    sqlSpec = "INSERT INTO LaboratorySpecification(SpecificationId, LaboratoryQualityControlId, ProductCode, Concentration, Specification, CertificateNo) VALUES";
-                }
+            //foreach (LaboratorySpecification spec in qualityControl.Specifications)
+            //{
+            //    if(sqlSpec == "")
+            //    {
+            //        sqlSpec = "INSERT INTO LaboratorySpecification(SpecificationId, LaboratoryQualityControlId, ProductCode, Concentration, Specification, CertificateNo) VALUES";
+            //    }
 
-                string tmpSql = "('{0}','{1}','{2}','{3}','{4}','{5}'),";
-                tmpSql = string.Format(tmpSql,
-                    spec.SpecificationId,
-                    spec.LaboratoryQualityControlId,
-                    spec.ProductCode,
-                    spec.Concentration,
-                    spec.Specification,
-                    spec.CertificateNo);
-                sqlSpec += tmpSql;
-            }
+            //    string tmpSql = "('{0}','{1}','{2}','{3}','{4}','{5}'),";
+            //    tmpSql = string.Format(tmpSql,
+            //        spec.SpecificationId,
+            //        spec.LaboratoryQualityControlId,
+            //        spec.ProductCode,
+            //        spec.Concentration,
+            //        spec.Specification,
+            //        spec.CertificateNo);
+            //    sqlSpec += tmpSql;
+            //}
 
-            if (sqlSpec.Length > 0)
-            {
-                sqlSpec = sqlSpec.Substring(0, sqlSpec.Length - 1);
-                sqlSpec += ";";
-            }
+            //if (sqlSpec.Length > 0)
+            //{
+            //    sqlSpec = sqlSpec.Substring(0, sqlSpec.Length - 1);
+            //    sqlSpec += ";";
+            //}
 
-            sql += sqlSpec;
+            //sql += sqlSpec;
 
             return SQLHelper.Update(sql);
         }
@@ -86,62 +91,67 @@ namespace DAL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="qualityControl"></param>
+        /// <param name="labQualityControl"></param>
         /// <returns></returns>
-        public int UpdateLaboratoryQuailtyControl(LaboratoryQuailtyControl qualityControl)
+        public int UpdateLaboratoryQuailtyControl(LaboratoryQuailtyControl labQualityControl)
         {
-            List<LaboratorySpecification> labSpecs = qualityControl.Specifications;
+            //List<LaboratorySpecification> labSpecs = qualityControl.Specifications;
 
-            string delSql = "DELETE FROM LaboratorySpecification WHERE SpecificationId in (SELECT SpecificationId FROM LaboratorySpecification WHERE LaboratoryQualityControlId = '{0}');";
-            delSql = string.Format(delSql, qualityControl.LaboratoryQualityControlId);
+            //string delSql = "DELETE FROM LaboratorySpecification WHERE SpecificationId in (SELECT SpecificationId FROM LaboratorySpecification WHERE LaboratoryQualityControlId = '{0}');";
+            //delSql = string.Format(delSql, qualityControl.LaboratoryQualityControlId);
 
-            SQLHelper.Update(delSql);
+            //SQLHelper.Update(delSql);
 
-            if (labSpecs.Count > 0)
-            {
-                string sqlSpec = "";
+            //if (labSpecs.Count > 0)
+            //{
+            //    string sqlSpec = "";
 
-                foreach (LaboratorySpecification spec in qualityControl.Specifications)
-                {
-                    if (sqlSpec == "")
-                    {
-                        sqlSpec = "INSERT INTO LaboratorySpecification(SpecificationId, LaboratoryQualityControlId, ProductCode, Concentration, Specification, CertificateNo) VALUES";
-                    }
+            //    foreach (LaboratorySpecification spec in qualityControl.Specifications)
+            //    {
+            //        if (sqlSpec == "")
+            //        {
+            //            sqlSpec = "INSERT INTO LaboratorySpecification(SpecificationId, LaboratoryQualityControlId, ProductCode, Concentration, Specification, CertificateNo) VALUES";
+            //        }
 
-                    string tmpSql = "('{0}','{1}','{2}','{3}','{4}','{5}'),";
-                    tmpSql = string.Format(tmpSql,
-                        spec.SpecificationId,
-                        spec.LaboratoryQualityControlId,
-                        spec.ProductCode,
-                        spec.Concentration,
-                        spec.Specification,
-                        spec.CertificateNo);
-                    sqlSpec += tmpSql;
-                }
+            //        string tmpSql = "('{0}','{1}','{2}','{3}','{4}','{5}'),";
+            //        tmpSql = string.Format(tmpSql,
+            //            spec.SpecificationId,
+            //            spec.LaboratoryQualityControlId,
+            //            spec.ProductCode,
+            //            spec.Concentration,
+            //            spec.Specification,
+            //            spec.CertificateNo);
+            //        sqlSpec += tmpSql;
+            //    }
 
-                if (sqlSpec.Length > 0)
-                {
-                    sqlSpec = sqlSpec.Substring(0, sqlSpec.Length - 1);
-                    sqlSpec += ";";
-                }
+            //    if (sqlSpec.Length > 0)
+            //    {
+            //        sqlSpec = sqlSpec.Substring(0, sqlSpec.Length - 1);
+            //        sqlSpec += ";";
+            //    }
 
-                SQLHelper.Update(sqlSpec);
+            //    SQLHelper.Update(sqlSpec);
                 
-            }
+            //}
 
-            string updateSql = "UPDATE LaboratoryQuailtyControl SET ProductName = '{1}', Description = '{2}', Img = '{3}', CategoryId = '{4}', CategoryName = '{5}', Analyte = '{6}', Stability = '{7}', Feature = '{8}', Annotation = '{9}', ModifyTime = '{10}' WHERE LaboratoryQuailtyControlId = '{0}';";
+            string updateSql = "UPDATE LaboratoryQuailtyControl SET ProductName = '{1}', Description = '{2}', Img = '{3}', CategoryId = '{4}', CategoryName = '{5}', Concentration = '{6}', SingleSpecification = '{7}', PackingSpecification = '{8}', Status = '{9}', StorageCondition = '{10}', UsefulLife = '{11}', PreservationStability = '{12}', ProductMatrix = '{13}', ContainedItems = '{14}', ModifyTime = '{15}' WHERE LaboratoryQuailtyControlId = '{0}';";
             updateSql = string.Format(updateSql,
-                qualityControl.LaboratoryQualityControlId,
-                qualityControl.ProductName,
-                qualityControl.Description,
-                qualityControl.Img,
-                qualityControl.CategoryId,
-                qualityControl.CategoryName,
-                qualityControl.Analyte,
-                qualityControl.Stability,
-                qualityControl.Feature,
-                qualityControl.Annotation,
-                qualityControl.ModifyTime);
+                labQualityControl.LaboratoryQualityControlId,//0
+                labQualityControl.ProductName,//1
+                labQualityControl.Description,//2
+                labQualityControl.Img,//3
+                labQualityControl.CategoryId,//4
+                labQualityControl.CategoryName,//5
+                labQualityControl.Concentration,//6
+                labQualityControl.SingleSpecification,//7
+                labQualityControl.PackingSpecification,//8
+                labQualityControl.Status,//9
+                labQualityControl.StorageCondition,//10
+                labQualityControl.UsefulLife,//11
+                labQualityControl.PreservationStability,//12
+                labQualityControl.ProductMatrix,//13
+                labQualityControl.ContainedItems,//14
+                labQualityControl.ModifyTime);//15
 
             return SQLHelper.Update(updateSql);
         }
@@ -158,7 +168,7 @@ namespace DAL
             {
                 return -1;
             }
-            string sql = "SELECT State from LaboratoryQuailtyControl";
+            string sql = "SELECT Enable from LaboratoryQuailtyControl";
             sql += " where LaboratoryQuailtyControlId = '{0}'";
             sql = string.Format(sql, id);
 
@@ -173,7 +183,7 @@ namespace DAL
                 state = 0;
             }
 
-            sql = "UPDATE LaboratoryQuailtyControl set State = {0} where LaboratoryQuailtyControlId = '{1}'";
+            sql = "UPDATE LaboratoryQuailtyControl set Enable = {0} where LaboratoryQuailtyControlId = '{1}'";
             sql = string.Format(sql, state, id);
 
             int retVal = SQLHelper.Update(sql);
@@ -205,34 +215,39 @@ namespace DAL
                 labQualityControl.Img = reader["Img"].ToString();
                 labQualityControl.CategoryId = (reader["CategoryId"] == null) ? "" : reader["CategoryId"].ToString();
                 labQualityControl.CategoryName = (reader["CategoryName"] == null) ? "" : reader["CategoryName"].ToString();
-                labQualityControl.Analyte = reader["Analyte"].ToString();
-                labQualityControl.Stability = reader["Stability"].ToString();
-                labQualityControl.Feature = reader["Feature"].ToString();
+                labQualityControl.Concentration = (reader["Concentration"] == null) ? "" : reader["Concentration"].ToString();
+                labQualityControl.SingleSpecification = (reader["SingleSpecification"] == null) ? "" : reader["SingleSpecification"].ToString();
+                labQualityControl.PackingSpecification = (reader["PackingSpecification"] == null) ? "" : reader["PackingSpecification"].ToString();
+                labQualityControl.Status = (reader["Status"] == null) ? "" : reader["Status"].ToString();
+                labQualityControl.StorageCondition = (reader["StorageCondition"] == null) ? "" : reader["StorageCondition"].ToString();
+                labQualityControl.UsefulLife = (reader["UsefulLife"] == null) ? "" : reader["UsefulLife"].ToString();
+                labQualityControl.PreservationStability = (reader["PreservationStability"] == null) ? "" : reader["PreservationStability"].ToString();
+                labQualityControl.ProductMatrix = (reader["ProductMatrix"] == null) ? "" : reader["ProductMatrix"].ToString();
+                labQualityControl.ContainedItems = (reader["ContainedItems"] == null) ? "" : reader["ContainedItems"].ToString();
                 labQualityControl.CreateTime = Convert.ToDateTime(reader["CreateTime"]);
                 labQualityControl.ModifyTime = Convert.ToDateTime(reader["ModifyTime"]);
-                labQualityControl.Annotation = reader["Annotation"].ToString();
-                labQualityControl.State = Convert.ToInt16(reader["State"]);
+                labQualityControl.Enable = (reader["Enable"] == null) ? 0 : Convert.ToInt16(reader["Enable"]);
             }
 
-            labQualityControl.Specifications = new List<LaboratorySpecification>();
+            //labQualityControl.Specifications = new List<LaboratorySpecification>();
 
-            string specSql = "SELECT * LaboratorySpecification WHERE LaboratoryQualityControlId = '{0}'";
-            specSql = string.Format(specSql, labQualityControl.LaboratoryQualityControlId);
+            //string specSql = "SELECT * LaboratorySpecification WHERE LaboratoryQualityControlId = '{0}'";
+            //specSql = string.Format(specSql, labQualityControl.LaboratoryQualityControlId);
 
-            reader = SQLHelper.GetReader(specSql);
+            //reader = SQLHelper.GetReader(specSql);
 
-            while (reader.Read())
-            {
-                labQualityControl.Specifications.Add(new LaboratorySpecification()
-                {
-                    SpecificationId = reader["SpecificationId"].ToString(),
-                    LaboratoryQualityControlId = reader["LaboratoryQualityControlId"].ToString(),
-                    ProductCode = reader["ProductCode"].ToString(),
-                    Concentration = reader["Concentration"].ToString(),
-                    Specification = reader["Specification"].ToString(),
-                    CertificateNo = reader["CertificateNo"].ToString(),
-                });
-            }
+            //while (reader.Read())
+            //{
+            //    labQualityControl.Specifications.Add(new LaboratorySpecification()
+            //    {
+            //        SpecificationId = reader["SpecificationId"].ToString(),
+            //        LaboratoryQualityControlId = reader["LaboratoryQualityControlId"].ToString(),
+            //        ProductCode = reader["ProductCode"].ToString(),
+            //        Concentration = reader["Concentration"].ToString(),
+            //        Specification = reader["Specification"].ToString(),
+            //        CertificateNo = reader["CertificateNo"].ToString(),
+            //    });
+            //}
 
             return labQualityControl;
         }
@@ -244,7 +259,7 @@ namespace DAL
         /// <returns></returns>
         public LaboratoryQuailtyControl GetLaboratoryQuailtyControlDetail(string id)
         {
-            LaboratoryQuailtyControl qualityControl = null;
+            LaboratoryQuailtyControl labQualityControl = null;
 
             string sql = "SELECT * FROM LaboratoryQuailtyControl WHERE LaboratoryQuailtyControlId = '{0}'";
             sql = string.Format(sql, id);
@@ -253,47 +268,52 @@ namespace DAL
 
             if (reader.Read())
             {
-                qualityControl = new LaboratoryQuailtyControl();
+                labQualityControl = new LaboratoryQuailtyControl();
 
-                qualityControl.LaboratoryQualityControlId = (reader["LaboratoryQuailtyControlId"] == null) ? "" : reader["LaboratoryQuailtyControlId"].ToString();
-                qualityControl.ProductName = (reader["ProductName"] == null) ? "" : reader["ProductName"].ToString();
-                qualityControl.Description = (reader["Description"] == null) ? "" : reader["Description"].ToString();
-                qualityControl.Img = (reader["Img"] == null) ? "" : reader["Img"].ToString();
-                qualityControl.CategoryId = (reader["CategoryId"] == null) ? "" : reader["CategoryId"].ToString();
-                qualityControl.CategoryName = (reader["CategoryName"] == null) ? "" : reader["CategoryName"].ToString();
-                qualityControl.Analyte = (reader["Analyte"] == null) ? "" : reader["Analyte"].ToString();
-                qualityControl.Stability = (reader["Stability"] == null) ? "" : reader["Stability"].ToString();
-                qualityControl.Feature = (reader["Feature"] == null) ? "" : reader["Feature"].ToString();
-                qualityControl.Annotation = (reader["Annotation"] == null) ? "" : reader["Annotation"].ToString();
-                qualityControl.CreateTime = Convert.ToDateTime(reader["CreateTime"]);
-                qualityControl.ModifyTime = Convert.ToDateTime(reader["ModifyTime"]);
-                qualityControl.State = (reader["State"] == null) ? 0 : Convert.ToInt16(reader["State"]);
+                labQualityControl.LaboratoryQualityControlId = reader["LaboratoryQuailtyControlId"].ToString();
+                labQualityControl.ProductName = reader["ProductName"].ToString();
+                labQualityControl.Description = reader["Description"].ToString();
+                labQualityControl.Img = reader["Img"].ToString();
+                labQualityControl.CategoryId = (reader["CategoryId"] == null) ? "" : reader["CategoryId"].ToString();
+                labQualityControl.CategoryName = (reader["CategoryName"] == null) ? "" : reader["CategoryName"].ToString();
+                labQualityControl.Concentration = (reader["Concentration"] == null) ? "" : reader["Concentration"].ToString();
+                labQualityControl.SingleSpecification = (reader["SingleSpecification"] == null) ? "" : reader["SingleSpecification"].ToString();
+                labQualityControl.PackingSpecification = (reader["PackingSpecification"] == null) ? "" : reader["PackingSpecification"].ToString();
+                labQualityControl.Status = (reader["Status"] == null) ? "" : reader["Status"].ToString();
+                labQualityControl.StorageCondition = (reader["StorageCondition"] == null) ? "" : reader["StorageCondition"].ToString();
+                labQualityControl.UsefulLife = (reader["UsefulLife"] == null) ? "" : reader["UsefulLife"].ToString();
+                labQualityControl.PreservationStability = (reader["PreservationStability"] == null) ? "" : reader["PreservationStability"].ToString();
+                labQualityControl.ProductMatrix = (reader["ProductMatrix"] == null) ? "" : reader["ProductMatrix"].ToString();
+                labQualityControl.ContainedItems = (reader["ContainedItems"] == null) ? "" : reader["ContainedItems"].ToString();
+                labQualityControl.CreateTime = Convert.ToDateTime(reader["CreateTime"]);
+                labQualityControl.ModifyTime = Convert.ToDateTime(reader["ModifyTime"]);
+                labQualityControl.Enable = (reader["Enable"] == null) ? 0 : Convert.ToInt16(reader["Enable"]);
             }
 
-            if (qualityControl.LaboratoryQualityControlId != null && qualityControl.LaboratoryQualityControlId != "")
-            {
-                qualityControl.Specifications = new List<LaboratorySpecification>();
+            //if (labQualityControl.LaboratoryQualityControlId != null && labQualityControl.LaboratoryQualityControlId != "")
+            //{
+            //    labQualityControl.Specifications = new List<LaboratorySpecification>();
 
-                string sqlSpec = "SELECT * FROM LaboratorySpecification WHERE LaboratoryQualityControlId = '{0}' ORDER BY ProductCode";
-                sqlSpec = string.Format(sqlSpec, qualityControl.LaboratoryQualityControlId);
+            //    string sqlSpec = "SELECT * FROM LaboratorySpecification WHERE LaboratoryQualityControlId = '{0}' ORDER BY ProductCode";
+            //    sqlSpec = string.Format(sqlSpec, labQualityControl.LaboratoryQualityControlId);
 
-                SqlDataReader  specReader = SQLHelper.GetReader(sqlSpec);
+            //    SqlDataReader  specReader = SQLHelper.GetReader(sqlSpec);
 
-                while (specReader.Read())
-                {
-                    qualityControl.Specifications.Add(new LaboratorySpecification()
-                    {
-                        SpecificationId = (specReader["SpecificationId"] == null) ? "" : specReader["SpecificationId"].ToString(),
-                        LaboratoryQualityControlId = (specReader["LaboratoryQualityControlId"] == null) ? "" : specReader["LaboratoryQualityControlId"].ToString(),
-                        ProductCode = (specReader["ProductCode"] == null) ? "" : specReader["ProductCode"].ToString(),
-                        Concentration = (specReader["Concentration"] == null) ? "" : specReader["Concentration"].ToString(),
-                        Specification = (specReader["Specification"] == null) ? "" : specReader["Specification"].ToString(),
-                        CertificateNo = (specReader["CertificateNo"] == null) ? "" : specReader["CertificateNo"].ToString()
-                    });
-                }
-            }
+            //    while (specReader.Read())
+            //    {
+            //        labQualityControl.Specifications.Add(new LaboratorySpecification()
+            //        {
+            //            SpecificationId = (specReader["SpecificationId"] == null) ? "" : specReader["SpecificationId"].ToString(),
+            //            LaboratoryQualityControlId = (specReader["LaboratoryQualityControlId"] == null) ? "" : specReader["LaboratoryQualityControlId"].ToString(),
+            //            ProductCode = (specReader["ProductCode"] == null) ? "" : specReader["ProductCode"].ToString(),
+            //            Concentration = (specReader["Concentration"] == null) ? "" : specReader["Concentration"].ToString(),
+            //            Specification = (specReader["Specification"] == null) ? "" : specReader["Specification"].ToString(),
+            //            CertificateNo = (specReader["CertificateNo"] == null) ? "" : specReader["CertificateNo"].ToString()
+            //        });
+            //    }
+            //}
 
-            return qualityControl;
+            return labQualityControl;
         }
 
         /// <summary>
@@ -303,7 +323,7 @@ namespace DAL
         /// <returns></returns>
         public List<LaboratoryQuailtyControl> GetLaboratoryQuailtyControls(string qualityControlName)
         {
-            List<LaboratoryQuailtyControl> qualityControls = new List<LaboratoryQuailtyControl>();
+            List<LaboratoryQuailtyControl> labQualityControl = new List<LaboratoryQuailtyControl>();
 
             string sql = "SELECT * FROM LaboratoryQuailtyControl WHERE ProductName LIKE '%{0}%' ORDER BY CreateTime ASC";
             sql = string.Format(sql, qualityControlName);
@@ -313,18 +333,18 @@ namespace DAL
 
             while (reader.Read())
             {
-                qualityControls.Add(new LaboratoryQuailtyControl()
+                labQualityControl.Add(new LaboratoryQuailtyControl()
                 {
                     LaboratoryQualityControlId = reader["LaboratoryQuailtyControlId"].ToString(),
                     ProductName = reader["ProductName"].ToString(),
                     Img = reader["Img"].ToString(),
                     CreateTime = Convert.ToDateTime(reader["CreateTime"]),
                     ModifyTime = Convert.ToDateTime(reader["ModifyTime"]),
-                    State = Convert.ToInt16(reader["State"])
+                    Enable = Convert.ToInt16(reader["Enable"])
                 });
             }
 
-            return qualityControls;
+            return labQualityControl;
         }
 
         /// <summary>
@@ -336,7 +356,7 @@ namespace DAL
         {
             List<LaboratoryQuailtyControl> qualityControls = new List<LaboratoryQuailtyControl>();
 
-            string sql = "SELECT * FROM LaboratoryQuailtyControl WHERE CategoryName = '{0}' AND State = 1 ORDER BY CreateTime ASC";
+            string sql = "SELECT * FROM LaboratoryQuailtyControl WHERE CategoryName = '{0}' AND Enable = 1 ORDER BY CreateTime ASC";
             sql = string.Format(sql, categoryName);
 
             SqlDataReader reader = SQLHelper.GetReader(sql);
@@ -351,7 +371,7 @@ namespace DAL
                     Img = reader["Img"].ToString(),
                     CreateTime = Convert.ToDateTime(reader["CreateTime"]),
                     ModifyTime = Convert.ToDateTime(reader["ModifyTime"]),
-                    State = Convert.ToInt16(reader["State"])
+                    Enable = Convert.ToInt16(reader["Enable"])
                 });
             }
 
@@ -368,7 +388,7 @@ namespace DAL
             string sql = "SELECT * FROM LaboratoryQuailtyControl";
             
             if(state){
-                sql += " WHERE State = 1";
+                sql += " WHERE Enable = 1";
             }
 
             sql += " ORDER BY CreateTime ASC";
@@ -386,7 +406,7 @@ namespace DAL
                     Img = reader["Img"].ToString(),
                     CreateTime = Convert.ToDateTime(reader["CreateTime"]),
                     ModifyTime = Convert.ToDateTime(reader["ModifyTime"]),
-                    State = Convert.ToInt16(reader["State"])
+                    Enable = Convert.ToInt16(reader["Enable"])
                 });
             }
 

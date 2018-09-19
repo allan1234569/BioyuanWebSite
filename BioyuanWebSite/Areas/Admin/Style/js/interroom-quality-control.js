@@ -66,6 +66,8 @@ $(function () {
                 validators: {
                     notEmpty: {
                         message: '产品状态不能为空'
+
+
                     }
                 }
             },
@@ -94,6 +96,13 @@ $(function () {
                 validators: {
                     notEmpty: {
                         message: '产品基质不能为空'
+                    }
+                }
+            },
+            ContainedItems: {
+                validators: {
+                    notEmpty: {
+                        message: '检测项目不能为空'
                     }
                 }
             }
@@ -177,6 +186,13 @@ $(function () {
                         message: '产品基质不能为空'
                     }
                 }
+            },
+            ContainedItems: {
+                validators: {
+                    notEmpty: {
+                        message: '检测项目不能为空'
+                    }
+                }
             }
         }
     })
@@ -249,87 +265,44 @@ $(function () {
     function clearAddInterroomQualityControlFormData() {
         $("#addInterroom_ProductName").val("");
         $("#addInterroom_Description").val("");
-        //$("#add_lab_Img").val(jsonObj.Img);
         $("#addInterroom_Preview").attr('src', '');
         //$("#addInterroom_CategoryName").find("option[value='" + "--请选择专业--" + "']").attr("selected", true);
+        $("#addInterroom_CategoryName").val("");
         $("#addInterroom_Constitute").val("");
         $("#addInterroom_SingleSpecification").val("");
-        add_tagInterroomAnalyte.setValue("");
-        add_interroomGroupListInterroomFeature.setValue("");
-        add_interroomGroupListInterroomSpecification.setValue("");
-        add_interroomGroupListInterroomStorageCondition.setValue("");
+        $("#addInterroom_Status").val("");
+        $("#addInterroom_StorageCondition").val("");
         $("#addInterroom_UsefulLife").val("");
-        $("#addInterroom_Annotation").val("");
+        $("#addInterroom_PreservationStability").val("");
+        $("#addInterroom_ProductMatrix").val("");
+        $("#addInterroom_ContainedItems").val("");
+        $("#addInterroom_RegistrationDocument").val("");
+        $("#addInterroom_CertificateNo").val("");
+        $("#addInterroom_Manufacturer").val("");
     }
 
     //清除修改室间质评品的表单数据
     function clearModifyInterroomQualityControlFormData() {
-        $("#modifyInterroom_InterroomQualityControlId").val("");
         $("#modifyInterroom_ProductName").val("");
         $("#modifyInterroom_Description").val("");
-        //$("#modify_lab_Img").val(jsonObj.Img);
         $("#modifyInterroom_Preview").attr('src', '');
         //$("#modifyInterroom_CategoryName").find("option[value='" + "--请选择专业--" + "']").attr("selected", true);
+        $("#modifyInterroom_CategoryName").val("");
         $("#modifyInterroom_Constitute").val("");
         $("#modifyInterroom_SingleSpecification").val("");
-        modify_tagInterroomAnalyte.setValue("");
-        modify_interroomGroupListInterroomFeature.setValue("");
-        modify_interroomGroupListInterroomSpecification.setValue("");
-        modify_interroomGroupListInterroomStorageCondition.setValue("");
+        $("#modifyInterroom_Status").val("");
+        $("#modifyInterroom_StorageCondition").val("");
         $("#modifyInterroom_UsefulLife").val("");
-        $("#modifyInterroom_Annotation").val("");
+        $("#modifyInterroom_PreservationStability").val("");
+        $("#modifyInterroom_ProductMatrix").val("");
+        $("#modifyInterroom_ContainedItems").val("");
+        $("#modifyInterroom_RegistrationDocument").val("");
+        $("#modifyInterroom_CertificateNo").val("");
+        $("#modifyInterroom_Manufacturer").val("");
     }
 
 
-    //获取待修改室内质控品数据
-    $('.modify_interroomControl').on('click', function () {
 
-        var id = $(this).parent().next().text().trim();
-
-        $.ajax({
-            type: "post",
-            url: "/Admin/Home/ProductsManage/GetInterroomQualityControlDetail",
-            data: { "id": id },
-            async: false,
-            dataType: "text",
-            success: function (data) {
-
-                if (data != "null") {
-                    var jsonObj = JSON.parse(data);
-                    //{"Analyte":"","Annotation":"","CertificateNo":"","Constitute":"","CreateTime":"\/Date(1514274389000+0800)\/","Description":"","Feature":"","Img":"","InterroomQualityControlId":"fbe1da68-b903-45bd-b998-431520b6d9bc","ModifyTime":"\/Date(1514274389000+0800)\/","ProductName":"室间质评品名称1","SingleSpecification":"","Specification":"","State":0,"StorageCondition":"","UsefulLife":""}
-
-                    $("#modifyInterroom_InterroomQualityControlId").val(jsonObj.InterroomQualityControlId);
-                    $("#modifyInterroom_ProductName").val(jsonObj.ProductName);
-                    $("#modifyInterroom_Description").val(jsonObj.Description);
-
-                    //$("#modify_lab_Img").val(jsonObj.Img);
-
-                    $("#modifyInterroom_Preview").attr('src', '/Admin/Home/ProductsManage/ShowImage?id=' + jsonObj.Img);
-
-                    $("#modifyInterroom_CategoryName").find("option[value='" + jsonObj.CategoryName + "']").attr("selected", true);
-
-                    $("#modifyInterroom_Constitute").val(jsonObj.Constitute);
-                    $("#modifyInterroom_SingleSpecification").val(jsonObj.SingleSpecification);
-
-                    modify_tagInterroomAnalyte.setValue(jsonObj.Analyte);
-                    modify_interroomGroupListInterroomFeature.setValue(jsonObj.Feature);
-                    modify_interroomGroupListInterroomSpecification.setValue(jsonObj.Specification);
-                    modify_interroomGroupListInterroomStorageCondition.setValue(jsonObj.StorageCondition);
-
-                    $("#modifyInterroom_UsefulLife").val(jsonObj.UsefulLife);
-                    
-                    $("#modifyInterroom_Annotation").val(jsonObj.Annotation);
-                    
-                    $("#modifyInterroomQualityControlModal").modal('show');
-
-                } else {
-                    alert("数据加载失败");
-                }
-
-            }
-        })
-
-    })
 
     //删除室间质评品弹框并设置ID
     $('.delete_interroomControl').on('click', function () {
@@ -573,7 +546,7 @@ $(function () {
                                         "class": "td-status"
                                     })
                                     var span = $("<span/>", {
-                                        "text": jsonObj[i].State == 1 ? "启用" : "禁用"
+                                        "text": jsonObj[i].Enable == 1 ? "启用" : "禁用"
                                     })
 
                                     td.append(span);
@@ -637,29 +610,25 @@ $(function () {
 
                                                     if (data != "null") {
                                                         var jsonObj = JSON.parse(data);
-                                                        //{"Analyte":"","Annotation":"","CertificateNo":"","Constitute":"","CreateTime":"\/Date(1514274389000+0800)\/","Description":"","Feature":"","Img":"","InterroomQualityControlId":"fbe1da68-b903-45bd-b998-431520b6d9bc","ModifyTime":"\/Date(1514274389000+0800)\/","ProductName":"室间质评品名称1","SingleSpecification":"","Specification":"","State":0,"StorageCondition":"","UsefulLife":""}
-
+                                                        //{"CategoryId":"7b400c46-03cc-42a4-9fff-43d8e795bddf","CategoryName":"传染病系列","CertificateNo":"","Concentration":"","ContainedItems":"乙型肝炎病毒表面抗原（HBsAg）、乙型肝炎病毒表面抗体（HBsAb）、乙型肝炎病毒e抗原（HBeAg）、乙型肝炎病毒e抗体（HBeAb）、乙型肝炎病毒核心抗体（HBcAb）","CreateTime":"\/Date(1537253638000+0800)\/","Description":"","Enable":0,"Img":"","InterroomQualityControlId":"39de11a9-6aec-4b33-8d98-a905e74d5762","Manufacturer":"","ModifyTime":"\/Date(1537253638000+0800)\/","PackingSpecification":"","PreservationStability":"14天","ProductMatrix":"含人血清的缓冲液","ProductName":"乙肝五项室间质评品","RegistrationDocument":"","SingleSpecification":"1.0ml\/支","Status":"液态","StorageCondition":"-20℃","UsefulLife":"24个月"}
+                                                        
                                                         $("#modifyInterroom_InterroomQualityControlId").val(jsonObj.InterroomQualityControlId);
+                                                        
                                                         $("#modifyInterroom_ProductName").val(jsonObj.ProductName);
                                                         $("#modifyInterroom_Description").val(jsonObj.Description);
-
-                                                        //$("#modify_lab_Img").val(jsonObj.Img);
-
                                                         $("#modifyInterroom_Preview").attr('src', '/Admin/Home/ProductsManage/ShowImage?id=' + jsonObj.Img);
-
                                                         $("#modifyInterroom_CategoryName").find("option[value='" + jsonObj.CategoryName + "']").attr("selected", true);
-
-                                                        $("#modifyInterroom_Constitute").val(jsonObj.Constitute);
+                                                        $("#modifyInterroom_Concentration").val(jsonObj.Concentration);
                                                         $("#modifyInterroom_SingleSpecification").val(jsonObj.SingleSpecification);
-
-                                                        modify_tagInterroomAnalyte.setValue(jsonObj.Analyte);
-                                                        modify_interroomGroupListInterroomFeature.setValue(jsonObj.Feature);
-                                                        modify_interroomGroupListInterroomSpecification.setValue(jsonObj.Specification);
-                                                        modify_interroomGroupListInterroomStorageCondition.setValue(jsonObj.StorageCondition);
-
+                                                        $("#modifyInterroom_Status").val(jsonObj.Status);
+                                                        $("#modifyInterroom_StorageCondition").val(jsonObj.StorageCondition);
                                                         $("#modifyInterroom_UsefulLife").val(jsonObj.UsefulLife);
-
-                                                        $("#modifyInterroom_Annotation").val(jsonObj.Annotation);
+                                                        $("#modifyInterroom_PreservationStability").val(jsonObj.PreservationStability);
+                                                        $("#modifyInterroom_ProductMatrix").val(jsonObj.ProductMatrix);
+                                                        $("#modifyInterroom_ContainedItems").val(jsonObj.ContainedItems);
+                                                        $("#modifyInterroom_RegistrationDocument").val(jsonObj.RegistrationDocument);
+                                                        $("#modifyInterroom_CertificateNo").val(jsonObj.CertificateNo);
+                                                        $("#modifyInterroom_Manufacturer").val(jsonObj.Manufacturer);
 
                                                         $("#modifyInterroomQualityControlModal").modal('show');
 

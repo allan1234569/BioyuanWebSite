@@ -448,26 +448,12 @@ namespace MvcApplication1.Areas.Admin.Controllers
 
             lab.LaboratoryQualityControlId = new Common().getGUID();
             lab.Img = img_path;
-            lab.Specifications = new List<LaboratorySpecification>();
-
-            for (int i = 0; i < count; ++i)
-            {
-                lab.Specifications.Add(new LaboratorySpecification()
-                {
-                    SpecificationId = new Common().getGUID(),
-                    LaboratoryQualityControlId = lab.LaboratoryQualityControlId,
-                    ProductCode = ProductCodes[i],
-                    Concentration = Concentrations[i],
-                    Specification = Specifications[i],
-                    CertificateNo = CertificateNos[i]
-                });
-            }
 
             DateTime dt = DateTime.Now;
 
             lab.CreateTime = dt;
             lab.ModifyTime = dt;
-            lab.State = 0;
+            lab.Enable = 0;
 
             new LaboratoryQuailtyControlManager().InsertLaboratoryQuailtyControl(lab);
 
@@ -516,31 +502,7 @@ namespace MvcApplication1.Areas.Admin.Controllers
             HttpPostedFileBase File = files["Img"] != null ? files["Img"] : null;//根据name属性获取文件
             string img_path = UploadFile(File);
 
-            string formStr = Server.UrlDecode(Request["ProductCode"]);
-            string formStr1 = Server.UrlDecode(Request["ProductCode"]);
-
-            string[] SpecificationId = Server.UrlDecode(Request["SpecificationId"] != null ? Request["SpecificationId"] : "").Split(',');
-            string[] ProductCodes = Server.UrlDecode(Request["ProductCode"] != null ? Request["ProductCode"] : "").Split(',');
-            string[] Concentrations = Server.UrlDecode(Request["Concentration"] != null ? Request["Concentration"] : "").Split(',');
-            string[] Specifications = Server.UrlDecode(Request["Specification"] != null ? Request["Specification"] : "").Split(',');
-            string[] CertificateNos = Server.UrlDecode(Request["CertificateNo"] != null ? Request["CertificateNo"] : "").Split(',');
-            int count = ProductCodes.Length;
-
             lab.Img = img_path;
-            lab.Specifications = new List<LaboratorySpecification>();
-
-            for (int i = 0; i < count; ++i)
-            {
-                lab.Specifications.Add(new LaboratorySpecification()
-                {
-                    SpecificationId = new Common().getGUID(),
-                    LaboratoryQualityControlId = lab.LaboratoryQualityControlId,
-                    ProductCode = ProductCodes[i],
-                    Concentration = Concentrations[i],
-                    Specification = Specifications[i],
-                    CertificateNo = CertificateNos[i]
-                });
-            }
 
             DateTime dt = DateTime.Now;
 
@@ -725,97 +687,102 @@ namespace MvcApplication1.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult AddMaterial(Material material)
         {
+
+
+            //Dictionary<string, int> ProjectCountDic = new Dictionary<string, int>();
+
+            //if (Request.Form["MaterialProjectName"] != null)
+            //{
+            //    string ProjectList = (Request.Form["MaterialProjectName"] != null) ? Server.UrlDecode(Request.Form["MaterialProjectName"]) : "";
+            //    string[] list = ProjectList.Split(',');
+
+            //    foreach (string value in list)
+            //    {
+            //        ProjectCountDic.Add(value, Convert.ToInt32(Server.UrlDecode(Request.Form[value])));
+            //    }
+            //}
+
+            //string[] Units = (Request.Form["Unit"] != null) ? Server.UrlDecode(Request.Form["Unit"]).Split(',') : null;//单位
+            //string[] ProductCodes = (Request.Form["ProductCode"] != null) ? Server.UrlDecode(Request.Form["ProductCode"]).Split(',') : null;//货号
+            //string[] StandardUncertairtys = (Request.Form["StandardUncertairty"] != null) ? Server.UrlDecode(Request.Form["StandardUncertairty"]).Split(',') : null;//标准及不确定度
+            //string[] Specifications = (Request.Form["Specification"] != null) ? Server.UrlDecode(Request.Form["Specification"]).Split(',') : null;//规格
+            //string[] CertificateNos = (Request.Form["CertificateNo"] != null) ? Server.UrlDecode(Request.Form["CertificateNo"]).Split(',') : null;//编号
+
+
+
+            //material.materialProjects = new List<MaterialProject>();
+
+            //int count = 0;
+
+            //if (ProjectCountDic.Count > 0)
+            //{
+            //    for (int i = 0; i < ProjectCountDic.Count; ++i)
+            //    {
+            //        MaterialProject mp = new MaterialProject();
+            //        string materialProId = new Common().getGUID();
+            //        mp.materialProjectId = materialProId;
+            //        mp.materialId = materialId;
+            //        mp.materialProjectName = ProjectCountDic.Keys.ElementAt(i);
+            //        mp.unit = Units[i + 1];
+            //        mp.materialSpecifications = new List<MaterialSpecification>();
+
+            //        for (int j = 0; j < ProjectCountDic[ProjectCountDic.Keys.ElementAt(i)]; ++j)
+            //        {
+            //            MaterialSpecification ms = new MaterialSpecification();
+            //            string specificationId = new Common().getGUID();
+            //            ms.SpecificationId = specificationId;
+            //            ms.MaterialProjectId = materialProId;
+            //            ms.ProductCode = (ProductCodes != null) ? ProductCodes[count] : "";
+            //            ms.StardardUncertairty = (StandardUncertairtys != null) ? StandardUncertairtys[count] : "";
+            //            ms.Specification = (Specifications != null) ? Specifications[count] : "";
+            //            ms.CertificateNo = (CertificateNos != null) ? CertificateNos[count] : "";
+            //            count++;
+            //            mp.materialSpecifications.Add(ms);
+            //        }
+            //        material.materialProjects.Add(mp);
+            //    }
+            //}
+            //else
+            //{
+            //    MaterialProject mp = new MaterialProject();
+            //    string materialProId = new Common().getGUID();
+            //    mp.materialProjectId = materialProId;
+            //    mp.materialId = materialId;
+            //    mp.unit = Units[0];
+            //    mp.materialSpecifications = new List<MaterialSpecification>();
+
+            //    if (ProductCodes != null)
+            //    {
+            //        for (int j = 0; j < ProductCodes.Length; ++j)
+            //        {
+            //            MaterialSpecification ms = new MaterialSpecification();
+            //            string specificationId = new Common().getGUID();
+            //            ms.SpecificationId = specificationId;
+            //            ms.MaterialProjectId = materialProId;
+            //            ms.ProductCode = (ProductCodes != null) ? ProductCodes[j] : "";
+            //            ms.StardardUncertairty = (StandardUncertairtys != null) ? StandardUncertairtys[j] : "";
+            //            ms.Specification = (Specifications != null) ? Specifications[j] : "";
+            //            ms.CertificateNo = (CertificateNos != null) ? CertificateNos[j] : "";
+            //            count++;
+            //            mp.materialSpecifications.Add(ms);
+            //        }
+            //    }
+
+            //    material.materialProjects.Add(mp);
+            //}
+
             HttpFileCollectionBase files = Request.Files;
             HttpPostedFileBase File = files["Img"] != null ? files["Img"] : null;//根据name属性获取文件
             string img_path = UploadFile(File);
-
-            Dictionary<string, int> ProjectCountDic = new Dictionary<string, int>();
-
-            if (Request.Form["MaterialProjectName"] != null)
-            {
-                string ProjectList = (Request.Form["MaterialProjectName"] != null) ? Server.UrlDecode(Request.Form["MaterialProjectName"]) : "";
-                string[] list = ProjectList.Split(',');
-
-                foreach (string value in list)
-                {
-                    ProjectCountDic.Add(value, Convert.ToInt32(Server.UrlDecode(Request.Form[value])));
-                }
-            }
-
-            string[] Units = (Request.Form["Unit"] != null) ? Server.UrlDecode(Request.Form["Unit"]).Split(',') : null;//单位
-            string[] ProductCodes = (Request.Form["ProductCode"] != null) ? Server.UrlDecode(Request.Form["ProductCode"]).Split(',') : null;//货号
-            string[] StandardUncertairtys = (Request.Form["StandardUncertairty"] != null) ? Server.UrlDecode(Request.Form["StandardUncertairty"]).Split(',') : null;//标准及不确定度
-            string[] Specifications = (Request.Form["Specification"] != null) ? Server.UrlDecode(Request.Form["Specification"]).Split(',') : null;//规格
-            string[] CertificateNos = (Request.Form["CertificateNo"] != null) ? Server.UrlDecode(Request.Form["CertificateNo"]).Split(',') : null;//编号
+            material.Img = img_path;//图片路径
 
             string materialId = new Common().getGUID();
             material.MaterialId = materialId;
-            material.Img = img_path;//图片路径
-            material.materialProjects = new List<MaterialProject>();
-
-            int count = 0;
-
-            if (ProjectCountDic.Count > 0)
-            {
-                for (int i = 0; i < ProjectCountDic.Count; ++i)
-                {
-                    MaterialProject mp = new MaterialProject();
-                    string materialProId = new Common().getGUID();
-                    mp.materialProjectId = materialProId;
-                    mp.materialId = materialId;
-                    mp.materialProjectName = ProjectCountDic.Keys.ElementAt(i);
-                    mp.unit = Units[i + 1];
-                    mp.materialSpecifications = new List<MaterialSpecification>();
-
-                    for (int j = 0; j < ProjectCountDic[ProjectCountDic.Keys.ElementAt(i)]; ++j)
-                    {
-                        MaterialSpecification ms = new MaterialSpecification();
-                        string specificationId = new Common().getGUID();
-                        ms.SpecificationId = specificationId;
-                        ms.MaterialProjectId = materialProId;
-                        ms.ProductCode = (ProductCodes != null) ? ProductCodes[count] : "";
-                        ms.StardardUncertairty = (StandardUncertairtys != null) ? StandardUncertairtys[count] : "";
-                        ms.Specification = (Specifications != null) ? Specifications[count] : "";
-                        ms.CertificateNo = (CertificateNos != null) ? CertificateNos[count] : "";
-                        count++;
-                        mp.materialSpecifications.Add(ms);
-                    }
-                    material.materialProjects.Add(mp);
-                }
-            }
-            else
-            {
-                MaterialProject mp = new MaterialProject();
-                string materialProId = new Common().getGUID();
-                mp.materialProjectId = materialProId;
-                mp.materialId = materialId;
-                mp.unit = Units[0];
-                mp.materialSpecifications = new List<MaterialSpecification>();
-
-                if (ProductCodes != null)
-                {
-                    for (int j = 0; j < ProductCodes.Length; ++j)
-                    {
-                        MaterialSpecification ms = new MaterialSpecification();
-                        string specificationId = new Common().getGUID();
-                        ms.SpecificationId = specificationId;
-                        ms.MaterialProjectId = materialProId;
-                        ms.ProductCode = (ProductCodes != null) ? ProductCodes[j] : "";
-                        ms.StardardUncertairty = (StandardUncertairtys != null) ? StandardUncertairtys[j] : "";
-                        ms.Specification = (Specifications != null) ? Specifications[j] : "";
-                        ms.CertificateNo = (CertificateNos != null) ? CertificateNos[j] : "";
-                        count++;
-                        mp.materialSpecifications.Add(ms);
-                    }
-                }
-
-                material.materialProjects.Add(mp);
-            }
 
             DateTime dt = DateTime.Now;
             material.CreateTime = dt;
             material.ModifyTime = dt;
-            material.State = 0;
+            material.Enable = 0;
 
             int ret = new MaterialManager().InsertMaterial(material);
 
@@ -865,93 +832,95 @@ namespace MvcApplication1.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult ModifyMaterial(Material material)
         {
+
+
+            //Dictionary<string, int> ProjectCountDic = new Dictionary<string, int>();
+
+            //if (Request.Form["MaterialProjectName"] != null)
+            //{
+            //    string ProjectList = (Request.Form["MaterialProjectName"] != null) ? Server.UrlDecode(Request.Form["MaterialProjectName"]) : "";
+            //    string[] list = ProjectList.Split(',');
+
+            //    foreach (string value in list)
+            //    {
+            //        ProjectCountDic.Add(value, Convert.ToInt32(Server.UrlDecode(Request.Form[value])));
+            //    }
+            //}
+
+            //string[] Units = (Request.Form["Unit"] != null) ? Server.UrlDecode(Request.Form["Unit"]).Split(',') : null;//单位
+            //string[] ProductCodes = (Request.Form["ProductCode"] != null) ? Server.UrlDecode(Request.Form["ProductCode"]).Split(',') : null;//货号
+            //string[] StandardUncertairtys = (Request.Form["StandardUncertairty"] != null) ? Server.UrlDecode(Request.Form["StandardUncertairty"]).Split(',') : null;//标准及不确定度
+            //string[] Specifications = (Request.Form["Specification"] != null) ? Server.UrlDecode(Request.Form["Specification"]).Split(',') : null;//规格
+            //string[] CertificateNos = (Request.Form["CertificateNo"] != null) ? Server.UrlDecode(Request.Form["CertificateNo"]).Split(',') : null;//编号
+
+
+
+            //material.materialProjects = new List<MaterialProject>();
+
+            //int count = 0;
+
+            //if (ProjectCountDic.Count > 0)
+            //{
+            //    for (int i = 0; i < ProjectCountDic.Count; ++i)
+            //    {
+            //        MaterialProject mp = new MaterialProject();
+            //        string materialProId = new Common().getGUID();
+            //        mp.materialProjectId = materialProId;
+            //        mp.materialId = material.MaterialId;
+            //        mp.materialProjectName = ProjectCountDic.Keys.ElementAt(i);
+            //        mp.unit = Units[i + 1];
+            //        mp.materialSpecifications = new List<MaterialSpecification>();
+
+            //        for (int j = 0; j < ProjectCountDic[ProjectCountDic.Keys.ElementAt(i)]; ++j)
+            //        {
+            //            MaterialSpecification ms = new MaterialSpecification();
+            //            string specificationId = new Common().getGUID();
+            //            ms.SpecificationId = specificationId;
+            //            ms.MaterialProjectId = materialProId;
+            //            ms.ProductCode = (ProductCodes != null) ? ProductCodes[count] : "";
+            //            ms.StardardUncertairty = (StandardUncertairtys != null) ? StandardUncertairtys[count] : "";
+            //            ms.Specification = (Specifications != null) ? Specifications[count] : "";
+            //            ms.CertificateNo = (CertificateNos != null) ? CertificateNos[count] : "";
+            //            count++;
+            //            mp.materialSpecifications.Add(ms);
+            //        }
+            //        material.materialProjects.Add(mp);
+            //    }
+            //}
+            //else
+            //{
+            //    MaterialProject mp = new MaterialProject();
+            //    string materialProId = new Common().getGUID();
+            //    mp.materialProjectId = materialProId;
+            //    mp.materialId = material.MaterialId;
+            //    mp.unit = Units[0];
+            //    mp.materialSpecifications = new List<MaterialSpecification>();
+
+            //    if (ProductCodes != null)
+            //    {
+            //        for (int j = 0; j < ProductCodes.Length; ++j)
+            //        {
+            //            MaterialSpecification ms = new MaterialSpecification();
+            //            string specificationId = new Common().getGUID();
+            //            ms.SpecificationId = specificationId;
+            //            ms.MaterialProjectId = materialProId;
+            //            ms.ProductCode = (ProductCodes != null) ? ProductCodes[j] : "";
+            //            ms.StardardUncertairty = (StandardUncertairtys != null) ? StandardUncertairtys[j] : "";
+            //            ms.Specification = (Specifications != null) ? Specifications[j] : "";
+            //            ms.CertificateNo = (CertificateNos != null) ? CertificateNos[j] : "";
+            //            count++;
+            //            mp.materialSpecifications.Add(ms);
+            //        }
+            //    }
+
+            //    material.materialProjects.Add(mp);
+            //}
+
             HttpFileCollectionBase files = Request.Files;
             HttpPostedFileBase File = files["Img"] != null ? files["Img"] : null;//根据name属性获取文件
             string img_path = UploadFile(File);
 
-            Dictionary<string, int> ProjectCountDic = new Dictionary<string, int>();
-
-            if (Request.Form["MaterialProjectName"] != null)
-            {
-                string ProjectList = (Request.Form["MaterialProjectName"] != null) ? Server.UrlDecode(Request.Form["MaterialProjectName"]) : "";
-                string[] list = ProjectList.Split(',');
-
-                foreach (string value in list)
-                {
-                    ProjectCountDic.Add(value, Convert.ToInt32(Server.UrlDecode(Request.Form[value])));
-                }
-            }
-
-            string[] Units = (Request.Form["Unit"] != null) ? Server.UrlDecode(Request.Form["Unit"]).Split(',') : null;//单位
-            string[] ProductCodes = (Request.Form["ProductCode"] != null) ? Server.UrlDecode(Request.Form["ProductCode"]).Split(',') : null;//货号
-            string[] StandardUncertairtys = (Request.Form["StandardUncertairty"] != null) ? Server.UrlDecode(Request.Form["StandardUncertairty"]).Split(',') : null;//标准及不确定度
-            string[] Specifications = (Request.Form["Specification"] != null) ? Server.UrlDecode(Request.Form["Specification"]).Split(',') : null;//规格
-            string[] CertificateNos = (Request.Form["CertificateNo"] != null) ? Server.UrlDecode(Request.Form["CertificateNo"]).Split(',') : null;//编号
-
-
-
             material.Img = img_path;//图片路径
-
-            material.materialProjects = new List<MaterialProject>();
-
-            int count = 0;
-
-            if (ProjectCountDic.Count > 0)
-            {
-                for (int i = 0; i < ProjectCountDic.Count; ++i)
-                {
-                    MaterialProject mp = new MaterialProject();
-                    string materialProId = new Common().getGUID();
-                    mp.materialProjectId = materialProId;
-                    mp.materialId = material.MaterialId;
-                    mp.materialProjectName = ProjectCountDic.Keys.ElementAt(i);
-                    mp.unit = Units[i + 1];
-                    mp.materialSpecifications = new List<MaterialSpecification>();
-
-                    for (int j = 0; j < ProjectCountDic[ProjectCountDic.Keys.ElementAt(i)]; ++j)
-                    {
-                        MaterialSpecification ms = new MaterialSpecification();
-                        string specificationId = new Common().getGUID();
-                        ms.SpecificationId = specificationId;
-                        ms.MaterialProjectId = materialProId;
-                        ms.ProductCode = (ProductCodes != null) ? ProductCodes[count] : "";
-                        ms.StardardUncertairty = (StandardUncertairtys != null) ? StandardUncertairtys[count] : "";
-                        ms.Specification = (Specifications != null) ? Specifications[count] : "";
-                        ms.CertificateNo = (CertificateNos != null) ? CertificateNos[count] : "";
-                        count++;
-                        mp.materialSpecifications.Add(ms);
-                    }
-                    material.materialProjects.Add(mp);
-                }
-            }
-            else
-            {
-                MaterialProject mp = new MaterialProject();
-                string materialProId = new Common().getGUID();
-                mp.materialProjectId = materialProId;
-                mp.materialId = material.MaterialId;
-                mp.unit = Units[0];
-                mp.materialSpecifications = new List<MaterialSpecification>();
-
-                if (ProductCodes != null)
-                {
-                    for (int j = 0; j < ProductCodes.Length; ++j)
-                    {
-                        MaterialSpecification ms = new MaterialSpecification();
-                        string specificationId = new Common().getGUID();
-                        ms.SpecificationId = specificationId;
-                        ms.MaterialProjectId = materialProId;
-                        ms.ProductCode = (ProductCodes != null) ? ProductCodes[j] : "";
-                        ms.StardardUncertairty = (StandardUncertairtys != null) ? StandardUncertairtys[j] : "";
-                        ms.Specification = (Specifications != null) ? Specifications[j] : "";
-                        ms.CertificateNo = (CertificateNos != null) ? CertificateNos[j] : "";
-                        count++;
-                        mp.materialSpecifications.Add(ms);
-                    }
-                }
-
-                material.materialProjects.Add(mp);
-            }
 
             DateTime dt = DateTime.Now;
 

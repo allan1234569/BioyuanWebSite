@@ -23,23 +23,16 @@ namespace Models
         /// <summary>
         /// 产品名称
         /// </summary>
-        //[Required(ErrorMessage = "{0}产品名称不能为空")]
         public string ProductName { get; set; }
-        
-        /// <summary>
-        /// 项目列表
-        /// </summary>
-        public List<MaterialProject> materialProjects { get; set; }
 
         /// <summary>
-        /// 产品描述
+        /// 产品描述(用途)
         /// </summary>
         public string Description { get; set; }
 
         /// <summary>
         /// 图片路径
         /// </summary>
-        //[Required(ErrorMessage = "{0}产品名称不能为空")]
         public string Img { get; set; }
 
         /// <summary>
@@ -53,24 +46,50 @@ namespace Models
         public string CategoryName { get; set; }
 
         /// <summary>
-        /// 推荐浓度
+        /// 浓度水平
         /// </summary>
-        public string RecommendedConcentration { get; set; }
+        public string Concentration { get; set; }
 
         /// <summary>
-        /// 稳定性
+        /// 规格型号
         /// </summary>
-        public string Stability { get; set; }
+        public string SingleSpecification { get; set; }
+
 
         /// <summary>
-        /// 产品特征
+        /// 包装规格
         /// </summary>
-        public string Feature { get; set; }
+        public string PackingSpecification { get; set; }
 
         /// <summary>
-        /// 注释
+        /// 产品状态
         /// </summary>
-        public string Annotation { get; set; }
+        public string Status { get; set; }
+
+        /// <summary>
+        /// 储存条件
+        /// </summary>
+        public string StorageCondition { get; set; }
+
+        /// <summary>
+        /// 效期
+        /// </summary>
+        public string UsefulLife { get; set; }
+
+        /// <summary>
+        /// 保存稳定性
+        /// </summary>
+        public string PreservationStability { get; set; }
+
+        /// <summary>
+        /// 产品基质
+        /// </summary>
+        public string ProductMatrix { get; set; }
+
+        /// <summary>
+        ///包含项目
+        /// </summary>
+        public string ContainedItems { get; set; }
 
         /// <summary>
         /// 创建时间
@@ -85,7 +104,7 @@ namespace Models
         /// <summary>
         /// 启用状态
         /// </summary>
-        public int State { get; set; }
+        public int Enable { get; set; }
 
 
 

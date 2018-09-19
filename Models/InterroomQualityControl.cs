@@ -86,21 +86,6 @@ namespace Models
         public string ContainedItems { get; set; }
 
         /// <summary>
-        /// 注册文号
-        /// </summary>
-        public string RegistrationDocument { get; set; }
-
-        /// <summary>
-        /// 生产厂商
-        /// </summary>
-        public string Manufacturer { get; set; }
-
-        /// <summary>
-        /// 证书编号
-        /// </summary>
-        public string CertificateNo { get; set; }
-
-        /// <summary>
         /// 创建时间
         /// </summary>
         public DateTime CreateTime { get; set; }

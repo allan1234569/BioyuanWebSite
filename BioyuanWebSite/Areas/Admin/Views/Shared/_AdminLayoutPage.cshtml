@@ -107,7 +107,7 @@
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse">
                         <a href="/Admin/Home/ProductsManage/LaboratoryQuailtyControl" class="panel-body">
-                            室内质控品
+                            CFDA文号质控品
                         </a>
                         <a href="/Admin/Home/ProductsManage/NonConstantQuailtyControl" class="panel-body">
                             非定值质控品
@@ -193,75 +193,80 @@
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">质控品名称</label>
                             <div class="col-sm-10">
-                                <input id="add-ProductName" type="text" class="form-control" name="ProductName" placeholder="请输入质控品名称">
+                                <input id="addLab_ProductName" type="text" class="form-control" name="ProductName" placeholder="请输入质控品名称">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">描述</label>
                             <div class="col-sm-10">
-                                <textarea id="add_Description" class="form-control" name="Description" placeholder="请输入质控品的描述"></textarea>
+                                <textarea id="addLab_Description" class="form-control" name="Description" placeholder="请输入质控品的描述"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">上传图片</label>
                             <div class="col-sm-10">
-                                <img id="add_lab_preview" src="" width="120" height="80" />
-                                <input id="add_lab_img" name="Img" type="file" accept=".JPG,.JPEG,.PNG,.GIF" style="width:auto;cursor:pointer;">最佳图片尺寸120x80
+                                <img id="addLab_Preview" src="" width="120" height="80" /> 
+                                <input id="addLab_Img" name="Img" type="file" accept=".JPG,.JPEG,.PNG,.GIF" style="width:auto;cursor:pointer;">最佳图片尺寸120x80
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">专业分类</label>
                             <div class="col-sm-10">
-                                <select id="add_lab_CategoryName" class="form-control" name="CategoryName"></select>
+                                <select id="addLab_CategoryName" class="form-control" name="CategoryName"></select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">分析物</label>
+                            <label for="" class="col-sm-2 control-label">浓度水平</label>
                             <div class="col-sm-10">
-                                <input id="add_labAnalyte" name="Analyte" />
-                            </div>
-                        </div>
-                        <div class="form-group" style="height: 20px; line-height: 20px;">
-                            <label for="" class="col-sm-2 control-label" style="height: 20px; line-height: 20px;padding-top:0px;">规格</label>
-                            <a id="add_lab_item_no" class="col-sm-1 row_new" title="新增货号" style="text-decoration:none;">
-                                添加货号
-                            </a>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-2"></div>
-                            <div class="col-sm-10">
-                                <div class="tab-content">
-                                    <div id="default" class="tab-pane fade active in">
-                                        <table id="tabs_default" class="table table-bordered" style="margin-left:0px;">
-                                            <tr>
-                                                <td class="hidden">ID</td>
-                                                <td>货号</td>
-                                                <td>浓度</td>
-                                                <td>规格</td>
-                                                <td>证书编号</td>
-                                                <td>操作</td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
+                                <textarea id="addLab_Concentration" class="form-control" name="Concentration" placeholder="请输入浓度水平"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">稳定性</label>
+                            <label for="" class="col-sm-2 control-label">单支规格</label>
                             <div class="col-sm-10">
-                                <input id="add_labStabilityValue" name="Stability" placeholder="请输入质控品稳定性，输入回车添加" />
+                                <input id="addLab_SingleSpecifications" type="text" class="form-control" name="SingleSpecification" placeholder="请输入质控品单支规格">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">产品特征</label>
+                            <label for="" class="col-sm-2 control-label">包装规格</label>
                             <div class="col-sm-10">
-                                <input id="add_labFeatureValue" name="Feature" placeholder="请输入质控品稳定性，输入回车添加" />
+                                <input id="addLab_PackingSpecification" type="text" class="form-control" name="PackingSpecification" placeholder="请输入质控品单支规格">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">备注</label>
+                            <label for="" class="col-sm-2 control-label">产品状态</label>
                             <div class="col-sm-10">
-                                <textarea id="" class="form-control" name="Annotation" placeholder="请输入备注"></textarea>
+                                <input id="addLab_Status" type="text" class="form-control" name="Status" placeholder="请输入质控品状态">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">储存条件</label>
+                            <div class="col-sm-10">
+                                <input id="addLab_StorageCondition" type="text" class="form-control" name="StorageCondition" placeholder="请输入质控品状态">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">效期</label>
+                            <div class="col-sm-10">
+                                <input id="addLab_UsefulLife" type="text" class="form-control" name="UsefulLife" placeholder="请输入质控品状态">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">保存稳定性</label>
+                            <div class="col-sm-10">
+                                <textarea id="addLab_PreservationStability" class="form-control" name="PreservationStability" placeholder="请输入质控品保存稳定性"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">产品基质</label>
+                            <div class="col-sm-10">
+                                <input id="addLab_ProductMatrix" class="form-control" name="ProductMatrix" placeholder="请输入质控品的产品基质" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">检测项目</label>
+                            <div class="col-sm-10">
+                                <textarea id="addLab_ContainedItems" class="form-control" name="ContainedItems" placeholder="请输入质控品的产品基质"></textarea>
                             </div>
                         </div>
                     </div>
@@ -286,79 +291,85 @@
                     </div>
                     <div class="modal-body">
                         <div class="hidden">
-                            <input id="modify_LaboratoryQualityId" name="LaboratoryQualityControlId" />
+                            <input id="modifyLab_LaboratoryQualityId" name="LaboratoryQualityControlId" />
                         </div>
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">质控品名称</label>
                             <div class="col-sm-10">
-                                <input id="modify_ProductName" type="text" class="form-control" name="ProductName" placeholder="请输入质控品名称">
+                                <input id="modifyLab_ProductName" type="text" class="form-control" name="ProductName" placeholder="请输入质控品名称">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">描述</label>
                             <div class="col-sm-10">
-                                <textarea id="modify_Description" class="form-control" name="Description" placeholder="请输入质控品的描述"></textarea>
+                                <textarea id="modifyLab_Description" class="form-control" name="Description" placeholder="请输入质控品的描述"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">上传图片</label>
                             <div class="col-sm-10">
-                                <img id="modify_lab_preview" src="" width=" 120" height="80" />
-                                <input id="modify_lab_Img" name="Img" type="file" accept=".JPG,.JPEG,.PNG,.GIF" style="width:auto;cursor:pointer;">最佳图片尺寸120x80
+                                <img id="modifyLab_Preview" src="" width="120" height="80" />
+                                <input id="modifyLab_Img" name="Img" type="file" accept=".JPG,.JPEG,.PNG,.GIF" style="width:auto;cursor:pointer;">最佳图片尺寸120x80
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">专业分类</label>
                             <div class="col-sm-10">
-                                <select id="modify_lab_CategoryName" class="form-control" name="CategoryName"></select>
+                                <select id="modifyLab_CategoryName" class="form-control" name="CategoryName"></select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">分析物</label>
+                            <label for="" class="col-sm-2 control-label">浓度水平</label>
                             <div class="col-sm-10">
-                                <input id="modify_Analyte" name="Analyte" />
-                            </div>
-                        </div>
-                        <div class="form-group" style="height: 20px; line-height: 20px;">
-                            <label for="" class="col-sm-2 control-label" style="height: 20px; line-height: 20px;padding-top:0px;">规格</label>
-                            <a id="modify_lab_item_no" class="col-sm-1 row_new" title="新增货号" style="text-decoration:none;">
-                                添加货号
-                            </a>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-2"></div>
-                            <div class="col-sm-10">
-                                <div class="tab-content">
-                                    <div id="default" class="tab-pane fade active in">
-                                        <table id="modify_tabs_default" class="table table-bordered" style="margin-left:0px;">
-                                            <tr>
-                                                <td>货号</td>
-                                                <td>浓度</td>
-                                                <td>规格</td>
-                                                <td>证书编号</td>
-                                                <td>操作</td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
+                                <textarea id="modifyLab_Concentration" class="form-control" name="Concentration" placeholder="请输入浓度水平"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">稳定性</label>
+                            <label for="" class="col-sm-2 control-label">单支规格</label>
                             <div class="col-sm-10">
-                                <input id="modify_Stability" name="Stability" placeholder="请输入质控品稳定性，输入回车添加" />
+                                <input id="modifyLab_SingleSpecification" type="text" class="form-control" name="SingleSpecification" placeholder="请输入质控品名称">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">产品特征</label>
+                            <label for="" class="col-sm-2 control-label">包装规格</label>
                             <div class="col-sm-10">
-                                <input id="modify_Feature" name="Feature" placeholder="请输入质控品特征，输入回车添加" />
+                                <input id="modifyLab_PackingSpecification" type="text" class="form-control" name="PackingSpecification" placeholder="请输入质控品单支规格">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">备注</label>
+                            <label for="" class="col-sm-2 control-label">产品状态</label>
                             <div class="col-sm-10">
-                                <textarea id="modify_Annotation" class="form-control" name="Annotation" placeholder="请输入备注"></textarea>
+                                <input id="modifyLab_Status" type="text" class="form-control" name="Status" placeholder="请输入质控品状态">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">储存条件</label>
+                            <div class="col-sm-10">
+                                <input id="modifyLab_StorageCondition" type="text" class="form-control" name="StorageCondition" placeholder="请输入质控品状态">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">效期</label>
+                            <div class="col-sm-10">
+                                <input id="modifyLab_UsefulLife" type="text" class="form-control" name="UsefulLife" placeholder="请输入质控品状态">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">保存稳定性</label>
+                            <div class="col-sm-10">
+                                <textarea id="modifyLab_PreservationStability" class="form-control" name="PreservationStability" placeholder="请输入质控品保存稳定性"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">产品基质</label>
+                            <div class="col-sm-10">
+                                <input id="modifyLab_ProductMatrix" class="form-control" name="ProductMatrix" placeholder="请输入质控品的产品基质" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">检测项目</label>
+                            <div class="col-sm-10">
+                                <textarea id="modifyLab_ContainedItems" class="form-control" name="ContainedItems" placeholder="请输入质控品的产品基质"></textarea>
                             </div>
                         </div>
                     </div>
@@ -520,7 +531,7 @@
     <div class="modal fade" id="modifyInterroomQualityControlModal" tabindex="-1" role="dialog" aria-labelledby="modifyInterroomQualityControlModalLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog custom_modal_dialog">
             <div class="modal-content">
-                <form id="modify-interroom-form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/Admin/Home/ProductsManage/ModifyInterroomQualityControl">
+                <form id="modify_interroom_form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/Admin/Home/ProductsManage/ModifyInterroomQualityControl">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="addMaterialModalLabel">修改室间质评品</h4>
@@ -557,7 +568,7 @@
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">浓度/模式</label>
                             <div class="col-sm-10">
-                                <textarea id="modifyInterroom_Constitute" class="form-control" name="Constitute" placeholder="请输入浓度模式"></textarea>
+                                <textarea id="modifyInterroom_Concentration" class="form-control" name="Concentration" placeholder="请输入浓度模式"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -667,7 +678,7 @@
     <div class="modal fade" id="addMaterialModel" tabindex="-1" role="dialog" aria-labelledby="addMaterialModalLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog custom_modal_dialog">
             <div class="modal-content">
-                <form id="add-material-form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/Admin/Home/ProductsManage/AddMaterial">
+                <form id="add_material_form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/Admin/Home/ProductsManage/AddMaterial">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="addMaterialModalLabel">添加标准物质</h4>
@@ -676,18 +687,18 @@
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">标准物名称</label>
                             <div class="col-sm-10">
-                                <input id="addMaterial_ProductName" type="text" class="form-control" name="ProductName" placeholder="请输入标准物名称">
+                                <input id="addMaterial_ProductName" type="text" class="form-control" name="ProductName" placeholder="请输入质控品名称">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">描述</label>
                             <div class="col-sm-10">
-                                <textarea id="addMaterial_Description" class="form-control" name="Description" placeholder="请输入标准物的描述"></textarea>
+                                <textarea id="addMaterial_Description" class="form-control" name="Description" placeholder="请输入质控品的描述"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">上传图片</label>
-                            <div class="col-sm-9">
+                            <div class="col-sm-10">
                                 <img id="addMaterial_Preview" src="" width="120" height="80" />
                                 <input id="addMaterial_Img" name="Img" type="file" accept=".JPG,.JPEG,.PNG,.GIF" style="width:auto;cursor:pointer;">最佳图片尺寸120x80
                             </div>
@@ -699,42 +710,57 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">推荐浓度</label>
+                            <label for="" class="col-sm-2 control-label">浓度水平</label>
                             <div class="col-sm-10">
-                                <input id="addMaterial_Concentrantion" name="RemommendedConcentration" placeholder="格式：平台:浓度1,浓度2...浓度n" />
-                            </div>
-                        </div>
-                        <div class="form-group" style="height: 20px; line-height: 20px;">
-                            <label for="" class="col-sm-2 control-label" style="height: 20px; line-height: 20px;padding-top:0px;">规格</label>
-                            <a id="addMaterial_addItemNo" class="col-sm-1 row_new" title="新增货号" style="text-decoration:none;">
-                                添加货号
-                            </a>
-                            <a id="addMaterial_addProject" class="col-sm-1 row_new " title="新增项目" style="text-decoration:none;">
-                                添加项目
-                            </a>
-                            <input class="col-sm-2" placeholder="输入项目名并点击添加项目" style="margin:0;padding:0;margin-left:10px;" />
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-2"></div>
-                            <div id="addMaterial_MyTable" class="col-sm-10">
+                                <textarea id="addMaterial_Concentration" class="form-control" name="Concentration" placeholder="请输入浓度水平"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">稳定性</label>
+                            <label for="" class="col-sm-2 control-label">单支规格</label>
                             <div class="col-sm-10">
-                                <input id="addMaterial_Stability" name="Stability" placeholder="请输入标准物稳定性，输入回车添加" />
+                                <input id="addMaterial_SingleSpecifications" type="text" class="form-control" name="SingleSpecification" placeholder="请输入质控品单支规格">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">产品特征</label>
+                            <label for="" class="col-sm-2 control-label">包装规格</label>
                             <div class="col-sm-10">
-                                <input id="addMaterial_Feature" name="Feature" placeholder="请输入产品特征，输入回车添加" />
+                                <input id="addMaterial_PackingSpecification" type="text" class="form-control" name="PackingSpecification" placeholder="请输入质控品单支规格">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">备注</label>
+                            <label for="" class="col-sm-2 control-label">产品状态</label>
                             <div class="col-sm-10">
-                                <textarea id="addMaterial_Annotation" class="form-control" name="Annotation" placeholder="请输入备注"></textarea>
+                                <input id="addMaterial_Status" type="text" class="form-control" name="Status" placeholder="请输入质控品状态">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">储存条件</label>
+                            <div class="col-sm-10">
+                                <input id="addMaterial_StorageCondition" type="text" class="form-control" name="StorageCondition" placeholder="请输入质控品状态">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">效期</label>
+                            <div class="col-sm-10">
+                                <input id="addMaterial_UsefulLife" type="text" class="form-control" name="UsefulLife" placeholder="请输入质控品状态">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">保存稳定性</label>
+                            <div class="col-sm-10">
+                                <textarea id="addMaterial_PreservationStability" class="form-control" name="PreservationStability" placeholder="请输入质控品保存稳定性"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">产品基质</label>
+                            <div class="col-sm-10">
+                                <input id="addMaterial_ProductMatrix" class="form-control" name="ProductMatrix" placeholder="请输入质控品的产品基质" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">检测项目</label>
+                            <div class="col-sm-10">
+                                <textarea id="addMaterial_ContainedItems" class="form-control" name="ContainedItems" placeholder="请输入质控品的产品基质"></textarea>
                             </div>
                         </div>
                     </div>
@@ -751,7 +777,7 @@
     <div class="modal fade" id="modifyMateriallModal" tabindex="-1" role="dialog" aria-labelledby="modifyMateriallModalLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog custom_modal_dialog">
             <div class="modal-content">
-                <form id="modify-material-form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/Admin/Home/ProductsManage/ModifyMaterial">
+                <form id="modify_material_form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/Admin/Home/ProductsManage/ModifyMaterial">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="addMaterialModalLabel">修改标准物质</h4>
@@ -763,18 +789,18 @@
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">标准物名称</label>
                             <div class="col-sm-10">
-                                <input id="modifyMaterial_ProductName" type="text" class="form-control" name="ProductName" placeholder="请输入标准物名称">
+                                <input id="modifyMaterial_ProductName" type="text" class="form-control" name="ProductName" placeholder="请输入质控品名称">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">描述</label>
                             <div class="col-sm-10">
-                                <textarea id="modifyMaterial_Description" class="form-control" name="Description" placeholder="请输入标准物的描述"></textarea>
+                                <textarea id="modifyMaterial_Description" class="form-control" name="Description" placeholder="请输入质控品的描述"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">上传图片</label>
-                            <div class="col-sm-9">
+                            <div class="col-sm-10">
                                 <img id="modifyMaterial_Preview" src="" width="120" height="80" />
                                 <input id="modifyMaterial_Img" name="Img" type="file" accept=".JPG,.JPEG,.PNG,.GIF" style="width:auto;cursor:pointer;">最佳图片尺寸120x80
                             </div>
@@ -786,42 +812,57 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">推荐浓度</label>
+                            <label for="" class="col-sm-2 control-label">浓度水平</label>
                             <div class="col-sm-10">
-                                <input id="modifyMaterial_Concentrantion" name="Concentrantion" placeholder="格式：平台:浓度1,浓度2...浓度n" />
-                            </div>
-                        </div>
-                        <div class="form-group" style="height: 20px; line-height: 20px;">
-                            <label for="" class="col-sm-2 control-label" style="height: 20px; line-height: 20px;padding-top:0px;">规格</label>
-                            <a id="modifyMaterial_addItemNo" class="col-sm-1 row_new" title="新增货号" style="text-decoration:none;">
-                                添加货号
-                            </a>
-                            <a id="modifyMaterial_addProject" class="col-sm-1 row_new" title="新增项目" style="text-decoration:none;">
-                                添加项目
-                            </a>
-                            <input class="col-sm-2" placeholder="输入项目名并点击添加项目" style="margin:0;padding:0;margin-left:10px;" />
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-2"></div>
-                            <div id="modifyMaterial_MyTable" class="col-sm-10">
+                                <textarea id="modifyMaterial_Concentration" class="form-control" name="Concentration" placeholder="请输入浓度水平"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">稳定性</label>
+                            <label for="" class="col-sm-2 control-label">单支规格</label>
                             <div class="col-sm-10">
-                                <input id="modifyMaterial_Stability" name="Stability" placeholder="请输入标准物稳定性，输入回车添加" />
+                                <input id="modifyMaterial_SingleSpecifications" type="text" class="form-control" name="SingleSpecification" placeholder="请输入质控品单支规格">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">产品特征</label>
+                            <label for="" class="col-sm-2 control-label">包装规格</label>
                             <div class="col-sm-10">
-                                <input id="modifyMaterial_Feature" name="Feature" placeholder="请输入产品特征，输入回车添加" />
+                                <input id="modifyMaterial_PackingSpecification" type="text" class="form-control" name="PackingSpecification" placeholder="请输入质控品单支规格">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">备注</label>
+                            <label for="" class="col-sm-2 control-label">产品状态</label>
                             <div class="col-sm-10">
-                                <textarea id="modifyMaterial_Annotation" class="form-control" name="Annotation" placeholder="请输入备注"></textarea>
+                                <input id="modifyMaterial_Status" type="text" class="form-control" name="Status" placeholder="请输入质控品状态">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">储存条件</label>
+                            <div class="col-sm-10">
+                                <input id="modifyMaterial_StorageCondition" type="text" class="form-control" name="StorageCondition" placeholder="请输入质控品状态">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">效期</label>
+                            <div class="col-sm-10">
+                                <input id="modifyMaterial_UsefulLife" type="text" class="form-control" name="UsefulLife" placeholder="请输入质控品状态">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">保存稳定性</label>
+                            <div class="col-sm-10">
+                                <textarea id="modifyMaterial_PreservationStability" class="form-control" name="PreservationStability" placeholder="请输入质控品保存稳定性"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">产品基质</label>
+                            <div class="col-sm-10">
+                                <input id="modifyMaterial_ProductMatrix" class="form-control" name="ProductMatrix" placeholder="请输入质控品的产品基质" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">检测项目</label>
+                            <div class="col-sm-10">
+                                <textarea id="modifyMaterial_ContainedItems" class="form-control" name="ContainedItems" placeholder="请输入质控品的产品基质"></textarea>
                             </div>
                         </div>
                     </div>

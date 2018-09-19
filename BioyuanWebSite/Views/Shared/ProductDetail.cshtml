@@ -55,7 +55,7 @@
                     <div>
                         <div class="product_attribute">
                             <table class="table table-bordered table-striped">
-                                @if (@lqc.Specifications.Count <= 0)
+                                @*@if (@lqc.Specifications.Count <= 0)
                                 {
                                     <tr>无</tr>
                                 }
@@ -80,7 +80,7 @@
                                     }
                                 
                                     
-                                }
+                                }*@
                             </table>
                         </div>
                     </div>
@@ -89,13 +89,13 @@
                     </div>
                     <div class="product_attribute">
                         
-                            @if (@lqc.Analyte == string.Empty)
+                            @if (@lqc.ContainedItems == string.Empty)
                             {
                                 <span>无</span>
                             }
                             else
                             {
-                                <span>@lqc.Analyte</span>
+                                <span>@lqc.ContainedItems</span>
                             }
 
                         
@@ -105,7 +105,7 @@
                         <span>稳定性</span><br />
                     </div>
                     <div class="product_attribute">
-                        @if (@lqc.Stability == string.Empty)
+                        @if (@lqc.PreservationStability == string.Empty)
                         {
                             <ul>
                                 无
@@ -115,7 +115,7 @@
                         {
                             <ul>
                                 @{
-                                    string[] stabs = @lqc.Stability.Split('|');
+                                    string[] stabs = @lqc.PreservationStability.Split('|');
                                 }
                                 @for (int i = 0; i < @stabs.Length; ++i)
                                 {
@@ -131,7 +131,7 @@
                         <span>产品特征</span><br />
                     </div>
                     <div class="product_attribute">
-                        @if (@lqc.Feature == string.Empty)
+                        @if (@lqc.Status == string.Empty)
                         {
                             <ul>
                                 无
@@ -141,7 +141,7 @@
                         {
                             <ul>
                                 @{
-                                        string[] features = @lqc.Feature.Split('|');
+                                    string[] features = @lqc.Status.Split('|');
                                 }
                                 @for (int i = 0; i < @features.Length; ++i)
                                 {
@@ -152,7 +152,7 @@
                         }
                         <br />
                     </div>
-                    @if (@lqc.Annotation != string.Empty)
+                    @if (@lqc.ProductMatrix != string.Empty)
                     {
                         <div class="protit">
                             <span>备注</span>
@@ -160,7 +160,7 @@
                         </div>
                         <div class="product_attribute">
                             <span>
-                                @lqc.Annotation
+                                @lqc.ProductMatrix
                             </span>
                         </div>
                     }
@@ -208,13 +208,13 @@
                     </div>
                     <div class="product_attribute">
                         
-                            @if (@iqc.Analyte == string.Empty)
+                            @if (@iqc.Description == string.Empty)
                             {
                                 <span>无</span>
                             }
                             else
                             {
-                                <span>@iqc.Analyte</span>
+                                <span>@iqc.Description</span>
                             }
                     </div>
                     <br /><br />
@@ -223,13 +223,13 @@
                     </div>
                     <div class="product_attribute">
 
-                        @if (@iqc.Constitute == string.Empty)
+                        @if (@iqc.Description == string.Empty)
                         {
                             <span>无</span>
                         }
                         else
                         {
-                            <span>@iqc.Constitute</span>
+                            <span>@iqc.Description</span>
                         }
 
 
@@ -256,7 +256,7 @@
                         <span>产品特征</span><br />
                     </div>
                     <div class="product_attribute">
-                        @if (@iqc.Feature == string.Empty)
+                        @if (@iqc.Description == string.Empty)
                         {
                             <span>
                                 无
@@ -264,7 +264,7 @@
                         }
                         else
                         {
-                            <span>@iqc.Feature</span>
+                            <span>@iqc.Description</span>
                         }
                     </div>
                     <br /><br />
@@ -272,7 +272,7 @@
                         <span>产品规格</span><br />
                     </div>
                     <div class="product_attribute">
-                        @if (@iqc.Specification == string.Empty)
+                        @if (@iqc.Description == string.Empty)
                         {
                             <span>
                                 无
@@ -281,7 +281,7 @@
                         else
                         {
                             <span>
-                                @iqc.Specification
+                                @iqc.Description
                             </span>
                         }
                         <br />
@@ -318,7 +318,7 @@
                         }
                     </div>
                     <br />
-                    @if (@iqc.Annotation != string.Empty)
+                    @if (@iqc.Description != string.Empty)
                     {
                         <div class="protit">
                             <span>备注</span>
@@ -326,7 +326,7 @@
                         </div>
                         <div class="product_attribute">
                             <span>
-                                @iqc.Annotation
+                                @iqc.Description
                             </span>
                         </div>
                     }
@@ -378,7 +378,7 @@
                         <div class="product_attribute">
                             <table class="table table-bordered table-striped">
 
-                                @if (@mat.materialProjects.Count == 1)
+                                @*@if (@mat.materialProjects.Count == 1)
                                 {
                                     if (@mat.materialProjects[0].materialProjectName == "")
                                     {
@@ -437,7 +437,7 @@
                                                 <th>@spec.CertificateNo</th>
                                             </tr>
                                         }
-                                }
+                                }*@
 
                                 @*@if (@mat.Specifications.Count <= 0)
                                 {
@@ -471,7 +471,7 @@
                     </div>
                     <div class="product_attribute">
                         
-                        @if (@mat.RecommendedConcentration == string.Empty)
+                        @if (@mat.Description == string.Empty)
                         {
                             <ul>
                                 无
@@ -481,7 +481,7 @@
                         {
                             <ul>
                                 @{
-                                    string[] recommands = @mat.RecommendedConcentration.Split('|');
+                            string[] recommands = @mat.Description.Split('|');
                                 }
                                 @for (int i = 0; i < @recommands.Length; ++i)
                                 {
@@ -497,7 +497,7 @@
                         <span>稳定性</span><br />
                     </div>
                     <div class="product_attribute">
-                        @if (@mat.Stability == string.Empty)
+                        @if (@mat.Description == string.Empty)
                         {
                             <ul>
                                 无
@@ -507,7 +507,7 @@
                         {
                             <ul>
                                 @{
-                                    string[] stabs = @mat.Stability.Split('|');
+                            string[] stabs = @mat.Description.Split('|');
                                 }
                                 @for (int i = 0; i < @stabs.Length; ++i)
                                 {
@@ -523,7 +523,7 @@
                         <span>产品特征</span><br />
                     </div>
                     <div class="product_attribute">
-                        @if (@mat.Feature == string.Empty)
+                        @if (@mat.Description == string.Empty)
                         {
                             <ul>
                                 无
@@ -533,7 +533,7 @@
                         {
                             <ul>
                                 @{
-                                        string[] features = @mat.Feature.Split('|');
+                            string[] features = @mat.Description.Split('|');
                                 }
                                 @for (int i = 0; i < @features.Length; ++i)
                                 {
@@ -545,7 +545,7 @@
                         <br />
                     </div>
 
-                    @if (@mat.Annotation != string.Empty)
+                    @if (@mat.Description != string.Empty)
                     {
                         <div class="protit">
                             <span>备注</span>
@@ -553,7 +553,7 @@
                         </div>
                         <div class="product_attribute">
                             <span>
-                                @mat.Annotation
+                                @mat.Description
                             </span>
                         </div>
                     }

@@ -21,7 +21,7 @@ namespace DAL
         /// <returns></returns>
         public int InsertMaterial(Material material)
         {
-            string sql = "INSERT INTO Material(MaterialId, ProductName, Description, Img, CategoryId, CategoryName, Concentration, SingleSpecification, PackingSpecification, Status, StorageCondition, UsefulLife, PreservationStability, ProductMatrix, ContainedItems,  CreateTime, ModifyTime, State) Values";
+            string sql = "INSERT INTO Material(MaterialId, ProductName, Description, Img, CategoryId, CategoryName, Concentration, SingleSpecification, PackingSpecification, Status, StorageCondition, UsefulLife, PreservationStability, ProductMatrix, ContainedItems,  CreateTime, ModifyTime, Enable) Values";
             sql += "('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}',{16});";
             sql = string.Format(sql, 
                 material.MaterialId, //0
@@ -266,7 +266,7 @@ namespace DAL
         /// <returns></returns>
         public List<Material> GetMaterialsByCategory(string categoryName)
         {
-            string sql = "SELECT * FROM Material WHERE CategoryName = '{0}' AND State = 1 ORDER BY CreateTime ASC";
+            string sql = "SELECT * FROM Material WHERE CategoryName = '{0}' AND Enable = 1 ORDER BY CreateTime ASC";
             sql = string.Format(sql, categoryName);
             SqlDataReader reader = SQLHelper.GetReader(sql);
 

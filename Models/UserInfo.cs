@@ -67,7 +67,7 @@ namespace Models
         /// <summary>
         /// 启用状态
         /// </summary>
-        public int State { get; set; }
+        public int Enable { get; set; }
 
         /// <summary>
         /// 用户组：0代表管理员，1代表普通用户

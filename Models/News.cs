@@ -53,6 +53,6 @@ namespace Models
         /// <summary>
         /// 启用状态
         /// </summary>
-        public int state { get; set; }
+        public int enable { get; set; }
     }
 }

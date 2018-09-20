@@ -17,14 +17,14 @@ namespace DAL
         /// <returns></returns>
         public int InsertNewsCategory(NewsCategory category)
         {
-            string sql = "INSERT INTO NewsCategory(CategoryId, CategoryName, Description, CreateTime, ModifyTime, State) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}');";
+            string sql = "INSERT INTO NewsCategory(CategoryId, CategoryName, Description, CreateTime, ModifyTime, Enable) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}');";
             sql = string.Format(sql,
                 category.CategoryId,
                 category.CategoryName,
                 category.Description,
                 category.CreateTime,
                 category.ModifyTime,
-                category.State);
+                category.Enable);
 
             return SQLHelper.Update(sql);
         }
@@ -46,7 +46,7 @@ namespace DAL
 
             int state = GetNewsCategoryState(id);
 
-            string sql = "UPDATE NewsCategory SET State = '{1}' WHERE CategoryId = '{0}';";
+            string sql = "UPDATE NewsCategory SET Enable = '{1}' WHERE CategoryId = '{0}';";
 
             if (state == 0)
             {
@@ -74,7 +74,7 @@ namespace DAL
 
         public int GetNewsCategoryState(string id)
         {
-            string sql = "SELECT State FROM NewsCategory WHERE CategoryId = '{0}';";
+            string sql = "SELECT Enable FROM NewsCategory WHERE CategoryId = '{0}';";
             sql = string.Format(sql, id);
 
             int state = Convert.ToInt16(SQLHelper.GetSingleResult(sql));
@@ -101,7 +101,7 @@ namespace DAL
                     Description = reader["Description"].ToString(),
                     CreateTime = Convert.ToDateTime(reader["CreateTime"]),
                     ModifyTime = Convert.ToDateTime(reader["ModifyTime"]),
-                    State = Convert.ToInt16(reader["State"])
+                    Enable = Convert.ToInt16(reader["Enable"])
                 };
             }
 
@@ -126,7 +126,7 @@ namespace DAL
                     Description = reader["Description"].ToString(),
                     CreateTime = Convert.ToDateTime(reader["CreateTime"]),
                     ModifyTime = Convert.ToDateTime(reader["modifyTime"]),
-                    State = Convert.ToInt16(reader["State"])
+                    Enable = Convert.ToInt16(reader["Enable"])
                 });
             }
 
@@ -152,7 +152,7 @@ namespace DAL
                     Description = reader["Description"].ToString(),
                     CreateTime = Convert.ToDateTime(reader["CreateTime"]),
                     ModifyTime = Convert.ToDateTime(reader["modifyTime"]),
-                    State = Convert.ToInt16(reader["State"])
+                    Enable = Convert.ToInt16(reader["Enable"])
                 });
             }
 

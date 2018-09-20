@@ -12,7 +12,7 @@ namespace DAL
     {
         public int InsertNews(News news)
         {
-            string sql = "INSERT INTO News(Id, F_Id, F_Name, Title, Author, KeyWord, Content, DateTime, Remark, State) VALUES";
+            string sql = "INSERT INTO News(Id, F_Id, F_Name, Title, Author, KeyWord, Content, DateTime, Remark, Enable) VALUES";
             sql += "('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', {9})";
             sql = string.Format(sql,
                 news.id,
@@ -24,7 +24,7 @@ namespace DAL
                 news.content,
                 news.dateTime,
                 news.remark,
-                news.state);
+                news.enable);
 
             return SQLHelper.Update(sql);
         }
@@ -42,7 +42,7 @@ namespace DAL
                 news.content,
                 news.dateTime,
                 news.remark,
-                news.state
+                news.enable
                 );
             return 0;
         }
@@ -79,7 +79,7 @@ namespace DAL
                     content = reader["Content"].ToString(),
                     dateTime = Convert.ToDateTime(reader["DateTime"]),
                     remark = reader["Remark"].ToString(),
-                    state = Convert.ToInt16(reader["State"])
+                    enable = Convert.ToInt16(reader["Enable"])
                 };
             }
 
@@ -114,11 +114,11 @@ namespace DAL
                     content = reader["Content"].ToString(),
                     dateTime = Convert.ToDateTime(reader["DateTime"]),
                     remark = reader["Remark"].ToString(),
-                    state = Convert.ToInt16(reader["State"])
+                    enable = Convert.ToInt16(reader["Enable"])
                 };
 
                 news.Add(myNews);
-            }
+            } 
 
             return news;
         }
@@ -130,7 +130,7 @@ namespace DAL
                 return -1;
             }
 
-            string sql = "UPDATE News set State = 1 where id = '{0}'";
+            string sql = "UPDATE News set Enable = 1 where id = '{0}'";
             sql = string.Format(sql, id);
 
             return SQLHelper.Update(sql);

@@ -182,7 +182,7 @@ namespace MvcApplication1.Areas.Admin.Controllers
             category.CreateTime = dt;
             category.ModifyTime = dt;
 
-            category.State = 0;
+            category.Enable = 0;
 
             int ret = new ProductCategoryManager().InsertProductCategory(category);
 
@@ -312,7 +312,7 @@ namespace MvcApplication1.Areas.Admin.Controllers
             category.CreateTime = dt;
             category.ModifyTime = dt;
 
-            category.State = 0;
+            category.Enable = 0;
 
             int ret = new NewsCategoryManager().InsertNewsCategory(category);
 
@@ -1031,7 +1031,7 @@ namespace MvcApplication1.Areas.Admin.Controllers
             news.id = new Common().getGUID();
 
             news.dateTime = DateTime.Now;
-            news.state = 0;
+            news.enable = 0;
 
             new NewsManager().InsertNews(news);
 
@@ -1157,7 +1157,7 @@ namespace MvcApplication1.Areas.Admin.Controllers
             user.UserId = new Common().getGUID();
             user.CreateTime = dt;
             user.ModifyTime = dt;
-            user.State = 1;
+            user.Enable = 1;
             user.UserRank = 1;
 
             RegisterType addRet = new UserManager().AddUser(user);

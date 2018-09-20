@@ -36,7 +36,7 @@ namespace DAL
                     UserEmail = reader["UserEmail"].ToString(),
                     CreateTime = Convert.ToDateTime(reader["CreateTime"]),
                     ModifyTime = Convert.ToDateTime(reader["ModifyTime"]),
-                    State = Convert.ToInt32(reader["State"])
+                    Enable = Convert.ToInt32(reader["Enable"])
                 });
             }
 
@@ -68,7 +68,7 @@ namespace DAL
                 admin.UserEmail = reader["UserEmail"].ToString();
                 admin.CreateTime = Convert.ToDateTime(reader["CreateTime"]);
                 admin.ModifyTime = Convert.ToDateTime(reader["ModifyTime"]);
-                admin.State = Convert.ToInt32(reader["State"]);
+                admin.Enable = Convert.ToInt32(reader["Enable"]);
             }
 
             return admin;
@@ -125,7 +125,7 @@ namespace DAL
         //        admin.UserEmail = reader["UserEmail"].ToString();
         //        admin.CreateTime = Convert.ToDateTime(reader["CreateTime"]);
         //        admin.ModifyTime = Convert.ToDateTime(reader["ModifyTime"]);
-        //        admin.State = Convert.ToInt32(reader["State"]);
+        //        admin.State = Convert.ToInt32(reader["Enable"]);
         //    }
 
         //    if(admin == null)
@@ -166,7 +166,7 @@ namespace DAL
                 admin.UserEmail = reader["UserEmail"].ToString();
                 admin.CreateTime = Convert.ToDateTime(reader["CreateTime"]);
                 admin.ModifyTime = Convert.ToDateTime(reader["ModifyTime"]);
-                admin.State = Convert.ToInt32(reader["State"]);
+                admin.Enable = Convert.ToInt32(reader["Enable"]);
             }
 
             return admin;
@@ -250,7 +250,7 @@ namespace DAL
                     UserEmail = reader["UserEmail"].ToString(),
                     CreateTime = Convert.ToDateTime(reader["CreateTime"]),
                     ModifyTime = Convert.ToDateTime(reader["ModifyTime"]),
-                    State = Convert.ToInt32(reader["State"])
+                    Enable = Convert.ToInt32(reader["Enable"])
                 });
             }
 
@@ -287,7 +287,7 @@ namespace DAL
                 admin.UserEmail = reader["UserEmail"].ToString();
                 admin.CreateTime = Convert.ToDateTime(reader["CreateTime"]);
                 admin.ModifyTime = Convert.ToDateTime(reader["ModifyTime"]);
-                admin.State = Convert.ToInt32(reader["State"]);
+                admin.Enable = Convert.ToInt32(reader["Enable"]);
             }
 
             return admin;
@@ -309,8 +309,8 @@ namespace DAL
                 return RegisterType.用户已存在;
             }
 
-            string sql = "insert into T_User(UserId, NickName, LoginName, LoginPwd, UserEmail, CreateTime, ModifyTime, State, UserRank) Values('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', {7}, {8})";
-            sql = string.Format(sql, user.UserId, user.NickName, user.LoginName, user.LoginPwd, user.UserEmail, user.CreateTime, user.ModifyTime, user.State, user.UserRank);
+            string sql = "insert into T_User(UserId, NickName, LoginName, LoginPwd, UserEmail, CreateTime, ModifyTime, Enable, UserRank) Values('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', {7}, {8})";
+            sql = string.Format(sql, user.UserId, user.NickName, user.LoginName, user.LoginPwd, user.UserEmail, user.CreateTime, user.ModifyTime, user.Enable, user.UserRank);
 
             int ret = SQLHelper.Update(sql);
 
@@ -371,7 +371,7 @@ namespace DAL
         /// <returns></returns>
         public int GetUserState(string id)
         {
-            string sql = "select State from T_User";
+            string sql = "select Enable from T_User";
             sql += " where UserId = '{0}'";
             sql = string.Format(sql, id);
 
@@ -391,7 +391,7 @@ namespace DAL
             {
                 return -1;
             }
-            string sql = "select State from T_User";
+            string sql = "select Enable from T_User";
             sql += " where UserId = '{0}'";
             sql = string.Format(sql, id);
 
@@ -406,7 +406,7 @@ namespace DAL
                 state = 0;
             }
 
-            sql = "update T_User set State = '{0}' where UserId = '{1}'";
+            sql = "update T_User set Enable = '{0}' where UserId = '{1}'";
             sql = string.Format(sql, state, id);
 
             int retVal = SQLHelper.Update(sql);

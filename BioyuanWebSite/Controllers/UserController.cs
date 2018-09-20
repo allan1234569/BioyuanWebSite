@@ -68,7 +68,7 @@ namespace MvcApplication1.Controllers
         public string RegisterUser(UserInfo user)
         {
             user.UserRank = 1;//普通用户
-            user.State = 1;
+            user.Enable = 1;
 
             //RegisterType val = new UserManager().CheckLoginName(user.LoginName);
             //if (val != RegisterType.检查通过)
